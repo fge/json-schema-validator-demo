@@ -1,6 +1,13 @@
-# Embedded Jetty template application
+## What this is
 
-This is a template for a web application that uses embedded Jetty. The sample code consists of a JSP (this page) and a simple servlet.
+<p>This is a Heroku-based Java webapp which demonstrates <a
+href="https://github.com/fge/json-schema-validator">json-schema-validator</a>.</p>
+
+<p>The URL is <a href="http://json-schema-validator.herokuapp.com">Here</a>. It is really basic
+HTML/JSP/CSS stuff, and reflects the HTML/JSP/CSS skills of the author (that is, close to zero). But
+it works.</p>
+
+<p>Contributions are of course more than welcome!</p>
 
 ## Running the application locally
 
