@@ -17,7 +17,7 @@
         <textarea name="results" id="results"
                   readonly="readonly"><%=request.getAttribute("results")%>
         </textarea>
-        <a href="index.jsp">Back</a>
+        <input type="button" value="Back" onclick="history.back()">
     </div>
 </form>
 </body>
