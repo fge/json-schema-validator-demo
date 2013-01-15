@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.StringWriter;
 
 public final class FormValidation
     extends HttpServlet
@@ -30,29 +29,26 @@ public final class FormValidation
         throws ServletException, IOException
     {
         // récupération des paramètres
-        final String schemaParam = req.getParameter("schema");
-        final String dataParam = req.getParameter("data");
-        final StringWriter sw = new StringWriter();
+        final String rawSchema = req.getParameter("schema");
+        String data = req.getParameter("data");
+
         // traitement
         try {
-            final JsonNode schemaNode = JsonLoader.fromString(schemaParam);
-            final JsonNode dataNode = JsonLoader.fromString(dataParam);
+            final JsonNode schemaNode = JsonLoader.fromString(rawSchema);
+            final JsonNode dataNode = JsonLoader.fromString(data);
+            data = Utils.prettyPrint(dataNode);
 
             final JsonSchema schema = FACTORY.fromSchema(schemaNode);
 
             final ValidationReport report = schema.validate(dataNode);
 
-            WRITER.writeValue(sw, report.asJsonObject());
-            sw.flush();
-
-            req.setAttribute("results", sw.toString());
+            req.setAttribute("results",
+                Utils.prettyPrint(report.asJsonObject()));
         } catch (IOException e) {
             req.setAttribute("results", "ERROR: " + e.getMessage());
-        } finally {
-            sw.close();
         }
         // retour
-        req.setAttribute("data", dataParam);
+        req.setAttribute("data", data);
         req.getRequestDispatcher("/results.jsp").forward(req, resp);
     }
 }
