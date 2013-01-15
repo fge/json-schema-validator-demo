@@ -1,12 +1,10 @@
 package org.eel.kitchen.jsonschema;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import org.eel.kitchen.jsonschema.main.JsonSchema;
 import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
 import org.eel.kitchen.jsonschema.report.ValidationReport;
 import org.eel.kitchen.jsonschema.util.JsonLoader;
-import org.eel.kitchen.jsonschema.util.jackson.JacksonUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +17,6 @@ public final class FormValidation
 {
     private static final JsonSchemaFactory FACTORY
         = JsonSchemaFactory.defaultFactory();
-    private static final ObjectWriter WRITER = JacksonUtils.getMapper()
-        .writerWithDefaultPrettyPrinter();
-
 
     @Override
     protected void doPost(final HttpServletRequest req,
