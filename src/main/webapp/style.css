@@ -1,0 +1,19 @@
+div {
+    position: relative;
+    height: 98%;
+    width: 48%;
+    border: 1px solid;
+}
+div * {
+    clear: right;
+}
+textarea {
+    width: 100%;
+    height: 80%;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
