@@ -23,11 +23,10 @@ public final class FormValidation
         final HttpServletResponse resp)
         throws ServletException, IOException
     {
-        // récupération des paramètres
         final String rawSchema = req.getParameter("schema");
+        req.setAttribute("origSchema", rawSchema);
         String data = req.getParameter("data");
 
-        // traitement
         try {
             final JsonNode schemaNode = JsonLoader.fromString(rawSchema);
             final JsonNode dataNode = JsonLoader.fromString(data);
@@ -42,7 +41,7 @@ public final class FormValidation
         } catch (IOException e) {
             req.setAttribute("results", "ERROR: " + e.getMessage());
         }
-        // retour
+
         req.setAttribute("data", data);
         req.getRequestDispatcher("/results.jsp").forward(req, resp);
     }

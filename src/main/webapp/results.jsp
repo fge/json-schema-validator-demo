@@ -5,6 +5,11 @@
     <title>Validation results</title>
 </head>
 <body>
+<%
+    String origSchema = (String) request.getAttribute("origSchema");
+    if (origSchema == null)
+        origSchema = "";
+%>
 <div id="top">
     <p>Validation messages appear as a JSON object in the right text area. An
         empty array means no errors.</p>
@@ -26,7 +31,7 @@
     <p class="intro">The "Back" button will bring you back to the previous page.
     </p>
 </div>
-<form action="">
+<form action="index.jsp" method="POST">
     <div id="left" class="content">
         <label for="data">Data</label>
         <textarea name="data" id="data"
@@ -38,7 +43,8 @@
         <textarea name="results" id="results"
             readonly="readonly"><%=request.getAttribute("results")%>
         </textarea>
-        <input type="button" value="Back" onclick="history.back()">
+        <input type="hidden" name="origSchema" value="<%=origSchema%>">
+        <input type="submit" value="Back">
     </div>
 </form>
 </body>
