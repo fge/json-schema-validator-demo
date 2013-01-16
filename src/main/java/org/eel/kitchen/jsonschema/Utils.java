@@ -49,7 +49,7 @@ public final class Utils
     {
         final HashFunction f = Hashing.sha1();
 
-        final Hasher hasher = f.newHasher();
+        final Hasher hasher = f.newHasher().putString(RANDOM_UUID);
 
         hasher.putString(first);
 
