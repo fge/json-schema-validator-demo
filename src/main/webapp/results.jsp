@@ -6,8 +6,19 @@
 </head>
 <body>
 <div id="top">
-    <p>Validation messages appear as a JSON array in the right text area. An
-        empty array means no errors. If the message begins with "ERROR:", it
+    <p>Validation messages appear as a JSON object in the right text area. An
+        empty array means no errors.</p>
+
+    <p>Keys of the object are <a
+        href="http://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-07">
+        JSON Pointer</a>s into the validated instances, and values are arrays
+        of validation errors encountered at that point in the instance. You will
+        notice that some messages have "syntax" or "$ref" as validation domains,
+        which refer to schema syntax errors or JSON Reference processing
+        failures respectively.
+    </p>
+
+    <p>If the message begins with "ERROR:", it
         means a fatal error has occurred during processing. This can happen if
         you did not enter valid JSON data in the previous step.
     </p>
