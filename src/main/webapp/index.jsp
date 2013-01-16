@@ -13,9 +13,9 @@
     </p>
 
     <p>This webapp uses the <a
-        href="https://fge.github.com/json-schema-validator">
+        href="https://github.com/fge/json-schema-validator">
         json-schema-validator Java library</a>. It is available on <a
-        href="https://fge.github.com/json-schema-validator">GitHub</a>.
+        href="https://github.com/fge/json-schema-validator">GitHub</a>.
         Contributions are welcome.
     </p>
 
