@@ -15,7 +15,7 @@
 %>
 <div id="top">
     <p>Validation messages appear as a JSON object in the right text area. An
-        empty array means no errors.</p>
+        empty object means no errors.</p>
 
     <p>Keys of the object are <a
         href="http://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-07">
