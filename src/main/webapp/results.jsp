@@ -1,3 +1,4 @@
+<%@page import="org.eel.kitchen.jsonschema.Utils"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -9,6 +10,8 @@
     String origSchema = (String) request.getAttribute("origSchema");
     if (origSchema == null)
         origSchema = "";
+    else
+        origSchema = Utils.inputValueEscape(origSchema);
 %>
 <div id="top">
     <p>Validation messages appear as a JSON object in the right text area. An
