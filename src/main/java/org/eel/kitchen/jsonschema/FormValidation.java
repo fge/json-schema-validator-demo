@@ -19,13 +19,19 @@ public final class FormValidation
         = JsonSchemaFactory.defaultFactory();
 
     @Override
-    protected void doPost(final HttpServletRequest req,
+    public void doPost(final HttpServletRequest req,
         final HttpServletResponse resp)
         throws ServletException, IOException
     {
         final String rawSchema = req.getParameter("schema");
-        req.setAttribute("origSchema", rawSchema);
         String data = req.getParameter("data");
+
+        if (rawSchema == null || data == null) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                "Missing parameters");
+            return;
+        }
+        req.setAttribute("origSchema", rawSchema);
 
         try {
             final JsonNode schemaNode = JsonLoader.fromString(rawSchema);
