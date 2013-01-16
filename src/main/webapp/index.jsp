@@ -1,4 +1,3 @@
-<%@page import="org.eel.kitchen.jsonschema.Utils"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -7,9 +6,6 @@
 </head>
 <body>
 <%
-    /*
-     * Piggybacked values from results.jsp's POST, if any
-     */
     String origSchema = request.getParameter("origSchema");
     if (origSchema == null)
         origSchema = "";
@@ -17,11 +13,6 @@
     String origData = request.getParameter("data");
     if (origData == null)
         origData = "";
-
-    /*
-     * Hash value
-     */
-    final String hash = Utils.getHash(session.getId(), request.getRemoteAddr());
 %>
 <div id="top">
     <p>Enter your schema in the left text area and the data to validate in the
@@ -51,7 +42,6 @@
     <div id="right" class="content">
         <label for="data">Data:</label>
         <textarea name="data" id="data"><%=origData%></textarea>
-        <input type="hidden" name="hash" value="<%=hash%>">
         <input type="submit" value="Validate">
     </div>
 </form>

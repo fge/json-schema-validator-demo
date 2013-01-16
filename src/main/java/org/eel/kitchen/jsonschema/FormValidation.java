@@ -24,24 +24,9 @@ public final class FormValidation
         throws ServletException, IOException
     {
         final String rawSchema = req.getParameter("schema");
+        req.setAttribute("origSchema", rawSchema);
         String data = req.getParameter("data");
 
-        final String hash = req.getParameter("hash");
-
-        if (hash == null) {
-            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
-            return;
-        }
-
-        final String computedHash = Utils.getHash(req.getSession().getId(),
-            req.getRemoteAddr());
-
-        if (!hash.equals(computedHash)) {
-            resp.sendError(HttpServletResponse.SC_FORBIDDEN);
-            return;
-        }
-
-        req.setAttribute("origSchema", rawSchema);
         try {
             final JsonNode schemaNode = JsonLoader.fromString(rawSchema);
             final JsonNode dataNode = JsonLoader.fromString(data);
