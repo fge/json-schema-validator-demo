@@ -17,4 +17,18 @@
         <servlet-name>validate</servlet-name>
         <url-pattern>/validate</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>gzip</filter-name>
+        <filter-class>org.eclipse.jetty.servlets.GzipFilter</filter-class>
+        <init-param>
+            <param-name>mimeTypes</param-name>
+            <param-value>text/html,text/css,application/json</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>gzip</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
