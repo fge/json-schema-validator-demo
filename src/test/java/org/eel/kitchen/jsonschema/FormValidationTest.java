@@ -3,6 +3,7 @@ package org.eel.kitchen.jsonschema;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,14 +15,15 @@ public final class FormValidationTest
 {
     private HttpServletRequest request;
     private HttpServletResponse response;
+    private RequestDispatcher requestDispatcher;
     private FormValidation servlet;
 
     @BeforeMethod
     public void init()
     {
-        System.out.println("FOO");
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
+        requestDispatcher = mock(RequestDispatcher.class);
         servlet = new FormValidation();
     }
 
@@ -52,5 +54,29 @@ public final class FormValidationTest
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
+    }
+
+    @Test
+    public void necessaryDataIsDispatchedToNextPage()
+        throws ServletException, IOException
+    {
+        final String destination = "/results.jsp";
+        final String schema = "{}";
+        // FIXME: see below
+        final String data = "{ }";
+
+        when(request.getParameter("schema")).thenReturn(schema);
+        when(request.getParameter("data")).thenReturn(data);
+        when(request.getRequestDispatcher(destination))
+            .thenReturn(requestDispatcher);
+
+        servlet.doPost(request, response);
+        // Verify that the appropriate data is set into the request
+        verify(request).setAttribute(eq("origSchema"), same(schema));
+        // FIXME: should get rid of pretty printing, it is not really useful
+        verify(request).setAttribute(eq("data"), eq(data));
+
+        verify(request).getRequestDispatcher(eq(destination));
+        verify(requestDispatcher).forward(request, response);
     }
 }
