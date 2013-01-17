@@ -76,6 +76,9 @@ public final class FormValidationTest
 
         servlet.doPost(request, response);
 
+        verify(request).getParameter(ServletInputs.USE_V4);
+        verify(request).getParameter(ServletInputs.USE_ID);
+
         verify(writer).write(eq(data));
     }
 

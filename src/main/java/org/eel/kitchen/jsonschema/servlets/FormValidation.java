@@ -20,9 +20,6 @@ import java.io.PrintWriter;
 public final class FormValidation
     extends HttpServlet
 {
-    private static final JsonSchemaFactory FACTORY
-        = JsonSchemaFactory.defaultFactory();
-
     @Override
     public void doPost(final HttpServletRequest req,
         final HttpServletResponse resp)
@@ -37,6 +34,9 @@ public final class FormValidation
             return;
         }
 
+        // Set correct content type
+        resp.setContentType(MediaType.PLAIN_TEXT_UTF_8.toString());
+
         final boolean useV4
             = Boolean.parseBoolean(req.getParameter(ServletInputs.USE_V4));
         final boolean useId
@@ -45,7 +45,6 @@ public final class FormValidation
         final JsonSchemaFactory factory
             = JsonSchemaFactories.withOptions(useV4, useId);
 
-        resp.setContentType(MediaType.PLAIN_TEXT_UTF_8.toString());
         final PrintWriter writer = resp.getWriter();
 
         try {
