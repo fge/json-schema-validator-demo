@@ -24,6 +24,8 @@ public final class FormValidationTest
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
         requestDispatcher = mock(RequestDispatcher.class);
+        when(request.getRequestDispatcher(Constants.RESULTS))
+            .thenReturn(requestDispatcher);
         servlet = new FormValidation();
     }
 
@@ -67,8 +69,6 @@ public final class FormValidationTest
 
         when(request.getParameter("schema")).thenReturn(schema);
         when(request.getParameter("data")).thenReturn(data);
-        when(request.getRequestDispatcher(destination))
-            .thenReturn(requestDispatcher);
 
         servlet.doPost(request, response);
         // FIXME: should get rid of pretty printing, it is not really useful
