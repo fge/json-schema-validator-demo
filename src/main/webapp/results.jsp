@@ -1,8 +1,10 @@
 <%@page import="org.eel.kitchen.jsonschema.constants.ServletOutputs"%>
 <%@page import="org.eel.kitchen.jsonschema.constants.Links"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <link href="style.css" rel="stylesheet" type="text/css">
     <title>Validation results</title>
 </head>
@@ -31,13 +33,13 @@
     <div id="left" class="content">
         <label for="<%=ServletOutputs.DATA%>">Data</label>
         <textarea name="<%=ServletOutputs.DATA%>" id="<%=ServletOutputs.DATA%>"
-            readonly="readonly"><%=request.getAttribute("data")%>
+            readonly="readonly" rows="20" cols="20"><%=request.getAttribute("data")%>
         </textarea>
     </div>
     <div id="right" class="content">
         <label for="<%=ServletOutputs.RESULTS%>">Results</label>
         <textarea name="<%=ServletOutputs.RESULTS%>"
-            id="<%=ServletOutputs.RESULTS%>"
+            id="<%=ServletOutputs.RESULTS%>" rows="20" cols="20"
             readonly="readonly"><%=request.getAttribute("results")%>
         </textarea>
         <input type="button" value="Back" onclick="history.back()">

@@ -1,8 +1,10 @@
 <%@page import="org.eel.kitchen.jsonschema.constants.ServletInputs"%>
 <%@page import="org.eel.kitchen.jsonschema.constants.Links"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>JSON Schema validation demo</title>
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
@@ -15,8 +17,7 @@
 
     <p>This webapp uses the <a href="<%=Links.PROJECT_LINK%>">
         json-schema-validator Java library</a>. It is available on <a
-        href="<%=Links.SELF_LINK%>">GitHub</a>.
-        Contributions are welcome.
+        href="<%=Links.SELF_LINK%>">GitHub</a>. Contributions are welcome.
     </p>
 
     <p><b>NOTE:</b> the default schema format is draft v3. If you want to
@@ -30,13 +31,13 @@
 <form action="validate" method="POST">
     <div id="left" class="content">
         <label for="<%=ServletInputs.SCHEMA%>">Schema:</label>
-        <textarea name="<%=ServletInputs.SCHEMA%>"
+        <textarea name="<%=ServletInputs.SCHEMA%>" rows="20" cols="20"
             id="<%=ServletInputs.SCHEMA%>"></textarea>
     </div>
     <div id="right" class="content">
         <label for="<%=ServletInputs.DATA%>">Data:</label>
-        <textarea name="<%=ServletInputs.DATA%>"
-            id="<%=ServletInputs.DATA%>"></textarea>
+        <textarea name="<%=ServletInputs.DATA%>" id="<%=ServletInputs.DATA%>"
+            rows="20" cols="20"></textarea>
         <input type="submit" value="Validate">
     </div>
 </form>
