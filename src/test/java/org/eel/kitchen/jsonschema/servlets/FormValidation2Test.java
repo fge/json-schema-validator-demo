@@ -1,7 +1,7 @@
 package org.eel.kitchen.jsonschema.servlets;
 
+import org.eel.kitchen.jsonschema.CustomMatchers;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
-import org.mockito.ArgumentMatcher;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,16 +15,6 @@ import static org.mockito.Mockito.*;
 
 public final class FormValidation2Test
 {
-    private static final ArgumentMatcher<String> IS_ERROR
-        = new ArgumentMatcher<String>()
-    {
-        @Override
-        public boolean matches(final Object argument)
-        {
-            return ((String) argument).startsWith("ERROR: ");
-        }
-    };
-
     private HttpServletRequest request;
     private HttpServletResponse response;
     private FormValidation2 servlet;
@@ -101,7 +91,7 @@ public final class FormValidation2Test
 
         servlet.doPost(request, response);
 
-        verify(writer).write(argThat(IS_ERROR));
+        verify(writer).write(CustomMatchers.errorMessage());
     }
 
     @Test(dependsOnMethods = "necessaryDataIsReturned")
@@ -116,6 +106,6 @@ public final class FormValidation2Test
 
         servlet.doPost(request, response);
 
-        verify(writer).write(argThat(IS_ERROR));
+        verify(writer).write(CustomMatchers.errorMessage());
     }
 }

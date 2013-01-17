@@ -1,10 +1,9 @@
 package org.eel.kitchen.jsonschema.servlets;
 
+import org.eel.kitchen.jsonschema.CustomMatchers;
 import org.eel.kitchen.jsonschema.constants.Pages;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.eel.kitchen.jsonschema.constants.ServletOutputs;
-import org.eel.kitchen.jsonschema.servlets.FormValidation;
-import org.mockito.ArgumentMatcher;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,16 +17,6 @@ import static org.mockito.Mockito.*;
 
 public final class FormValidationTest
 {
-    private static final ArgumentMatcher<String> IS_ERROR
-        = new ArgumentMatcher<String>()
-    {
-        @Override
-        public boolean matches(final Object argument)
-        {
-            return ((String) argument).startsWith("ERROR: ");
-        }
-    };
-
     private HttpServletRequest request;
     private HttpServletResponse response;
     private RequestDispatcher requestDispatcher;
@@ -108,7 +97,7 @@ public final class FormValidationTest
         servlet.doPost(request, response);
 
         verify(request).setAttribute(same(ServletOutputs.RESULTS),
-            argThat(IS_ERROR));
+            CustomMatchers.errorMessage());
     }
 
     @Test(dependsOnMethods = "necessaryDataIsDispatchedToNextPage")
@@ -124,6 +113,6 @@ public final class FormValidationTest
         servlet.doPost(request, response);
 
         verify(request).setAttribute(same(ServletOutputs.RESULTS),
-            argThat(IS_ERROR));
+            CustomMatchers.errorMessage());
     }
 }
