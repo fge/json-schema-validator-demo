@@ -1,17 +1,15 @@
 package org.eel.kitchen.jsonschema.servlets;
 
 import org.eel.kitchen.jsonschema.CustomMatchers;
-import org.eel.kitchen.jsonschema.constants.Pages;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
-import org.eel.kitchen.jsonschema.constants.ServletOutputs;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import static org.mockito.Mockito.*;
 
@@ -19,17 +17,17 @@ public final class FormValidationTest
 {
     private HttpServletRequest request;
     private HttpServletResponse response;
-    private RequestDispatcher requestDispatcher;
     private FormValidation servlet;
+    private PrintWriter writer;
 
     @BeforeMethod
     public void init()
+        throws IOException
     {
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
-        requestDispatcher = mock(RequestDispatcher.class);
-        when(request.getRequestDispatcher(Pages.RESULTS))
-            .thenReturn(requestDispatcher);
+        writer = mock(PrintWriter.class);
+        when(response.getWriter()).thenReturn(writer);
         servlet = new FormValidation();
     }
 
@@ -66,7 +64,7 @@ public final class FormValidationTest
     }
 
     @Test
-    public void necessaryDataIsDispatchedToNextPage()
+    public void necessaryDataIsReturned()
         throws ServletException, IOException
     {
         final String schema = "{}";
@@ -77,14 +75,11 @@ public final class FormValidationTest
         when(request.getParameter(ServletInputs.DATA)).thenReturn(data);
 
         servlet.doPost(request, response);
-        // FIXME: should get rid of pretty printing, it is not really useful
-        verify(request).setAttribute(same(ServletOutputs.DATA), eq(data));
 
-        verify(request).getRequestDispatcher(Pages.RESULTS);
-        verify(requestDispatcher).forward(request, response);
+        verify(writer).write(eq(data));
     }
 
-    @Test(dependsOnMethods = "necessaryDataIsDispatchedToNextPage")
+    @Test(dependsOnMethods = "necessaryDataIsReturned")
     public void invalidSchemaRaisesAnError()
         throws ServletException, IOException
     {
@@ -96,11 +91,10 @@ public final class FormValidationTest
 
         servlet.doPost(request, response);
 
-        verify(request).setAttribute(same(ServletOutputs.RESULTS),
-            CustomMatchers.errorMessage());
+        verify(writer).write(CustomMatchers.errorMessage());
     }
 
-    @Test(dependsOnMethods = "necessaryDataIsDispatchedToNextPage")
+    @Test(dependsOnMethods = "necessaryDataIsReturned")
     public void invalidDataRaisesAnError()
         throws ServletException, IOException
     {
@@ -112,7 +106,6 @@ public final class FormValidationTest
 
         servlet.doPost(request, response);
 
-        verify(request).setAttribute(same(ServletOutputs.RESULTS),
-            CustomMatchers.errorMessage());
+        verify(writer).write(CustomMatchers.errorMessage());
     }
 }

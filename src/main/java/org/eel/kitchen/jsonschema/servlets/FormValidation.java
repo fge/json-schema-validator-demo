@@ -1,10 +1,9 @@
 package org.eel.kitchen.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.net.MediaType;
 import org.eel.kitchen.jsonschema.Utils;
-import org.eel.kitchen.jsonschema.constants.Pages;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
-import org.eel.kitchen.jsonschema.constants.ServletOutputs;
 import org.eel.kitchen.jsonschema.main.JsonSchema;
 import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
 import org.eel.kitchen.jsonschema.report.ValidationReport;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public final class FormValidation
     extends HttpServlet
@@ -28,7 +28,7 @@ public final class FormValidation
         throws ServletException, IOException
     {
         final String rawSchema = req.getParameter(ServletInputs.SCHEMA);
-        String data = req.getParameter(ServletInputs.DATA);
+        final String data = req.getParameter(ServletInputs.DATA);
 
         if (rawSchema == null || data == null) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
@@ -36,23 +36,24 @@ public final class FormValidation
             return;
         }
 
+        resp.setContentType(MediaType.PLAIN_TEXT_UTF_8.toString());
+        final PrintWriter writer = resp.getWriter();
+
         try {
             final JsonNode schemaNode = JsonLoader.fromString(rawSchema);
             final JsonNode dataNode = JsonLoader.fromString(data);
-            data = Utils.prettyPrint(dataNode);
 
             final JsonSchema schema = FACTORY.fromSchema(schemaNode);
 
             final ValidationReport report = schema.validate(dataNode);
 
-            req.setAttribute(ServletOutputs.RESULTS,
-                Utils.prettyPrint(report.asJsonObject()));
+            final String s = Utils.prettyPrint(report.asJsonObject());
+            writer.write(s);
         } catch (IOException e) {
-            req.setAttribute(ServletOutputs.RESULTS,
-                "ERROR: " + e.getMessage());
+            writer.write("ERROR: " + e.getMessage());
+        } finally {
+            writer.flush();
+            writer.close();
         }
-
-        req.setAttribute(ServletOutputs.DATA, data);
-        req.getRequestDispatcher(Pages.RESULTS).forward(req, resp);
     }
 }
