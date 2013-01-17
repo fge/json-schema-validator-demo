@@ -106,4 +106,20 @@ public final class FormValidationTest
         verify(request).setAttribute(same(ServletOutputs.RESULTS),
             argThat(IS_ERROR));
     }
+
+    @Test(dependsOnMethods = "necessaryDataIsDispatchedToNextPage")
+    public void invalidDataRaisesAnError()
+        throws ServletException, IOException
+    {
+        final String schema = "{}";
+        final String data = "foo";
+
+        when(request.getParameter(ServletInputs.SCHEMA)).thenReturn(schema);
+        when(request.getParameter(ServletInputs.DATA)).thenReturn(data);
+
+        servlet.doPost(request, response);
+
+        verify(request).setAttribute(same(ServletOutputs.RESULTS),
+            argThat(IS_ERROR));
+    }
 }
