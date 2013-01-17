@@ -1,5 +1,6 @@
 package org.eel.kitchen.jsonschema;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.servlet.ServletException;
@@ -15,24 +16,19 @@ public final class FormValidationTest
     private HttpServletResponse response;
     private FormValidation servlet;
 
-    // FIXME: why doesn't it work???
-    /*
-    @BeforeTest
+    @BeforeMethod
     public void init()
     {
+        System.out.println("FOO");
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
         servlet = new FormValidation();
     }
-    */
 
     @Test
     public void missingBothParametersReturns401()
         throws ServletException, IOException
     {
-        request = mock(HttpServletRequest.class);
-        response = mock(HttpServletResponse.class);
-        servlet = new FormValidation();
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
@@ -42,9 +38,6 @@ public final class FormValidationTest
     public void missingSchemaParameterReturns401()
         throws ServletException, IOException
     {
-        request = mock(HttpServletRequest.class);
-        response = mock(HttpServletResponse.class);
-        servlet = new FormValidation();
         when(request.getParameter("schema")).thenReturn("{}");
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
@@ -55,9 +48,6 @@ public final class FormValidationTest
     public void missingDataParameterReturns401()
         throws ServletException, IOException
     {
-        request = mock(HttpServletRequest.class);
-        response = mock(HttpServletResponse.class);
-        servlet = new FormValidation();
         when(request.getParameter("data")).thenReturn("{}");
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
