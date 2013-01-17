@@ -31,7 +31,6 @@ public final class FormValidation
                 "Missing parameters");
             return;
         }
-        req.setAttribute("origSchema", rawSchema);
 
         try {
             final JsonNode schemaNode = JsonLoader.fromString(rawSchema);

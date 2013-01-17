@@ -71,8 +71,6 @@ public final class FormValidationTest
             .thenReturn(requestDispatcher);
 
         servlet.doPost(request, response);
-        // Verify that the appropriate data is set into the request
-        verify(request).setAttribute(eq("origSchema"), same(schema));
         // FIXME: should get rid of pretty printing, it is not really useful
         verify(request).setAttribute(eq("data"), eq(data));
 
