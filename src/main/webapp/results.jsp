@@ -1,4 +1,5 @@
 <%@page import="org.eel.kitchen.jsonschema.constants.ServletOutputs"%>
+<%@page import="org.eel.kitchen.jsonschema.constants.Links"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -10,10 +11,9 @@
     <p>Validation messages appear as a JSON object in the right text area. An
         empty object means no errors.</p>
 
-    <p>Keys of the object are <a
-        href="http://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-07">
-        JSON Pointer</a>s into the validated instances, and values are arrays
-        of validation errors encountered at that point in the instance. You will
+    <p>Keys of the object are <a href="<%=Links.JSON_POINTER_DRAFT%>">JSON
+        Pointer</a>s into the validated instances, and values are arrays of
+        validation errors encountered at that point in the instance. You will
         notice that some messages have "syntax" or "$ref" as validation domains,
         which refer to schema syntax errors or JSON Reference processing
         failures respectively.
