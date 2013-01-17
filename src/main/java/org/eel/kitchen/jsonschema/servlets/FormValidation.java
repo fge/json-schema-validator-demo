@@ -47,8 +47,7 @@ public final class FormValidation
 
             final ValidationReport report = schema.validate(dataNode);
 
-            final String s = Utils.prettyPrint(report.asJsonObject());
-            writer.write(s);
+            writer.write(Utils.prettyPrint(report.asJsonObject()));
         } catch (IOException e) {
             writer.write("ERROR: " + e.getMessage());
         } finally {
