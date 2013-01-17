@@ -1,5 +1,6 @@
 package org.eel.kitchen.jsonschema;
 
+import org.mockito.ArgumentMatcher;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,6 +14,16 @@ import static org.mockito.Mockito.*;
 
 public final class FormValidationTest
 {
+    private static final ArgumentMatcher<String> IS_ERROR
+        = new ArgumentMatcher<String>()
+    {
+        @Override
+        public boolean matches(final Object argument)
+        {
+            return ((String) argument).startsWith("ERROR: ");
+        }
+    };
+
     private HttpServletRequest request;
     private HttpServletResponse response;
     private RequestDispatcher requestDispatcher;
@@ -24,7 +35,7 @@ public final class FormValidationTest
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
         requestDispatcher = mock(RequestDispatcher.class);
-        when(request.getRequestDispatcher(Constants.RESULTS))
+        when(request.getRequestDispatcher(Pages.RESULTS))
             .thenReturn(requestDispatcher);
         servlet = new FormValidation();
     }
@@ -43,7 +54,7 @@ public final class FormValidationTest
     public void missingSchemaParameterReturns401()
         throws ServletException, IOException
     {
-        when(request.getParameter("schema")).thenReturn("{}");
+        when(request.getParameter(ServletInputs.SCHEMA)).thenReturn("{}");
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
@@ -54,7 +65,7 @@ public final class FormValidationTest
     public void missingDataParameterReturns401()
         throws ServletException, IOException
     {
-        when(request.getParameter("data")).thenReturn("{}");
+        when(request.getParameter(ServletInputs.DATA)).thenReturn("{}");
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
@@ -69,14 +80,30 @@ public final class FormValidationTest
         // FIXME: see below
         final String data = "{ }";
 
-        when(request.getParameter("schema")).thenReturn(schema);
-        when(request.getParameter("data")).thenReturn(data);
+        when(request.getParameter(ServletInputs.SCHEMA)).thenReturn(schema);
+        when(request.getParameter(ServletInputs.DATA)).thenReturn(data);
 
         servlet.doPost(request, response);
         // FIXME: should get rid of pretty printing, it is not really useful
-        verify(request).setAttribute(eq("data"), eq(data));
+        verify(request).setAttribute(same(ServletOutputs.DATA), eq(data));
 
-        verify(request).getRequestDispatcher(Constants.RESULTS);
+        verify(request).getRequestDispatcher(Pages.RESULTS);
         verify(requestDispatcher).forward(request, response);
+    }
+
+    @Test(dependsOnMethods = "necessaryDataIsDispatchedToNextPage")
+    public void invalidSchemaRaisesAnError()
+        throws ServletException, IOException
+    {
+        final String schema = "foo";
+        final String data = "{}";
+
+        when(request.getParameter(ServletInputs.SCHEMA)).thenReturn(schema);
+        when(request.getParameter(ServletInputs.DATA)).thenReturn(data);
+
+        servlet.doPost(request, response);
+
+        verify(request).setAttribute(same(ServletOutputs.RESULTS),
+            argThat(IS_ERROR));
     }
 }

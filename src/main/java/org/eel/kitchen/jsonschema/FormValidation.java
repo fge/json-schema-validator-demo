@@ -23,8 +23,8 @@ public final class FormValidation
         final HttpServletResponse resp)
         throws ServletException, IOException
     {
-        final String rawSchema = req.getParameter("schema");
-        String data = req.getParameter("data");
+        final String rawSchema = req.getParameter(ServletInputs.SCHEMA);
+        String data = req.getParameter(ServletInputs.DATA);
 
         if (rawSchema == null || data == null) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
@@ -41,14 +41,14 @@ public final class FormValidation
 
             final ValidationReport report = schema.validate(dataNode);
 
-            req.setAttribute("results",
+            req.setAttribute(ServletOutputs.RESULTS,
                 Utils.prettyPrint(report.asJsonObject()));
         } catch (IOException e) {
-            req.setAttribute("results", "ERROR: " + e.getMessage());
+            req.setAttribute(ServletOutputs.RESULTS,
+                "ERROR: " + e.getMessage());
         }
-        // retour
-        req.setAttribute("data", data);
-        req.getRequestDispatcher(Constants.RESULTS)
-            .forward(req, resp);
+
+        req.setAttribute(ServletOutputs.DATA, data);
+        req.getRequestDispatcher(Pages.RESULTS).forward(req, resp);
     }
 }

@@ -1,8 +1,8 @@
 package org.eel.kitchen.jsonschema;
 
-public final class Constants
+public final class Pages
 {
-    private Constants()
+    private Pages()
     {
     }
 
