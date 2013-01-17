@@ -36,6 +36,7 @@ public final class FormValidationTest
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
+        verify(request, never()).getRequestDispatcher(any(String.class));
     }
 
     @Test
@@ -46,6 +47,7 @@ public final class FormValidationTest
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
+        verify(request, never()).getRequestDispatcher(any(String.class));
     }
 
     @Test
@@ -56,13 +58,13 @@ public final class FormValidationTest
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
+        verify(request, never()).getRequestDispatcher(any(String.class));
     }
 
     @Test
     public void necessaryDataIsDispatchedToNextPage()
         throws ServletException, IOException
     {
-        final String destination = "/results.jsp";
         final String schema = "{}";
         // FIXME: see below
         final String data = "{ }";
@@ -74,7 +76,7 @@ public final class FormValidationTest
         // FIXME: should get rid of pretty printing, it is not really useful
         verify(request).setAttribute(eq("data"), eq(data));
 
-        verify(request).getRequestDispatcher(eq(destination));
+        verify(request).getRequestDispatcher(Constants.RESULTS);
         verify(requestDispatcher).forward(request, response);
     }
 }

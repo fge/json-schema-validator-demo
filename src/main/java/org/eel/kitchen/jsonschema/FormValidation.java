@@ -48,6 +48,7 @@ public final class FormValidation
         }
         // retour
         req.setAttribute("data", data);
-        req.getRequestDispatcher("/results.jsp").forward(req, resp);
+        req.getRequestDispatcher(Constants.RESULTS)
+            .forward(req, resp);
     }
 }
