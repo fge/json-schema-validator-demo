@@ -1,4 +1,4 @@
-package org.eel.kitchen.jsonschema;
+package org.eel.kitchen.jsonschema.constants;
 
 public final class ServletInputs
 {

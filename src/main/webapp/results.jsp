@@ -1,4 +1,4 @@
-<%@page import="org.eel.kitchen.jsonschema.ServletOutputs"%>
+<%@page import="org.eel.kitchen.jsonschema.constants.ServletOutputs"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>

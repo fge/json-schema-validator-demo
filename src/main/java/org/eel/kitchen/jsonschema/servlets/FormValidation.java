@@ -1,6 +1,10 @@
-package org.eel.kitchen.jsonschema;
+package org.eel.kitchen.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.eel.kitchen.jsonschema.Utils;
+import org.eel.kitchen.jsonschema.constants.Pages;
+import org.eel.kitchen.jsonschema.constants.ServletInputs;
+import org.eel.kitchen.jsonschema.constants.ServletOutputs;
 import org.eel.kitchen.jsonschema.main.JsonSchema;
 import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
 import org.eel.kitchen.jsonschema.report.ValidationReport;

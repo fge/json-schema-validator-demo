@@ -11,7 +11,7 @@
 
     <servlet>
         <servlet-name>validate</servlet-name>
-        <servlet-class>org.eel.kitchen.jsonschema.FormValidation</servlet-class>
+        <servlet-class>org.eel.kitchen.jsonschema.servlets.FormValidation</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>validate</servlet-name>

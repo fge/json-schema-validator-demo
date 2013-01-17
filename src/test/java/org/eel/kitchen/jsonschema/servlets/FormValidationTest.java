@@ -1,5 +1,9 @@
-package org.eel.kitchen.jsonschema;
+package org.eel.kitchen.jsonschema.servlets;
 
+import org.eel.kitchen.jsonschema.constants.Pages;
+import org.eel.kitchen.jsonschema.constants.ServletInputs;
+import org.eel.kitchen.jsonschema.constants.ServletOutputs;
+import org.eel.kitchen.jsonschema.servlets.FormValidation;
 import org.mockito.ArgumentMatcher;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

@@ -8,9 +8,9 @@ import org.eclipse.jetty.webapp.WebAppContext;
  * This is the entry point to your application. The Java command that is used for
  * launching should fire this main method.
  */
-public final class Main
+public final class WebApp
 {
-    private Main()
+    private WebApp()
     {
     }
 
