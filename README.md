@@ -17,5 +17,5 @@ First build with:
 
 Then run it with:
 
-    $java -cp target/classes:target/dependency/* com.example.Main
+    $java -cp target/classes:target/dependency/* org.eel.kitchen.jsonschema.Main
 
