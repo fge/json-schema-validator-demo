@@ -1,3 +1,4 @@
+<%@page import="org.eel.kitchen.jsonschema.ServletInputs"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -27,12 +28,14 @@
 </div>
 <form action="validate" method="POST">
     <div id="left" class="content">
-        <label for="schema">Schema:</label>
-        <textarea name="schema" id="schema"></textarea>
+        <label for="<%=ServletInputs.SCHEMA%>">Schema:</label>
+        <textarea name="<%=ServletInputs.SCHEMA%>"
+            id="<%=ServletInputs.SCHEMA%>"></textarea>
     </div>
     <div id="right" class="content">
-        <label for="data">Data:</label>
-        <textarea name="data" id="data"></textarea>
+        <label for="<%=ServletInputs.DATA%>">Data:</label>
+        <textarea name="<%=ServletInputs.DATA%>"
+            id="<%=ServletInputs.DATA%>"></textarea>
         <input type="submit" value="Validate">
     </div>
 </form>

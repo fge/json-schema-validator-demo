@@ -1,3 +1,4 @@
+<%@page import="org.eel.kitchen.jsonschema.ServletOutputs"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -28,14 +29,15 @@
 </div>
 <form action="">
     <div id="left" class="content">
-        <label for="data">Data</label>
-        <textarea name="data" id="data"
+        <label for="<%=ServletOutputs.DATA%>">Data</label>
+        <textarea name="<%=ServletOutputs.DATA%>" id="<%=ServletOutputs.DATA%>"
             readonly="readonly"><%=request.getAttribute("data")%>
         </textarea>
     </div>
     <div id="right" class="content">
-        <label for="results">Results</label>
-        <textarea name="results" id="results"
+        <label for="<%=ServletOutputs.RESULTS%>">Results</label>
+        <textarea name="<%=ServletOutputs.RESULTS%>"
+            id="<%=ServletOutputs.RESULTS%>"
             readonly="readonly"><%=request.getAttribute("results")%>
         </textarea>
         <input type="button" value="Back" onclick="history.back()">
