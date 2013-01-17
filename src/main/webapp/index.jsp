@@ -5,15 +5,6 @@
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%
-    String origSchema = request.getParameter("origSchema");
-    if (origSchema == null)
-        origSchema = "";
-
-    String origData = request.getParameter("data");
-    if (origData == null)
-        origData = "";
-%>
 <div id="top">
     <p>Enter your schema in the left text area and the data to validate in the
         right text area; then press the "Validate" button. Both must be valid
@@ -37,11 +28,11 @@
 <form action="validate" method="POST">
     <div id="left" class="content">
         <label for="schema">Schema:</label>
-        <textarea name="schema" id="schema"><%=origSchema%></textarea>
+        <textarea name="schema" id="schema"></textarea>
     </div>
     <div id="right" class="content">
         <label for="data">Data:</label>
-        <textarea name="data" id="data"><%=origData%></textarea>
+        <textarea name="data" id="data"></textarea>
         <input type="submit" value="Validate">
     </div>
 </form>

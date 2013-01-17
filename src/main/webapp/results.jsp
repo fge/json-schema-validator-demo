@@ -1,4 +1,3 @@
-<%@page import="org.eel.kitchen.jsonschema.Utils"%>
 <%@page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -6,13 +5,6 @@
     <title>Validation results</title>
 </head>
 <body>
-<%
-    String origSchema = (String) request.getAttribute("origSchema");
-    if (origSchema == null)
-        origSchema = "";
-    else
-        origSchema = Utils.inputValueEscape(origSchema);
-%>
 <div id="top">
     <p>Validation messages appear as a JSON object in the right text area. An
         empty object means no errors.</p>
@@ -34,7 +26,7 @@
     <p class="intro">The "Back" button will bring you back to the previous page.
     </p>
 </div>
-<form action="index.jsp" method="POST">
+<form action="">
     <div id="left" class="content">
         <label for="data">Data</label>
         <textarea name="data" id="data"
@@ -46,8 +38,7 @@
         <textarea name="results" id="results"
             readonly="readonly"><%=request.getAttribute("results")%>
         </textarea>
-        <input type="hidden" name="origSchema" value="<%=origSchema%>">
-        <input type="submit" value="Back">
+        <input type="button" value="Back" onclick="history.back()">
     </div>
 </form>
 </body>
