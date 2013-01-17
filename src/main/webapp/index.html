@@ -9,13 +9,20 @@
 
         // My first ever JavaScript code! Yay!
 
+        // Some constants
+        var Servlets = { VALIDATE: "validate" };
+        var DomElements = {
+            FORM: "#validate",
+            RESULTS: "textarea#results"
+        };
+
         var f = function()
         {
             // References to what we need
-            var $form = $("#validate");
-            var $resultOutput = $("textarea#results");
+            var $form = $(DomElements.FORM);
+            var $resultOutput = $(DomElements.RESULTS);
 
-            $form.submit(function(event)
+            $form.submit(function (event)
             {
                 // Grab fields in the form
                 // TODO: Complete list when necessary
@@ -30,25 +37,28 @@
                 // The request
                 var request = $.ajax({
                     // FIXME: hardcoded :/
-                    url: "validate",
+                    url: Servlets.VALIDATE,
                     type: "post",
                     data: payload,
                     dataType: "text"
                 });
 
                 // On success
-                request.done(function(response, status, xhr) {
+                request.done(function (response, status, xhr)
+                {
                     $resultOutput.val(response);
                 });
 
                 // On failure
-                request.fail(function(xhr, status, error) {
+                request.fail(function (xhr, status, error)
+                {
                     // FIXME: that is very, very basic
                     alert("Server error: " + status + " (" + error + ")");
                 });
 
                 // Always executed
-                request.always(function() {
+                request.always(function ()
+                {
                     // Unlock inputs
                     $inputs.prop("disabled", false);
                 });
