@@ -2,6 +2,7 @@ package org.eel.kitchen.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.net.MediaType;
+import org.eel.kitchen.jsonschema.JsonSchemaFactories;
 import org.eel.kitchen.jsonschema.Utils;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.eel.kitchen.jsonschema.main.JsonSchema;
@@ -36,6 +37,14 @@ public final class FormValidation
             return;
         }
 
+        final boolean useV4
+            = Boolean.parseBoolean(req.getParameter(ServletInputs.USE_V4));
+        final boolean useId
+            = Boolean.parseBoolean(req.getParameter(ServletInputs.USE_ID));
+
+        final JsonSchemaFactory factory
+            = JsonSchemaFactories.withOptions(useV4, useId);
+
         resp.setContentType(MediaType.PLAIN_TEXT_UTF_8.toString());
         final PrintWriter writer = resp.getWriter();
 
@@ -43,7 +52,7 @@ public final class FormValidation
             final JsonNode schemaNode = JsonLoader.fromString(rawSchema);
             final JsonNode dataNode = JsonLoader.fromString(data);
 
-            final JsonSchema schema = FACTORY.fromSchema(schemaNode);
+            final JsonSchema schema = factory.fromSchema(schemaNode);
 
             final ValidationReport report = schema.validate(dataNode);
 
