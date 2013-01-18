@@ -1,11 +1,10 @@
 ## What this is
 
-<p>This is a Heroku-based Java webapp which demonstrates <a
+<p>This is a Heroku-based Java webapp which demonstrates the latest development release of<a
 href="https://github.com/fge/json-schema-validator">json-schema-validator</a>.</p>
 
-<p>The URL is <a href="http://json-schema-validator.herokuapp.com">Here</a>. It is really basic
-HTML/JSP/CSS stuff, and reflects the HTML/JSP/CSS skills of the author (that is, close to zero). But
-it works.</p>
+<p>The URL is <a href="http://json-schema-validator.herokuapp.com">Here</a>. It is quite basic:
+input your schema and your data, press "validate", see results.</p>
 
 <p>Contributions are of course more than welcome!</p>
 
