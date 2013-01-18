@@ -43,6 +43,8 @@ public final class WebApp
             webPort = "8080";
         }
 
+        // Use that with correct dependencies
+        //Log.setLog(new Slf4jLog());
         final Server server = new Server(Integer.valueOf(webPort));
         final WebAppContext root = new WebAppContext();
 
