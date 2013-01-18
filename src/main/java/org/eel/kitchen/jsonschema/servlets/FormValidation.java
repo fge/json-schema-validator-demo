@@ -68,24 +68,16 @@ public final class FormValidation
         final boolean useId
             = Boolean.parseBoolean(req.getParameter(ServletInputs.USE_ID));
 
-        final JsonSchemaFactory factory
-            = JsonSchemaFactories.withOptions(useV4, useId);
+        final JsonNode ret = buildResult(rawSchema, data, useV4, useId);
 
         final PrintWriter writer = resp.getWriter();
 
         try {
-            final JsonNode schemaNode = JsonLoader.fromString(rawSchema);
-            final JsonNode dataNode = JsonLoader.fromString(data);
-
-            final JsonSchema schema = factory.fromSchema(schemaNode);
-
-            final ValidationReport report = schema.validate(dataNode);
-
-            writer.write(Utils.prettyPrint(report.asJsonObject()));
-        } catch (IOException e) {
-            writer.write("ERROR: " + e.getMessage());
-        } finally {
+            writer.write(Utils.prettyPrint(ret));
             writer.flush();
+        } catch (IOException ignored) {
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        } finally {
             writer.close();
         }
     }
