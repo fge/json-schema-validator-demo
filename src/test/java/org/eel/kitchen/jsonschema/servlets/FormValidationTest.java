@@ -19,8 +19,8 @@ package org.eel.kitchen.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -29,8 +29,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
@@ -40,7 +42,6 @@ public final class FormValidationTest
     private HttpServletRequest request;
     private HttpServletResponse response;
     private FormValidation servlet;
-    private PrintWriter writer;
 
     @BeforeMethod
     public void init()
@@ -48,8 +49,6 @@ public final class FormValidationTest
     {
         request = mock(HttpServletRequest.class);
         response = mock(HttpServletResponse.class);
-        writer = mock(PrintWriter.class);
-        when(response.getWriter()).thenReturn(writer);
         servlet = new FormValidation();
     }
 
@@ -57,32 +56,40 @@ public final class FormValidationTest
     public void missingBothParametersReturns401()
         throws ServletException, IOException
     {
+        when(request.getParameterNames()).thenReturn(emptyEnumeration());
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
-        verify(request, never()).getRequestDispatcher(anyString());
     }
 
     @Test
     public void missingSchemaParameterReturns401()
         throws ServletException, IOException
     {
-        when(request.getParameter(ServletInputs.SCHEMA)).thenReturn("{}");
+        when(request.getParameterNames()).thenReturn(enumerationOf("schema"));
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
-        verify(request, never()).getRequestDispatcher(anyString());
     }
 
     @Test
     public void missingDataParameterReturns401()
         throws ServletException, IOException
     {
-        when(request.getParameter(ServletInputs.DATA)).thenReturn("{}");
+        when(request.getParameterNames()).thenReturn(enumerationOf("data"));
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
-        verify(request, never()).getRequestDispatcher(anyString());
+    }
+
+    @Test
+    public void duplicateParameterNamesReturns401()
+        throws ServletException, IOException
+    {
+        when(request.getParameterNames()).thenReturn(enumerationOf("x", "x"));
+        servlet.doPost(request, response);
+        verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
+            "Invalid parameters");
     }
 
     @DataProvider
@@ -142,5 +149,45 @@ public final class FormValidationTest
         assertEquals(result.get("valid").booleanValue(), valid);
         assertEquals(Sets.newHashSet(result.fieldNames()), ImmutableSet.of(
             "invalidSchema", "invalidData", "valid", "results"));
+    }
+
+    private static Enumeration<String> emptyEnumeration()
+    {
+        return new Enumeration<String>()
+        {
+            @Override
+            public boolean hasMoreElements()
+            {
+                return false;
+            }
+
+            @Override
+            public String nextElement()
+            {
+                throw new NoSuchElementException();
+            }
+        };
+    }
+
+    private static Enumeration<String> enumerationOf(final String... elements)
+    {
+        final List<String> list = Lists.newArrayList(elements);
+
+        return new Enumeration<String>()
+        {
+            @Override
+            public boolean hasMoreElements()
+            {
+                return !list.isEmpty();
+            }
+
+            @Override
+            public String nextElement()
+            {
+                if (!hasMoreElements())
+                    throw new NoSuchElementException();
+                return list.remove(0);
+            }
+        };
     }
 }
