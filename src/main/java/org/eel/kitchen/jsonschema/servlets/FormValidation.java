@@ -22,6 +22,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Sets;
+import com.google.common.io.Closeables;
 import com.google.common.net.MediaType;
 import org.eel.kitchen.jsonschema.JsonSchemaFactories;
 import org.eel.kitchen.jsonschema.Utils;
@@ -38,6 +40,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class FormValidation
@@ -51,14 +55,45 @@ public final class FormValidation
         final HttpServletResponse resp)
         throws ServletException, IOException
     {
-        final String rawSchema = req.getParameter(ServletInputs.SCHEMA);
-        final String data = req.getParameter(ServletInputs.DATA);
+        final Set<String> params = Sets.newHashSet();
 
-        if (rawSchema == null || data == null) {
+        /*
+         * First, check our parameters
+         */
+        /*
+         * Why, in 2013, doesn't servlet-api provide an Iterator<String>?
+         *
+         * Well, at least, Jetty's implementation has a generified Enumeration.
+         * Still, that sucks.
+         */
+        final Enumeration<String> enumeration = req.getParameterNames();
+
+        // We don't allow duplicates
+        while (enumeration.hasMoreElements())
+            if (!params.add(enumeration.nextElement())) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                    "Invalid parameters");
+                return;
+            }
+
+        // We have required parameters
+        if (!params.containsAll(ServletInputs.REQUIRED_PARAMS)) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
                 "Missing parameters");
             return;
         }
+
+        // We don't want extraneous parameters
+        params.removeAll(ServletInputs.VALID_PARAMS);
+
+        if (!params.isEmpty()) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
+                "Invalid parameters");
+            return;
+        }
+
+        final String rawSchema = req.getParameter(ServletInputs.SCHEMA);
+        final String data = req.getParameter(ServletInputs.DATA);
 
         // Set correct content type
         resp.setContentType(MediaType.PLAIN_TEXT_UTF_8.toString());
@@ -78,7 +113,7 @@ public final class FormValidation
         } catch (IOException ignored) {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         } finally {
-            writer.close();
+            Closeables.closeQuietly(writer);
         }
     }
 

@@ -17,6 +17,10 @@
 
 package org.eel.kitchen.jsonschema.constants;
 
+import com.google.common.collect.ImmutableSet;
+
+import java.util.Set;
+
 public final class ServletInputs
 {
     private ServletInputs()
@@ -27,4 +31,10 @@ public final class ServletInputs
     public static final String DATA = "data";
     public static final String USE_V4 = "useV4";
     public static final String USE_ID = "useId";
+
+    public static final Set<String> REQUIRED_PARAMS
+        = ImmutableSet.of(SCHEMA, DATA);
+
+    public static final Set<String> VALID_PARAMS
+        = ImmutableSet.of(SCHEMA, DATA, USE_V4, USE_ID);
 }
