@@ -42,14 +42,10 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public final class FormValidation
     extends HttpServlet
 {
-    // Minimal accounting...
-    private static final AtomicInteger COUNT = new AtomicInteger();
-
     @Override
     public void doPost(final HttpServletRequest req,
         final HttpServletResponse resp)
@@ -68,13 +64,10 @@ public final class FormValidation
          */
         final Enumeration<String> enumeration = req.getParameterNames();
 
-        // We don't allow duplicates
+        // FIXME: no duplicates, it seems, but I cannot find the spec which
+        // guarantees that
         while (enumeration.hasMoreElements())
-            if (!params.add(enumeration.nextElement())) {
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
-                    "Invalid parameters");
-                return;
-            }
+            params.add(enumeration.nextElement());
 
         // We have required parameters
         if (!params.containsAll(ServletInputs.REQUIRED_PARAMS)) {

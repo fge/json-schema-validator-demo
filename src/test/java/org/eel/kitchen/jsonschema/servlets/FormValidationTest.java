@@ -82,16 +82,6 @@ public final class FormValidationTest
             "Missing parameters");
     }
 
-    @Test
-    public void duplicateParameterNamesReturns401()
-        throws ServletException, IOException
-    {
-        when(request.getParameterNames()).thenReturn(enumerationOf("x", "x"));
-        servlet.doPost(request, response);
-        verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
-            "Invalid parameters");
-    }
-
     @DataProvider
     public Iterator<Object[]> inputData()
     {
