@@ -20,7 +20,6 @@ package org.eel.kitchen.jsonschema.servlets;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
-import org.eel.kitchen.jsonschema.CustomMatchers;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -84,55 +83,6 @@ public final class FormValidationTest
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
         verify(request, never()).getRequestDispatcher(anyString());
-    }
-
-    @Test
-    public void necessaryDataIsReturned()
-        throws ServletException, IOException
-    {
-        final String schema = "{}";
-        // FIXME: see below
-        final String data = "{ }";
-
-        when(request.getParameter(ServletInputs.SCHEMA)).thenReturn(schema);
-        when(request.getParameter(ServletInputs.DATA)).thenReturn(data);
-
-        servlet.doPost(request, response);
-
-        verify(request).getParameter(ServletInputs.USE_V4);
-        verify(request).getParameter(ServletInputs.USE_ID);
-
-        verify(writer).write(eq(data));
-    }
-
-    @Test(dependsOnMethods = "necessaryDataIsReturned")
-    public void invalidSchemaRaisesAnError()
-        throws ServletException, IOException
-    {
-        final String schema = "foo";
-        final String data = "{}";
-
-        when(request.getParameter(ServletInputs.SCHEMA)).thenReturn(schema);
-        when(request.getParameter(ServletInputs.DATA)).thenReturn(data);
-
-        servlet.doPost(request, response);
-
-        verify(writer).write(CustomMatchers.errorMessage());
-    }
-
-    @Test(dependsOnMethods = "necessaryDataIsReturned")
-    public void invalidDataRaisesAnError()
-        throws ServletException, IOException
-    {
-        final String schema = "{}";
-        final String data = "foo";
-
-        when(request.getParameter(ServletInputs.SCHEMA)).thenReturn(schema);
-        when(request.getParameter(ServletInputs.DATA)).thenReturn(data);
-
-        servlet.doPost(request, response);
-
-        verify(writer).write(CustomMatchers.errorMessage());
     }
 
     @DataProvider
