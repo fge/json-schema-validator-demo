@@ -25,8 +25,7 @@ var DomElements = {
     INVALID_SCHEMA: "#invalidSchema",
     INVALID_DATA: "#invalidData",
     VALIDATION_SUCCESS: "#validationSuccess",
-    VALIDATION_FAILURE: "#validationFailure",
-    START_HIDDEN: ".errmsg, .success"
+    VALIDATION_FAILURE: "#validationFailure"
 };
 
 var main = function()
@@ -42,8 +41,6 @@ var main = function()
         success: $(DomElements.VALIDATION_SUCCESS),
         failure: $(DomElements.VALIDATION_FAILURE)
     };
-
-    $(DomElements.START_HIDDEN).hide();
 
     $form.submit(function (event)
     {
