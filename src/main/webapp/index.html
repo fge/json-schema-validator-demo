@@ -5,75 +5,10 @@
     <title>JSON Schema validation demo</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <script src="jquery-1.9.0.min.js" type="text/javascript"></script>
+    <script src="site.js" type="text/javascript"></script>
     <script type="text/javascript">
-
-        // My first ever JavaScript code! Yay!
-
-        // Some constants
-        var Servlets = { VALIDATE: "validate" };
-        var DomElements = {
-            FORM: "#validate",
-            RESULTS: "textarea#results"
-        };
-
-        var f = function()
-        {
-            // References to what we need
-            var $form = $(DomElements.FORM);
-            var $resultOutput = $(DomElements.RESULTS);
-
-            $form.submit(function (event)
-            {
-                // Grab fields in the form
-                // TODO: Complete list when necessary
-                var $inputs = $form.find("textarea, input");
-
-                // Serialize all of the form -- _very_ convenient, that!
-                var payload = $form.serialize();
-
-                // Lock inputs
-                $inputs.prop("disabled", true);
-
-                // The request
-                var request = $.ajax({
-                    // FIXME: hardcoded :/
-                    url: Servlets.VALIDATE,
-                    type: "post",
-                    data: payload,
-                    dataType: "text"
-                });
-
-                // On success
-                request.done(function (response, status, xhr)
-                {
-                    $resultOutput.val(response);
-                });
-
-                // On failure
-                request.fail(function (xhr, status, error)
-                {
-                    // FIXME: that is very, very basic
-                    alert("Server error: " + status + " (" + error + ")");
-                });
-
-                // Always executed
-                request.always(function ()
-                {
-                    // Unlock inputs
-                    $inputs.prop("disabled", false);
-                });
-
-                // Prevent default post method
-                event.preventDefault();
-
-                // TODO: test if actually necessary
-                return false;
-            });
-        };
-
         // Execute function when document is ready
-        $(document).ready(f);
-
+        $(document).ready(main);
     </script>
 </head>
 <body>
