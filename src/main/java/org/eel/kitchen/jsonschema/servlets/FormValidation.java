@@ -26,7 +26,6 @@ import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.net.MediaType;
 import org.eel.kitchen.jsonschema.JsonSchemaFactories;
-import org.eel.kitchen.jsonschema.Utils;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.eel.kitchen.jsonschema.main.JsonSchema;
 import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
@@ -100,14 +99,9 @@ public final class FormValidation
 
         final PrintWriter writer = resp.getWriter();
 
-        try {
-            writer.write(Utils.prettyPrint(ret));
-            writer.flush();
-        } catch (IOException ignored) {
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        } finally {
-            Closeables.closeQuietly(writer);
-        }
+        writer.write(ret.toString());
+        writer.flush();
+        Closeables.closeQuietly(writer);
     }
 
     /*

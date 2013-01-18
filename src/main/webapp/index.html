@@ -18,17 +18,17 @@
         href="http://tools.ietf.org/html/rfc4627">RFC 4627</a>.
     </p>
 
-    <p>This application uses the latest released development version of the <a
+    <p>This application's source code is available on <a
+        href="https://github.com/fge/json-schema-validator-demo">GitHub</a>. It
+        uses the latest released development version of the <a
         href="https://github.com/fge/json-schema-validator">
-        json-schema-validator Java library</a>. It is available on <a
-        href="https://github.com/fge/json-schema-validator-demo">GitHub</a>.
-        Contributions are welcome.
+        json-schema-validator Java library</a>. Contributions are welcome.
     </p>
 
-    <p>Note: schema version detection via <span style="font-family: monospace">
-        $schema</span> is automatic; the checkbox below just changes the default
-        behavior of the validator.</p>
+    <p>See also the <a href="http://json-schema.org">JSON Schema website</a>.
+    </p>
 </div>
+
 <form id="validate">
     <div id="left" class="content">
         <div class="horiz">
@@ -63,7 +63,7 @@
         <label for="results">Validation result:</label>
         <span class="errmsg" id="validationFailure">failure</span>
         <span class="success" id="validationSuccess">success</span>
-        </div>
+    </div>
     <textarea name="results" rows="20" cols="20"
         id="results" readonly="readonly"></textarea>
 </div>
