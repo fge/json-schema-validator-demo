@@ -17,7 +17,11 @@
 
 package org.eel.kitchen.jsonschema.servlets;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.net.MediaType;
 import org.eel.kitchen.jsonschema.JsonSchemaFactories;
 import org.eel.kitchen.jsonschema.Utils;
@@ -33,6 +37,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class FormValidation
@@ -66,9 +71,6 @@ public final class FormValidation
         final JsonSchemaFactory factory
             = JsonSchemaFactories.withOptions(useV4, useId);
 
-        System.out.println("Invocation " + COUNT.incrementAndGet()
-            + ": useV4 " + useV4 + ", useId " + useId);
-
         final PrintWriter writer = resp.getWriter();
 
         try {
@@ -85,6 +87,59 @@ public final class FormValidation
         } finally {
             writer.flush();
             writer.close();
+        }
+    }
+
+    /*
+     * Build the response. When we arrive here, we are guaranteed that we have
+     * the needed elements.
+     */
+    @VisibleForTesting
+    static JsonNode buildResult(final String rawSchema,
+        final String rawData, final boolean useV4, final boolean useId)
+        throws IOException
+    {
+        final ObjectNode ret = JsonNodeFactory.instance.objectNode();
+
+        final boolean invalidSchema = fillWithData(ret, "schema", rawSchema);
+        ret.put("invalidSchema", invalidSchema);
+        final boolean invalidData = fillWithData(ret, "data", rawData);
+        ret.put("invalidData", invalidData);
+
+        if (invalidSchema || invalidData) {
+            ret.remove(Arrays.asList("schema", "data"));
+            return ret;
+        }
+
+        final JsonNode schemaNode = ret.remove("schema");
+        final JsonNode data = ret.remove("data");
+
+        final JsonSchemaFactory factory
+            = JsonSchemaFactories.withOptions(useV4, useId);
+
+        final JsonSchema schema = factory.fromSchema(schemaNode);
+        final ValidationReport report = schema.validate(data);
+
+        ret.put("valid", report.isSuccess());
+        ret.put("results", report.asJsonObject());
+        return ret;
+    }
+
+    /*
+     * We have to use that since Java is not smart enough to detect that
+     * sometimes, a variable is initialized in all paths.
+     *
+     * This returns true if the data is invalid.
+     */
+    private static boolean fillWithData(final ObjectNode node,
+        final String fieldName, final String raw)
+        throws IOException
+    {
+        try {
+            node.put(fieldName, JsonLoader.fromString(raw));
+            return false;
+        } catch (JsonProcessingException ignored) {
+            return true;
         }
     }
 }

@@ -17,9 +17,12 @@
 
 package org.eel.kitchen.jsonschema.servlets;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.ImmutableSet;
 import org.eel.kitchen.jsonschema.CustomMatchers;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import javax.servlet.ServletException;
@@ -27,8 +30,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 
 import static org.mockito.Mockito.*;
+import static org.testng.Assert.*;
 
 public final class FormValidationTest
 {
@@ -127,5 +132,32 @@ public final class FormValidationTest
         servlet.doPost(request, response);
 
         verify(writer).write(CustomMatchers.errorMessage());
+    }
+
+    @DataProvider
+    public Iterator<Object[]> inputData()
+    {
+        return ImmutableSet.of(
+            new Object[] { "", "", true, true },
+            new Object[] { "{}", "", false, true },
+            new Object[] { "", "{}", true, false },
+            new Object[] { "{}", "{}", false, false }
+        ).iterator();
+    }
+
+    @Test(dataProvider = "inputData")
+    public void inputValidityIsCorrectlyDetected(final String rawSchema,
+        final String rawData, final boolean invalidSchema,
+        final boolean invalidData)
+        throws IOException
+    {
+        final JsonNode node = FormValidation.buildResult(rawSchema,
+            rawData, false, false);
+
+        assertEquals(node.get("invalidSchema").booleanValue(), invalidSchema);
+        assertEquals(node.get("invalidData").booleanValue(), invalidData);
+
+        assertFalse(node.has("schema"));
+        assertFalse(node.has("data"));
     }
 }
