@@ -26,10 +26,9 @@ var DomElements = {
     INVALID_DATA: "#invalidData",
     VALIDATION_SUCCESS: "#validationSuccess",
     VALIDATION_FAILURE: "#validationFailure",
-    STARTHIDDEN_SELECTOR: ".errmsg, .success"
+    STARTHIDDEN_SELECTOR: ".errmsg, .success",
+    FORM_FIELDS: "textarea, input"
 };
-
-var Response;
 
 var main = function()
 {
@@ -41,13 +40,19 @@ var main = function()
     {
         // Clear/hide all necessary elements
         $(DomElements.STARTHIDDEN_SELECTOR).hide();
+        // Empty the results field
         $results.val("");
 
         // Grab fields in the form
         // TODO: Complete list when necessary
-        var $inputs = $form.find("textarea, input");
+        var $inputs = $form.find(DomElements.FORM_FIELDS);
 
         // Serialize all of the form -- _very_ convenient, that!
+        // Note that unchecked checkboxes will not be taken into account; as to
+        // checked ones, they default to "on" but this can be changed by speci-
+        // fying the "value" attribute of an input. Here we set it to "true",
+        // this allows Java to effectively parse it (Boolean.parseBoolean()
+        // returns false when its argument is null).
         var payload = $form.serialize();
 
         // Lock inputs
@@ -55,34 +60,37 @@ var main = function()
 
         // The request
         var request = $.ajax({
-            // FIXME: hardcoded :/
             url: Servlets.VALIDATE,
             type: "post",
             data: payload,
-            dataType: "text"
+            dataType: "json"
         });
 
         // On success
+        // Since we specified that the data type we wanted was "json", the
+        // response is directly passed along as a JavaScript object.
         request.done(function (response, status, xhr)
         {
-            Response = jQuery.parseJSON(response);
-            var invalidSchema = Response["invalidSchema"];
-            var invalidData = Response["invalidData"];
+            var invalidSchema = response["invalidSchema"];
+            var invalidData = response["invalidData"];
 
             if (invalidSchema)
                 $(DomElements.INVALID_SCHEMA).show();
             if (invalidData)
                 $(DomElements.INVALID_DATA).show();
 
+            // Stop if we don't have valid data, it makes no sense to validate
             if (invalidSchema || invalidData)
                 return;
 
-            var validationMessage = Response["valid"]
+            var validationMessage = response["valid"]
                 ? DomElements.VALIDATION_SUCCESS
                 : DomElements.VALIDATION_FAILURE;
 
+            // Show the appropriate validation message and inject pretty-printed
+            // JSON into the results text area
             $(validationMessage).show();
-            $results.val(JSON.stringify(Response["results"], undefined, 4));
+            $results.val(JSON.stringify(response["results"], undefined, 4));
         });
 
         // On failure

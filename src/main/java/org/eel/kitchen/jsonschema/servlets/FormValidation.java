@@ -88,7 +88,7 @@ public final class FormValidation
         final String data = req.getParameter(ServletInputs.DATA);
 
         // Set correct content type
-        resp.setContentType(MediaType.PLAIN_TEXT_UTF_8.toString());
+        resp.setContentType(MediaType.JSON_UTF_8.toString());
 
         final boolean useV4
             = Boolean.parseBoolean(req.getParameter(ServletInputs.USE_V4));

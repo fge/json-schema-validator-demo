@@ -29,6 +29,11 @@ public final class JsonSchemaFactories
     private static final JsonSchemaFactory DRAFTV4_NO_ID;
     private static final JsonSchemaFactory DRAFTV4_WITH_ID;
 
+    /*
+     * In theory, we should build one factory each time someone wants to support
+     * "id". But that is bloody expensive. So, no. What is more, the application
+     * is stateless.
+     */
     static {
         final JsonSchemaFactory.Builder builder
             = new JsonSchemaFactory.Builder();
