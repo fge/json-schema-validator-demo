@@ -19,6 +19,7 @@ package org.eel.kitchen.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 import org.eel.kitchen.jsonschema.CustomMatchers;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.testng.annotations.BeforeMethod;
@@ -154,10 +155,42 @@ public final class FormValidationTest
         final JsonNode node = FormValidation.buildResult(rawSchema,
             rawData, false, false);
 
+        assertTrue(node.get("invalidSchema").isBoolean());
+        assertTrue(node.get("invalidData").isBoolean());
         assertEquals(node.get("invalidSchema").booleanValue(), invalidSchema);
         assertEquals(node.get("invalidData").booleanValue(), invalidData);
 
-        assertFalse(node.has("schema"));
-        assertFalse(node.has("data"));
+        if (invalidSchema || invalidData)
+            assertEquals(Sets.newHashSet(node.fieldNames()),
+                ImmutableSet.of("invalidSchema", "invalidData"));
+    }
+
+    @DataProvider
+    public Iterator<Object[]> sampleInputs()
+    {
+        return ImmutableSet.of(
+            new Object[] { "\"hello\"", true },
+            new Object[] { "0", false }
+        ).iterator();
+    }
+
+    @Test(
+        dataProvider = "sampleInputs",
+        dependsOnMethods = "inputValidityIsCorrectlyDetected"
+    )
+    public void validationResultsAreCorrectlyReported(final String rawData,
+        final boolean valid)
+        throws IOException
+    {
+        final String rawSchema = "{\"type\":\"string\"}";
+
+        final JsonNode result = FormValidation.buildResult(rawSchema, rawData,
+            false, false);
+
+        assertTrue(result.get("results").isObject());
+        assertTrue(result.get("valid").isBoolean());
+        assertEquals(result.get("valid").booleanValue(), valid);
+        assertEquals(Sets.newHashSet(result.fieldNames()), ImmutableSet.of(
+            "invalidSchema", "invalidData", "valid", "results"));
     }
 }
