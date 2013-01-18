@@ -16,10 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public final class FormValidation
     extends HttpServlet
 {
+    // Minimal accounting...
+    private static final AtomicInteger COUNT = new AtomicInteger();
+
     @Override
     public void doPost(final HttpServletRequest req,
         final HttpServletResponse resp)
@@ -44,6 +48,9 @@ public final class FormValidation
 
         final JsonSchemaFactory factory
             = JsonSchemaFactories.withOptions(useV4, useId);
+
+        System.out.println("Invocation " + COUNT.incrementAndGet()
+            + ": useV4 " + useV4 + ", useId " + useId);
 
         final PrintWriter writer = resp.getWriter();
 
