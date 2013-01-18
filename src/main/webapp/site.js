@@ -25,25 +25,24 @@ var DomElements = {
     INVALID_SCHEMA: "#invalidSchema",
     INVALID_DATA: "#invalidData",
     VALIDATION_SUCCESS: "#validationSuccess",
-    VALIDATION_FAILURE: "#validationFailure"
+    VALIDATION_FAILURE: "#validationFailure",
+    STARTHIDDEN_SELECTOR: ".errmsg, .success"
 };
+
+var Response;
 
 var main = function()
 {
     // References to what we need
     var $form = $(DomElements.FORM);
-    var $resultOutput = $(DomElements.RESULTS);
-    var $errorMessages = {
-        invalidSchema: $(DomElements.INVALID_SCHEMA),
-        invalidData: $(DomElements.INVALID_DATA)
-    };
-    var $validationResults = {
-        success: $(DomElements.VALIDATION_SUCCESS),
-        failure: $(DomElements.VALIDATION_FAILURE)
-    };
+    var $results = $(DomElements.RESULTS);
 
     $form.submit(function (event)
     {
+        // Clear/hide all necessary elements
+        $(DomElements.STARTHIDDEN_SELECTOR).hide();
+        $results.val("");
+
         // Grab fields in the form
         // TODO: Complete list when necessary
         var $inputs = $form.find("textarea, input");
@@ -66,7 +65,24 @@ var main = function()
         // On success
         request.done(function (response, status, xhr)
         {
-            $resultOutput.val(response);
+            Response = jQuery.parseJSON(response);
+            var invalidSchema = Response["invalidSchema"];
+            var invalidData = Response["invalidData"];
+
+            if (invalidSchema)
+                $(DomElements.INVALID_SCHEMA).show();
+            if (invalidData)
+                $(DomElements.INVALID_DATA).show();
+
+            if (invalidSchema || invalidData)
+                return;
+
+            var validationMessage = Response["valid"]
+                ? DomElements.VALIDATION_SUCCESS
+                : DomElements.VALIDATION_FAILURE;
+
+            $(validationMessage).show();
+            $results.val(JSON.stringify(Response["results"], undefined, 4));
         });
 
         // On failure
