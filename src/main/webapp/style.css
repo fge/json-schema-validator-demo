@@ -39,6 +39,7 @@ div.content > * {
 textarea {
     height: 90%;
     width: 90%;
+    resize: none;
 }
 textarea.half {
     height: 42%;
