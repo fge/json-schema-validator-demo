@@ -61,7 +61,7 @@ public final class FormValidationTest
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
-        verify(request, never()).getRequestDispatcher(any(String.class));
+        verify(request, never()).getRequestDispatcher(anyString());
     }
 
     @Test
@@ -72,7 +72,7 @@ public final class FormValidationTest
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
-        verify(request, never()).getRequestDispatcher(any(String.class));
+        verify(request, never()).getRequestDispatcher(anyString());
     }
 
     @Test
@@ -83,7 +83,7 @@ public final class FormValidationTest
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
-        verify(request, never()).getRequestDispatcher(any(String.class));
+        verify(request, never()).getRequestDispatcher(anyString());
     }
 
     @Test
