@@ -21,6 +21,10 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana,
+    sans-serif;
+    font-size: 14px;
+    color: #666;
 }
 div {
     background-color: #fffafa;
@@ -78,6 +82,7 @@ textarea.half {
 }
 div.options > * {
     display: inline-block;
+    margin-top: 0;
 }
 /*
  * Horizontally aligned elements
@@ -103,4 +108,12 @@ div.options > * {
 textarea[readonly="readonly"] {
     background-color: #f2f1f0;
     border: #f2f1f0 1px solid;
+}
+
+p {
+    margin-top: .5em;
+}
+
+a {
+    color: #6495ed;
 }
