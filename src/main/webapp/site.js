@@ -21,7 +21,12 @@
 var Servlets = { VALIDATE: "validate" };
 var DomElements = {
     FORM: "#validate",
-    RESULTS: "textarea#results"
+    RESULTS: "textarea#results",
+    INVALID_SCHEMA: "#invalidSchema",
+    INVALID_DATA: "#invalidData",
+    VALIDATION_SUCCESS: "#validationSuccess",
+    VALIDATION_FAILURE: "#validationFailure",
+    START_HIDDEN: ".errmsg, .success"
 };
 
 var main = function()
@@ -29,6 +34,16 @@ var main = function()
     // References to what we need
     var $form = $(DomElements.FORM);
     var $resultOutput = $(DomElements.RESULTS);
+    var $errorMessages = {
+        invalidSchema: $(DomElements.INVALID_SCHEMA),
+        invalidData: $(DomElements.INVALID_DATA)
+    };
+    var $validationResults = {
+        success: $(DomElements.VALIDATION_SUCCESS),
+        failure: $(DomElements.VALIDATION_FAILURE)
+    };
+
+    $(DomElements.START_HIDDEN).hide();
 
     $form.submit(function (event)
     {

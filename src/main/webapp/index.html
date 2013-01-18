@@ -31,10 +31,13 @@
 </div>
 <form id="validate">
     <div id="left" class="content">
+        <div class="horiz">
         <label for="schema">Schema:</label>
+            <span class="errmsg" id="invalidSchema">Invalid JSON!</span>
+            </div>
         <textarea name="schema" rows="20" cols="20" class="half"
             id="schema"></textarea>
-        <div class="horiz">
+        <div class="options">
             <p>Validation options:</p>
             <div>
                 <input type="checkbox" name="useV4" id="useV4" value="true">
@@ -46,14 +49,21 @@
                 </span> for addressing</label>
             </div>
         </div>
-        <label for="data">Data:</label>
+        <div class="horiz">
+            <label for="data">Data:</label>
+            <span class="errmsg" id="invalidData">Invalid JSON!</span>
+        </div>
         <textarea name="data" rows="20" cols="20" class="half"
             id="data"></textarea>
         <input type="submit" value="Validate">
     </div>
 </form>
 <div id="right" class="content">
-    <label for="results">Validation results</label>
+    <div class="horiz">
+        <label for="results">Validation result:</label>
+        <span class="errmsg" id="validationFailure">failure</span>
+        <span class="success" id="validationSuccess">success</span>
+        </div>
     <textarea name="results" rows="20" cols="20"
         id="results" readonly="readonly"></textarea>
 </div>
