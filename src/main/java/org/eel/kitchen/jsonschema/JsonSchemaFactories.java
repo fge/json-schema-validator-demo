@@ -36,7 +36,9 @@ public final class JsonSchemaFactories
      */
     static {
         final JsonSchemaFactory.Builder builder
-            = new JsonSchemaFactory.Builder();
+            = new JsonSchemaFactory.Builder()
+                .unregisterScheme("file").unregisterScheme("jar")
+                .unregisterScheme("resource");
 
         final MetaSchema draftv4
             = MetaSchema.copyOf(BuiltinSchemas.DRAFTV4_CORE);
