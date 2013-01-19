@@ -37,7 +37,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Set;
@@ -97,11 +98,14 @@ public final class FormValidation
 
         final JsonNode ret = buildResult(rawSchema, data, useV4, useId);
 
-        final PrintWriter writer = resp.getWriter();
+        final OutputStream out = resp.getOutputStream();
 
-        writer.write(ret.toString());
-        writer.flush();
-        Closeables.closeQuietly(writer);
+        try {
+            out.write(ret.toString().getBytes(Charset.forName("UTF-8")));
+            out.flush();
+        } finally {
+            Closeables.closeQuietly(out);
+        }
     }
 
     /*
