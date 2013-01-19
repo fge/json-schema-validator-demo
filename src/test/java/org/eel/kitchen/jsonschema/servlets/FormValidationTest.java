@@ -21,6 +21,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import org.eel.kitchen.jsonschema.constants.JsonOutputs;
+import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -66,7 +68,8 @@ public final class FormValidationTest
     public void missingSchemaParameterReturns401()
         throws ServletException, IOException
     {
-        when(request.getParameterNames()).thenReturn(enumerationOf("data"));
+        when(request.getParameterNames())
+            .thenReturn(enumerationOf(ServletInputs.DATA));
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
@@ -76,7 +79,8 @@ public final class FormValidationTest
     public void missingDataParameterReturns401()
         throws ServletException, IOException
     {
-        when(request.getParameterNames()).thenReturn(enumerationOf("schema"));
+        when(request.getParameterNames())
+            .thenReturn(enumerationOf(ServletInputs.SCHEMA));
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
@@ -102,14 +106,18 @@ public final class FormValidationTest
         final JsonNode node = FormValidation.buildResult(rawSchema,
             rawData, false, false);
 
-        assertTrue(node.get("invalidSchema").isBoolean());
-        assertTrue(node.get("invalidData").isBoolean());
-        assertEquals(node.get("invalidSchema").booleanValue(), invalidSchema);
-        assertEquals(node.get("invalidData").booleanValue(), invalidData);
+        final JsonNode node1 = node.get(JsonOutputs.INVALID_SCHEMA);
+        final JsonNode node2 = node.get(JsonOutputs.INVALID_DATA);
+
+        assertTrue(node1.isBoolean());
+        assertEquals(node1.booleanValue(), invalidSchema);
+
+        assertTrue(node2.isBoolean());
+        assertEquals(node2.booleanValue(), invalidData);
 
         if (invalidSchema || invalidData)
             assertEquals(Sets.newHashSet(node.fieldNames()),
-                ImmutableSet.of("invalidSchema", "invalidData"));
+                JsonOutputs.INVALID_INPUTS);
     }
 
     @DataProvider
@@ -134,11 +142,14 @@ public final class FormValidationTest
         final JsonNode result = FormValidation.buildResult(rawSchema, rawData,
             false, false);
 
-        assertTrue(result.get("results").isObject());
-        assertTrue(result.get("valid").isBoolean());
-        assertEquals(result.get("valid").booleanValue(), valid);
-        assertEquals(Sets.newHashSet(result.fieldNames()), ImmutableSet.of(
-            "invalidSchema", "invalidData", "valid", "results"));
+        final JsonNode results = result.get(JsonOutputs.RESULTS);
+        final JsonNode node = result.get(JsonOutputs.VALID);
+
+        assertTrue(results.isObject());
+        assertTrue(node.isBoolean());
+        assertEquals(node.booleanValue(), valid);
+        assertEquals(Sets.newHashSet(result.fieldNames()),
+            JsonOutputs.FULL_OUTPUTS);
     }
 
     private static Enumeration<String> emptyEnumeration()

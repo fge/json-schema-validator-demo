@@ -26,6 +26,7 @@ import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.net.MediaType;
 import org.eel.kitchen.jsonschema.JsonSchemaFactories;
+import org.eel.kitchen.jsonschema.constants.JsonOutputs;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
 import org.eel.kitchen.jsonschema.main.JsonSchema;
 import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
@@ -118,13 +119,16 @@ public final class FormValidation
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
-        final boolean invalidSchema = fillWithData(ret, "schema", rawSchema);
-        ret.put("invalidSchema", invalidSchema);
-        final boolean invalidData = fillWithData(ret, "data", rawData);
-        ret.put("invalidData", invalidData);
+        final boolean invalidSchema = fillWithData(ret,
+            JsonOutputs.SCHEMA, rawSchema);
+        final boolean invalidData = fillWithData(ret,
+            JsonOutputs.DATA, rawData);
 
-        final JsonNode schemaNode = ret.remove("schema");
-        final JsonNode data = ret.remove("data");
+        ret.put(JsonOutputs.INVALID_SCHEMA, invalidSchema);
+        ret.put(JsonOutputs.INVALID_DATA, invalidData);
+
+        final JsonNode schemaNode = ret.remove(JsonOutputs.SCHEMA);
+        final JsonNode data = ret.remove(JsonOutputs.DATA);
 
         if (invalidSchema || invalidData)
             return ret;
@@ -135,8 +139,8 @@ public final class FormValidation
         final JsonSchema schema = factory.fromSchema(schemaNode);
         final ValidationReport report = schema.validate(data);
 
-        ret.put("valid", report.isSuccess());
-        ret.put("results", report.asJsonObject());
+        ret.put(JsonOutputs.VALID, report.isSuccess());
+        ret.put(JsonOutputs.RESULTS, report.asJsonObject());
         return ret;
     }
 
