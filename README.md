@@ -1,9 +1,9 @@
 ## What this is
 
-<p>This is a Heroku-based Java webapp which demonstrates the latest development release of<a
+<p>This is a Heroku-based Java webapp which demonstrates the latest development release of <a
 href="https://github.com/fge/json-schema-validator">json-schema-validator</a>.</p>
 
-<p>The URL is <a href="http://json-schema-validator.herokuapp.com">Here</a>. It is quite basic:
+<p>The URL is <a href="http://json-schema-validator.herokuapp.com">here</a>. It is quite basic:
 input your schema and your data, press "validate", see results.</p>
 
 <p>Contributions are of course more than welcome!</p>
@@ -19,11 +19,16 @@ such a result without help, so I'd like to mention here where I got help:
 
 ## Running the application locally
 
-First build with:
+This application uses an embedded Jetty server and is self contained. You need to have a JDK (at
+least 1.6) and maven installed (3.0.x preferably, but 2.x will also work).
 
-    $mvn clean install
+Into the main directory, type
 
-Then run it with:
+    mvn clean install
 
-    $java -cp target/classes:target/dependency/* org.eel.kitchen.jsonschema.WebApp
+Then run the application with:
+
+    java -cp target/classes:target/dependency/* org.eel.kitchen.jsonschema.WebApp
+
+It listens on port 8080 by default.
 
