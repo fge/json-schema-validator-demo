@@ -39,7 +39,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Set;
 
@@ -124,13 +123,11 @@ public final class FormValidation
         final boolean invalidData = fillWithData(ret, "data", rawData);
         ret.put("invalidData", invalidData);
 
-        if (invalidSchema || invalidData) {
-            ret.remove(Arrays.asList("schema", "data"));
-            return ret;
-        }
-
         final JsonNode schemaNode = ret.remove("schema");
         final JsonNode data = ret.remove("data");
+
+        if (invalidSchema || invalidData)
+            return ret;
 
         final JsonSchemaFactory factory
             = JsonSchemaFactories.withOptions(useV4, useId);
