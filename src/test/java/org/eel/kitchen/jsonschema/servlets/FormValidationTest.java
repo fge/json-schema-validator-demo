@@ -66,7 +66,7 @@ public final class FormValidationTest
     public void missingSchemaParameterReturns401()
         throws ServletException, IOException
     {
-        when(request.getParameterNames()).thenReturn(enumerationOf("schema"));
+        when(request.getParameterNames()).thenReturn(enumerationOf("data"));
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
@@ -76,7 +76,7 @@ public final class FormValidationTest
     public void missingDataParameterReturns401()
         throws ServletException, IOException
     {
-        when(request.getParameterNames()).thenReturn(enumerationOf("data"));
+        when(request.getParameterNames()).thenReturn(enumerationOf("schema"));
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
