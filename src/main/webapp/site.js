@@ -33,7 +33,9 @@ var FormElements = {
     INVALID_DATA: "#invalidData",
     INPUTS: "textarea, input",
     SCHEMA: "#schema",
-    DATA: "#data"
+    DATA: "#data",
+    USE_V4: "#useV4",
+    USE_ID: "#useId"
 };
 
 // jQuery selectors for result pane elements
@@ -59,9 +61,13 @@ function loadSamples()
     {
         var schema = response["schema"];
         var data = response["data"];
+        var useV4 = response["useV4"];
+        var useId = response["useId"];
 
         $(FormElements.SCHEMA).val(JSON.stringify(schema, undefined, 4));
         $(FormElements.DATA).val(JSON.stringify(data, undefined, 4));
+        $(FormElements.USE_V4).prop("checked", useV4);
+        $(FormElements.USE_ID).attr("checked", useId);
     });
 
     request.fail(function (xhr, status, error)
