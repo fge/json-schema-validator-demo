@@ -43,6 +43,24 @@ import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.Set;
 
+/**
+ * Servlet responsible of validating a schema/data pair
+ *
+ * <p>It returns a JSON Object as a result with the appropriate media type
+ * (thanks Guava for providing {@link MediaType#JSON_UTF_8}!).</p>
+ *
+ * <p>This object has the following members:</p>
+ *
+ * <ul>
+ *     <li>{@code invalidSchema}: boolean indicating whether the provided schema
+ *     was valid JSON;</li>
+ *     <li>{@code invalidData}: same, but for the data;</li>
+ *     <li>{@code valid} (only if the schema and data are valid): whether the
+ *     validation has succeeded;</li>
+ *     <li>{@code results} (only if the schema and data are valid): the result
+ *     of {@link ValidationReport#asJsonObject()}.</li>
+ * </ul>
+ */
 public final class FormValidation
     extends HttpServlet
 {
