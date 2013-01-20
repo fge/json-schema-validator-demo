@@ -17,8 +17,11 @@
 
 // My first ever JavaScript code! Yay!
 
-// Some constants
-var Servlets = { VALIDATE: "/validate" };
+var Servlets = {
+    VALIDATE: "/validate",
+    LOAD_SAMPLES: "/loadSamples"
+};
+
 var DomElements = {
     FORM: "#validate",
     RESULTS: "textarea#results",
@@ -34,8 +37,30 @@ var DomElements = {
 
 function loadSamples()
 {
-    $(DomElements.SCHEMA).val("{}");
-    $(DomElements.DATA).val("null");
+    // TODO: useV4 and useId toggles
+    $(DomElements.STARTHIDDEN_SELECTOR).hide();
+    $(DomElements.RESULTS).val("");
+
+    var request = $.ajax({
+        url: Servlets.LOAD_SAMPLES,
+        type: "get",
+        dataType: "json"
+    });
+
+    request.done(function(response, status, xhr)
+    {
+        var schema = response["schema"];
+        var data = response["data"];
+
+        $(DomElements.SCHEMA).val(JSON.stringify(schema, undefined, 4));
+        $(DomElements.DATA).val(JSON.stringify(data, undefined, 4));
+    });
+
+    request.fail(function (xhr, status, error)
+    {
+        // FIXME: that is very, very basic
+        alert("Server error: " + status + " (" + error + ")");
+    });
 }
 
 var main = function()

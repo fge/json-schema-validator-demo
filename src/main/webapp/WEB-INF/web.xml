@@ -17,6 +17,15 @@
         <url-pattern>/validate</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>loadSamples</servlet-name>
+        <servlet-class>org.eel.kitchen.jsonschema.servlets.SampleData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loadSamples</servlet-name>
+        <url-pattern>/loadSamples</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>gzip</filter-name>
         <filter-class>org.eclipse.jetty.servlets.GzipFilter</filter-class>
