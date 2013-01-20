@@ -18,10 +18,12 @@
         href="/about.html">About this website</a>
     </p>
 
-    <p>Paste the schema and data to validate in the appropriate text areas, then
-        press the "Validate" button. Both the schema and data must be valid
-        JSON, as defined by <a href="http://tools.ietf.org/html/rfc4627">RFC
-        4627</a>.
+    <p>Paste your schema and data in the appropriate text areas, then press the
+        "Validate" button. Error messages will appear in the right pane as a
+        JSON Object. Keys are <a
+        href="http://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-08">
+        JSON Pointer</a>s into the data (the empty string <span
+        style="font: monospace">""</span> is the root of the data).
     </p>
 
     <p>You can also <a onclick="loadSamples();" href="#">load a random schema
