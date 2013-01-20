@@ -26,8 +26,8 @@ import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.net.MediaType;
 import org.eel.kitchen.jsonschema.JsonSchemaFactories;
-import org.eel.kitchen.jsonschema.constants.JsonOutputs;
-import org.eel.kitchen.jsonschema.constants.ServletInputs;
+import org.eel.kitchen.jsonschema.constants.ValidateRequest;
+import org.eel.kitchen.jsonschema.constants.ValidateResponse;
 import org.eel.kitchen.jsonschema.main.JsonSchema;
 import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
 import org.eel.kitchen.jsonschema.report.ValidationReport;
@@ -61,7 +61,7 @@ import java.util.Set;
  *     of {@link ValidationReport#asJsonObject()}.</li>
  * </ul>
  */
-public final class FormValidation
+public final class ValidateServlet
     extends HttpServlet
 {
     @Override
@@ -88,14 +88,14 @@ public final class FormValidation
             params.add(enumeration.nextElement());
 
         // We have required parameters
-        if (!params.containsAll(ServletInputs.REQUIRED_PARAMS)) {
+        if (!params.containsAll(ValidateRequest.REQUIRED_PARAMS)) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
                 "Missing parameters");
             return;
         }
 
         // We don't want extraneous parameters
-        params.removeAll(ServletInputs.VALID_PARAMS);
+        params.removeAll(ValidateRequest.VALID_PARAMS);
 
         if (!params.isEmpty()) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
@@ -103,16 +103,16 @@ public final class FormValidation
             return;
         }
 
-        final String rawSchema = req.getParameter(ServletInputs.SCHEMA);
-        final String data = req.getParameter(ServletInputs.DATA);
+        final String rawSchema = req.getParameter(ValidateRequest.SCHEMA);
+        final String data = req.getParameter(ValidateRequest.DATA);
 
         // Set correct content type
         resp.setContentType(MediaType.JSON_UTF_8.toString());
 
         final boolean useV4
-            = Boolean.parseBoolean(req.getParameter(ServletInputs.USE_V4));
+            = Boolean.parseBoolean(req.getParameter(ValidateRequest.USE_V4));
         final boolean useId
-            = Boolean.parseBoolean(req.getParameter(ServletInputs.USE_ID));
+            = Boolean.parseBoolean(req.getParameter(ValidateRequest.USE_ID));
 
         final JsonNode ret = buildResult(rawSchema, data, useV4, useId);
 
@@ -138,15 +138,15 @@ public final class FormValidation
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
         final boolean invalidSchema = fillWithData(ret,
-            JsonOutputs.SCHEMA, rawSchema);
+            ValidateResponse.SCHEMA, rawSchema);
         final boolean invalidData = fillWithData(ret,
-            JsonOutputs.DATA, rawData);
+            ValidateResponse.DATA, rawData);
 
-        ret.put(JsonOutputs.INVALID_SCHEMA, invalidSchema);
-        ret.put(JsonOutputs.INVALID_DATA, invalidData);
+        ret.put(ValidateResponse.INVALID_SCHEMA, invalidSchema);
+        ret.put(ValidateResponse.INVALID_DATA, invalidData);
 
-        final JsonNode schemaNode = ret.remove(JsonOutputs.SCHEMA);
-        final JsonNode data = ret.remove(JsonOutputs.DATA);
+        final JsonNode schemaNode = ret.remove(ValidateResponse.SCHEMA);
+        final JsonNode data = ret.remove(ValidateResponse.DATA);
 
         if (invalidSchema || invalidData)
             return ret;
@@ -157,8 +157,8 @@ public final class FormValidation
         final JsonSchema schema = factory.fromSchema(schemaNode);
         final ValidationReport report = schema.validate(data);
 
-        ret.put(JsonOutputs.VALID, report.isSuccess());
-        ret.put(JsonOutputs.RESULTS, report.asJsonObject());
+        ret.put(ValidateResponse.VALID, report.isSuccess());
+        ret.put(ValidateResponse.RESULTS, report.asJsonObject());
         return ret;
     }
 

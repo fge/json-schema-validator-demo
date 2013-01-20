@@ -5,9 +5,9 @@ import com.google.common.collect.ImmutableSet;
 
 import java.util.Set;
 
-public final class JsonOutputs
+public final class ValidateResponse
 {
-    private JsonOutputs()
+    private ValidateResponse()
     {
     }
 

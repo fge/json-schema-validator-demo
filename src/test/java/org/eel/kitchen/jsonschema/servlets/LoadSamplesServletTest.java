@@ -19,7 +19,7 @@ package org.eel.kitchen.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Sets;
-import org.eel.kitchen.jsonschema.constants.ServletInputs;
+import org.eel.kitchen.jsonschema.constants.ValidateRequest;
 import org.eel.kitchen.jsonschema.util.JsonLoader;
 import org.testng.annotations.Test;
 
@@ -33,9 +33,9 @@ import java.io.IOException;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 
-public final class SampleDataTest
+public final class LoadSamplesServletTest
 {
-    private final SampleData servlet = new SampleData();
+    private final LoadSamplesServlet servlet = new LoadSamplesServlet();
 
     @Test(invocationCount = 50, threadPoolSize = 5)
     public void inputDataHasTheCorrectShape()
@@ -61,6 +61,6 @@ public final class SampleDataTest
         final JsonNode node = JsonLoader.fromString(json);
 
         assertEquals(Sets.newHashSet(node.fieldNames()),
-            ServletInputs.VALID_PARAMS);
+            ValidateRequest.VALID_PARAMS);
     }
 }

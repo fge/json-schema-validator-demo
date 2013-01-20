@@ -21,8 +21,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import org.eel.kitchen.jsonschema.constants.JsonOutputs;
-import org.eel.kitchen.jsonschema.constants.ServletInputs;
+import org.eel.kitchen.jsonschema.constants.ValidateRequest;
+import org.eel.kitchen.jsonschema.constants.ValidateResponse;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -38,9 +38,9 @@ import java.util.NoSuchElementException;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 
-public final class FormValidationTest
+public final class ValidateServletTest
 {
-    private final FormValidation servlet = new FormValidation();
+    private final ValidateServlet servlet = new ValidateServlet();
 
     @Test(invocationCount = 50, threadPoolSize = 5)
     public void missingBothParametersReturns401()
@@ -61,7 +61,7 @@ public final class FormValidationTest
         final HttpServletRequest request = mock(HttpServletRequest.class);
         final HttpServletResponse response = mock(HttpServletResponse.class);
         when(request.getParameterNames())
-            .thenReturn(enumerationOf(ServletInputs.DATA));
+            .thenReturn(enumerationOf(ValidateRequest.DATA));
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
@@ -74,7 +74,7 @@ public final class FormValidationTest
         final HttpServletRequest request = mock(HttpServletRequest.class);
         final HttpServletResponse response = mock(HttpServletResponse.class);
         when(request.getParameterNames())
-            .thenReturn(enumerationOf(ServletInputs.SCHEMA));
+            .thenReturn(enumerationOf(ValidateRequest.SCHEMA));
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
@@ -101,11 +101,11 @@ public final class FormValidationTest
         final boolean invalidData)
         throws IOException
     {
-        final JsonNode node = FormValidation.buildResult(rawSchema,
-            rawData, false, false);
+        final JsonNode node = ValidateServlet
+            .buildResult(rawSchema, rawData, false, false);
 
-        final JsonNode node1 = node.get(JsonOutputs.INVALID_SCHEMA);
-        final JsonNode node2 = node.get(JsonOutputs.INVALID_DATA);
+        final JsonNode node1 = node.get(ValidateResponse.INVALID_SCHEMA);
+        final JsonNode node2 = node.get(ValidateResponse.INVALID_DATA);
 
         assertTrue(node1.isBoolean());
         assertEquals(node1.booleanValue(), invalidSchema);
@@ -115,7 +115,7 @@ public final class FormValidationTest
 
         if (invalidSchema || invalidData)
             assertEquals(Sets.newHashSet(node.fieldNames()),
-                JsonOutputs.INVALID_INPUTS);
+                ValidateResponse.INVALID_INPUTS);
     }
 
     @DataProvider
@@ -139,17 +139,17 @@ public final class FormValidationTest
     {
         final String rawSchema = "{\"type\":\"string\"}";
 
-        final JsonNode result = FormValidation.buildResult(rawSchema, rawData,
-            false, false);
+        final JsonNode result = ValidateServlet
+            .buildResult(rawSchema, rawData, false, false);
 
-        final JsonNode results = result.get(JsonOutputs.RESULTS);
-        final JsonNode node = result.get(JsonOutputs.VALID);
+        final JsonNode results = result.get(ValidateResponse.RESULTS);
+        final JsonNode node = result.get(ValidateResponse.VALID);
 
         assertTrue(results.isObject());
         assertTrue(node.isBoolean());
         assertEquals(node.booleanValue(), valid);
         assertEquals(Sets.newHashSet(result.fieldNames()),
-            JsonOutputs.FULL_OUTPUTS);
+            ValidateResponse.FULL_OUTPUTS);
     }
 
     private static Enumeration<String> emptyEnumeration()

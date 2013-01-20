@@ -21,9 +21,9 @@ import com.google.common.collect.ImmutableSet;
 
 import java.util.Set;
 
-public final class ServletInputs
+public final class ValidateRequest
 {
-    private ServletInputs()
+    private ValidateRequest()
     {
     }
 

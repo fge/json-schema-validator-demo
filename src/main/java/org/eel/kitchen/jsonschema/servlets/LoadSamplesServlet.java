@@ -39,7 +39,7 @@ import java.util.Random;
  * href="https://github.com/json-schema/JSON-Schema-Test-Suite">JSON Schema test
  * suite</a>.</p>
  */
-public final class SampleData
+public final class LoadSamplesServlet
     extends HttpServlet
 {
     private static final Random RND = new Random();
