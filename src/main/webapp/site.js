@@ -15,31 +15,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// My first ever JavaScript code! Yay!
-
+// The list of our servlets
 var Servlets = {
     VALIDATE: "/validate",
     LOAD_SAMPLES: "/loadSamples"
 };
 
+// jQuery selectors for global elements
 var DomElements = {
     FORM: "#validate",
-    RESULTS: "textarea#results",
+    STARTHIDDEN: ".error, .success"
+};
+
+// jQuery selectors for input form elements
+var FormElements = {
     INVALID_SCHEMA: "#invalidSchema",
     INVALID_DATA: "#invalidData",
+    INPUTS: "textarea, input",
+    SCHEMA: "#schema",
+    DATA: "#data"
+};
+
+// jQuery selectors for result pane elements
+var ResultPane = {
+    RESULTS: "textarea#results",
     VALIDATION_SUCCESS: "#validationSuccess",
-    VALIDATION_FAILURE: "#validationFailure",
-    STARTHIDDEN_SELECTOR: ".error, .success",
-    FORM_FIELDS: "textarea, input",
-    DATA: "#data",
-    SCHEMA: "#schema"
+    VALIDATION_FAILURE: "#validationFailure"
 };
 
 function loadSamples()
 {
     // TODO: useV4 and useId toggles
-    $(DomElements.STARTHIDDEN_SELECTOR).hide();
-    $(DomElements.RESULTS).val("");
+    $(DomElements.STARTHIDDEN).hide();
+    $(ResultPane.RESULTS).val("");
 
     var request = $.ajax({
         url: Servlets.LOAD_SAMPLES,
@@ -52,8 +60,8 @@ function loadSamples()
         var schema = response["schema"];
         var data = response["data"];
 
-        $(DomElements.SCHEMA).val(JSON.stringify(schema, undefined, 4));
-        $(DomElements.DATA).val(JSON.stringify(data, undefined, 4));
+        $(FormElements.SCHEMA).val(JSON.stringify(schema, undefined, 4));
+        $(FormElements.DATA).val(JSON.stringify(data, undefined, 4));
     });
 
     request.fail(function (xhr, status, error)
@@ -67,18 +75,18 @@ var main = function()
 {
     // References to what we need
     var $form = $(DomElements.FORM);
-    var $results = $(DomElements.RESULTS);
+    var $results = $(ResultPane.RESULTS);
 
     $form.submit(function (event)
     {
         // Clear/hide all necessary elements
-        $(DomElements.STARTHIDDEN_SELECTOR).hide();
+        $(DomElements.STARTHIDDEN).hide();
         // Empty the results field
         $results.val("");
 
         // Grab fields in the form
         // TODO: Complete list when necessary
-        var $inputs = $form.find(DomElements.FORM_FIELDS);
+        var $inputs = $form.find(FormElements.INPUTS);
 
         // Serialize all of the form -- _very_ convenient, that!
         // Note that unchecked checkboxes will not be taken into account; as to
@@ -108,17 +116,18 @@ var main = function()
             var invalidData = response["invalidData"];
 
             if (invalidSchema)
-                $(DomElements.INVALID_SCHEMA).show();
+                $(FormElements.INVALID_SCHEMA).show();
             if (invalidData)
-                $(DomElements.INVALID_DATA).show();
+                $(FormElements.INVALID_DATA).show();
 
-            // Stop if we don't have valid data, it makes no sense to validate
+            // Stop right now if we have invalid inputs. Other fields will not
+            // be defined.
             if (invalidSchema || invalidData)
                 return;
 
             var validationMessage = response["valid"]
-                ? DomElements.VALIDATION_SUCCESS
-                : DomElements.VALIDATION_FAILURE;
+                ? ResultPane.VALIDATION_SUCCESS
+                : ResultPane.VALIDATION_FAILURE;
 
             // Show the appropriate validation message and inject pretty-printed
             // JSON into the results text area
