@@ -18,7 +18,7 @@
 // My first ever JavaScript code! Yay!
 
 // Some constants
-var Servlets = { VALIDATE: "validate" };
+var Servlets = { VALIDATE: "/validate" };
 var DomElements = {
     FORM: "#validate",
     RESULTS: "textarea#results",
@@ -26,9 +26,17 @@ var DomElements = {
     INVALID_DATA: "#invalidData",
     VALIDATION_SUCCESS: "#validationSuccess",
     VALIDATION_FAILURE: "#validationFailure",
-    STARTHIDDEN_SELECTOR: ".errmsg, .success",
-    FORM_FIELDS: "textarea, input"
+    STARTHIDDEN_SELECTOR: ".error, .success",
+    FORM_FIELDS: "textarea, input",
+    DATA: "#data",
+    SCHEMA: "#schema"
 };
+
+function loadSamples()
+{
+    $(DomElements.SCHEMA).val("{}");
+    $(DomElements.DATA).val("null");
+}
 
 var main = function()
 {

@@ -93,7 +93,7 @@ div.options > * {
 /*
  * Various
  */
-.errmsg {
+.error {
     color: red;
     display: none;
 }
@@ -114,4 +114,15 @@ p {
 
 a {
     color: #6495ed;
+}
+
+/*
+ * About page
+ */
+div.about {
+    margin: 10px;
+}
+
+div.about > * {
+    margin: 5px;
 }
