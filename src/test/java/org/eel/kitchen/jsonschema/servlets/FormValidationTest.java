@@ -23,7 +23,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.eel.kitchen.jsonschema.constants.JsonOutputs;
 import org.eel.kitchen.jsonschema.constants.ServletInputs;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -41,33 +40,26 @@ import static org.testng.Assert.*;
 
 public final class FormValidationTest
 {
-    private HttpServletRequest request;
-    private HttpServletResponse response;
-    private FormValidation servlet;
+    private final FormValidation servlet = new FormValidation();
 
-    @BeforeMethod
-    public void init()
-        throws IOException
-    {
-        request = mock(HttpServletRequest.class);
-        response = mock(HttpServletResponse.class);
-        servlet = new FormValidation();
-    }
-
-    @Test
+    @Test(invocationCount = 50, threadPoolSize = 5)
     public void missingBothParametersReturns401()
         throws ServletException, IOException
     {
+        final HttpServletRequest request = mock(HttpServletRequest.class);
+        final HttpServletResponse response = mock(HttpServletResponse.class);
         when(request.getParameterNames()).thenReturn(emptyEnumeration());
         servlet.doPost(request, response);
         verify(response).sendError(HttpServletResponse.SC_BAD_REQUEST,
             "Missing parameters");
     }
 
-    @Test
+    @Test(invocationCount = 50, threadPoolSize = 5)
     public void missingSchemaParameterReturns401()
         throws ServletException, IOException
     {
+        final HttpServletRequest request = mock(HttpServletRequest.class);
+        final HttpServletResponse response = mock(HttpServletResponse.class);
         when(request.getParameterNames())
             .thenReturn(enumerationOf(ServletInputs.DATA));
         servlet.doPost(request, response);
@@ -75,10 +67,12 @@ public final class FormValidationTest
             "Missing parameters");
     }
 
-    @Test
+    @Test(invocationCount = 50, threadPoolSize = 5)
     public void missingDataParameterReturns401()
         throws ServletException, IOException
     {
+        final HttpServletRequest request = mock(HttpServletRequest.class);
+        final HttpServletResponse response = mock(HttpServletResponse.class);
         when(request.getParameterNames())
             .thenReturn(enumerationOf(ServletInputs.SCHEMA));
         servlet.doPost(request, response);
@@ -97,7 +91,11 @@ public final class FormValidationTest
         ).iterator();
     }
 
-    @Test(dataProvider = "inputData")
+    @Test(
+        dataProvider = "inputData",
+        invocationCount = 50,
+        threadPoolSize = 5
+    )
     public void inputValidityIsCorrectlyDetected(final String rawSchema,
         final String rawData, final boolean invalidSchema,
         final boolean invalidData)
@@ -131,7 +129,9 @@ public final class FormValidationTest
 
     @Test(
         dataProvider = "sampleInputs",
-        dependsOnMethods = "inputValidityIsCorrectlyDetected"
+        dependsOnMethods = "inputValidityIsCorrectlyDetected",
+        invocationCount = 50,
+        threadPoolSize = 5
     )
     public void validationResultsAreCorrectlyReported(final String rawData,
         final boolean valid)
