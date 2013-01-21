@@ -18,12 +18,11 @@
 package com.github.fge.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.fge.jsonschema.servlets.ValidateServlet;
+import com.github.fge.jsonschema.constants.ValidateRequest;
+import com.github.fge.jsonschema.constants.ValidateResponse;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.github.fge.jsonschema.constants.ValidateRequest;
-import com.github.fge.jsonschema.constants.ValidateResponse;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
