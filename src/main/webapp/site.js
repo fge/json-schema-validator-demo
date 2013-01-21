@@ -37,8 +37,6 @@ var DomElements = {
 
 // jQuery selectors for input form elements
 var FormElements = {
-    INVALID_SCHEMA: "#invalidSchema",
-    INVALID_DATA: "#invalidData",
     INPUTS: "textarea, input",
     SCHEMA: "#schema",
     DATA: "#data",
@@ -48,10 +46,15 @@ var FormElements = {
 
 // jQuery selectors for result pane elements
 var ResultPane = {
-    RESULTS: "textarea#results",
+    RESULTS: "textarea#results"
+};
+
+var Messages = {
+    INVALID_SCHEMA: "#invalidSchema",
+    INVALID_DATA: "#invalidData",
     VALIDATION_SUCCESS: "#validationSuccess",
     VALIDATION_FAILURE: "#validationFailure"
-};
+}
 
 var TextAreas = {
     fillJson: function(selector, value)
@@ -139,9 +142,9 @@ var main = function()
             var invalidData = response["invalidData"];
 
             if (invalidSchema)
-                $(FormElements.INVALID_SCHEMA).show();
+                $(Messages.INVALID_SCHEMA).show();
             if (invalidData)
-                $(FormElements.INVALID_DATA).show();
+                $(Messages.INVALID_DATA).show();
 
             // Stop right now if we have invalid inputs. Other fields will not
             // be defined.
@@ -149,8 +152,8 @@ var main = function()
                 return;
 
             var validationMessage = response["valid"]
-                ? ResultPane.VALIDATION_SUCCESS
-                : ResultPane.VALIDATION_FAILURE;
+                ? Messages.VALIDATION_SUCCESS
+                : Messages.VALIDATION_FAILURE;
 
             // Show the appropriate validation message and inject pretty-printed
             // JSON into the results text area
