@@ -17,11 +17,13 @@
 
 package com.github.fge.jsonschema.servlets;
 
+import com.fasterxml.jackson.core.JsonLocation;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jsonschema.JsonSchemaFactories;
+import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.constants.ValidateRequest;
 import com.github.fge.jsonschema.constants.ValidateResponse;
 import com.github.fge.jsonschema.main.JsonSchema;
@@ -178,5 +180,15 @@ public final class ValidateServlet
         } catch (JsonProcessingException ignored) {
             return true;
         }
+    }
+
+    private static JsonNode buildErrorMessage(final JsonProcessingException e)
+    {
+        final JsonLocation location = e.getLocation();
+        final ObjectNode ret = JsonNodeFactory.instance.objectNode();
+
+        ret.put(ParseError.LINE, location.getLineNr());
+        ret.put(ParseError.COLUMN, location.getColumnNr());
+        return ret;
     }
 }
