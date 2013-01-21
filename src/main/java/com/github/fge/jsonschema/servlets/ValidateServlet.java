@@ -15,19 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.eel.kitchen.jsonschema.servlets;
+package com.github.fge.jsonschema.servlets;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.fge.jsonschema.constants.ValidateRequest;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.net.MediaType;
-import org.eel.kitchen.jsonschema.JsonSchemaFactories;
-import org.eel.kitchen.jsonschema.constants.ValidateRequest;
-import org.eel.kitchen.jsonschema.constants.ValidateResponse;
+import com.github.fge.jsonschema.JsonSchemaFactories;
+import com.github.fge.jsonschema.constants.ValidateRequest;
+import com.github.fge.jsonschema.constants.ValidateResponse;
 import org.eel.kitchen.jsonschema.main.JsonSchema;
 import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
 import org.eel.kitchen.jsonschema.report.ValidationReport;

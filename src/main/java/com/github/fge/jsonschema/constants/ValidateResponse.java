@@ -1,4 +1,4 @@
-package org.eel.kitchen.jsonschema.constants;
+package com.github.fge.jsonschema.constants;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableSet;

@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -cp target/classes:target/dependency/* org.eel.kitchen.jsonschema.WebApp
+web:    java $JAVA_OPTS -cp target/classes:target/dependency/* com.github.fge.jsonschema.WebApp

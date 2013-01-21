@@ -10,7 +10,7 @@
 
     <servlet>
         <servlet-name>validate</servlet-name>
-        <servlet-class>org.eel.kitchen.jsonschema.servlets.ValidateServlet</servlet-class>
+        <servlet-class>com.github.fge.jsonschema.servlets.ValidateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>validate</servlet-name>
@@ -19,7 +19,7 @@
 
     <servlet>
         <servlet-name>loadSamples</servlet-name>
-        <servlet-class>org.eel.kitchen.jsonschema.servlets.LoadSamplesServlet</servlet-class>
+        <servlet-class>com.github.fge.jsonschema.servlets.LoadSamplesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>loadSamples</servlet-name>

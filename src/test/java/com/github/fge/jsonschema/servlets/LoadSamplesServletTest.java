@@ -15,11 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.eel.kitchen.jsonschema.servlets;
+package com.github.fge.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.github.fge.jsonschema.servlets.LoadSamplesServlet;
 import com.google.common.collect.Sets;
-import org.eel.kitchen.jsonschema.constants.ValidateRequest;
+import com.github.fge.jsonschema.constants.ValidateRequest;
 import org.eel.kitchen.jsonschema.util.JsonLoader;
 import org.testng.annotations.Test;
 

@@ -28,7 +28,7 @@ Into the main directory, type
 
 Then run the application with:
 
-    java -cp target/classes:target/dependency/* org.eel.kitchen.jsonschema.WebApp
+    java -cp target/classes:target/dependency/* com.github.fge.jsonschema.WebApp
 
 It listens on port 8080 by default.
 
