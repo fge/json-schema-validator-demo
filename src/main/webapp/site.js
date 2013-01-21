@@ -53,10 +53,21 @@ var ResultPane = {
     VALIDATION_FAILURE: "#validationFailure"
 };
 
+var TextAreas = {
+    fillJson: function(selector, value)
+    {
+        $(selector).val(JSON.stringify(value, undefined, 4));
+    },
+    clear: function(selector)
+    {
+        $(selector).val("");
+    }
+};
+
 function loadSamples()
 {
     $(DomElements.STARTHIDDEN).hide();
-    $(ResultPane.RESULTS).val("");
+    TextAreas.clear(ResultPane.RESULTS);
 
     var request = $.ajax({
         url: Servlets.LOAD_SAMPLES,
@@ -71,8 +82,8 @@ function loadSamples()
         var useV4 = response[SampleResponse.USE_V4];
         var useId = response[SampleResponse.USE_ID];
 
-        $(FormElements.SCHEMA).val(JSON.stringify(schema, undefined, 4));
-        $(FormElements.DATA).val(JSON.stringify(data, undefined, 4));
+        TextAreas.fillJson(FormElements.SCHEMA, schema);
+        TextAreas.fillJson(FormElements.DATA, data);
         $(FormElements.USE_V4).prop("checked", useV4);
         $(FormElements.USE_ID).prop("checked", useId);
     });
@@ -88,14 +99,13 @@ var main = function()
 {
     // References to what we need
     var $form = $(DomElements.FORM);
-    var $results = $(ResultPane.RESULTS);
 
     $form.submit(function (event)
     {
         // Clear/hide all necessary elements
         $(DomElements.STARTHIDDEN).hide();
         // Empty the results field
-        $results.val("");
+        TextAreas.clear(ResultPane.RESULTS);
 
         // Grab fields in the form
         // TODO: Complete list when necessary
@@ -145,7 +155,7 @@ var main = function()
             // Show the appropriate validation message and inject pretty-printed
             // JSON into the results text area
             $(validationMessage).show();
-            $results.val(JSON.stringify(response["results"], undefined, 4));
+            TextAreas.fillJson(ResultPane.RESULTS, response["results"]);
         });
 
         // On failure
