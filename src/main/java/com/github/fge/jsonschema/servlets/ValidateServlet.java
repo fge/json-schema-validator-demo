@@ -24,14 +24,14 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jsonschema.JsonSchemaFactories;
 import com.github.fge.jsonschema.constants.ValidateRequest;
 import com.github.fge.jsonschema.constants.ValidateResponse;
+import com.github.fge.jsonschema.main.JsonSchema;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
+import com.github.fge.jsonschema.report.ValidationReport;
+import com.github.fge.jsonschema.util.JsonLoader;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.net.MediaType;
-import org.eel.kitchen.jsonschema.main.JsonSchema;
-import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
-import org.eel.kitchen.jsonschema.report.ValidationReport;
-import org.eel.kitchen.jsonschema.util.JsonLoader;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

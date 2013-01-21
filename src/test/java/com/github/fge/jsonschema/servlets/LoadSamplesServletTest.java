@@ -19,8 +19,8 @@ package com.github.fge.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jsonschema.constants.ValidateRequest;
+import com.github.fge.jsonschema.util.JsonLoader;
 import com.google.common.collect.Sets;
-import org.eel.kitchen.jsonschema.util.JsonLoader;
 import org.testng.annotations.Test;
 
 import javax.servlet.ServletException;

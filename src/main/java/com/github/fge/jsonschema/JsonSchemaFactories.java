@@ -17,10 +17,10 @@
 
 package com.github.fge.jsonschema;
 
-import org.eel.kitchen.jsonschema.main.JsonSchemaFactory;
-import org.eel.kitchen.jsonschema.metaschema.BuiltinSchemas;
-import org.eel.kitchen.jsonschema.metaschema.MetaSchema;
-import org.eel.kitchen.jsonschema.schema.AddressingMode;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
+import com.github.fge.jsonschema.metaschema.BuiltinSchemas;
+import com.github.fge.jsonschema.metaschema.MetaSchema;
+import com.github.fge.jsonschema.schema.AddressingMode;
 
 public final class JsonSchemaFactories
 {

@@ -49,9 +49,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.kitchen-eel</groupId>
+            <groupId>com.github.fge</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>1.5.2</version>
+            <version>1.5.3</version>
         </dependency>
 
         <!-- Use them when logs are figured out
