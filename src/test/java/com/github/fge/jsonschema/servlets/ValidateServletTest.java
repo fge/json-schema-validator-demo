@@ -18,6 +18,7 @@
 package com.github.fge.jsonschema.servlets;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.constants.ValidateRequest;
 import com.github.fge.jsonschema.constants.ValidateResponse;
 import com.google.common.collect.ImmutableSet;
@@ -104,6 +105,25 @@ public final class ValidateServletTest
         final JsonNode node = ValidateServlet
             .buildResult(rawSchema, rawData, false, false);
 
+        assertEquals(node.has(ValidateResponse.INVALID_SCHEMA), invalidSchema);
+        assertEquals(node.has(ValidateResponse.INVALID_DATA), invalidData);
+
+        JsonNode errnode;
+
+        if (invalidSchema) {
+            errnode = node.get(ValidateResponse.INVALID_SCHEMA);
+            assertTrue(errnode.isObject());
+            assertEquals(Sets.newHashSet(errnode.fieldNames()),
+                ParseError.ALL_FIELDS);
+        }
+
+        if (invalidData) {
+            errnode = node.get(ValidateResponse.INVALID_DATA);
+            assertTrue(errnode.isObject());
+            assertEquals(Sets.newHashSet(errnode.fieldNames()),
+                ParseError.ALL_FIELDS);
+        }
+        /*
         final JsonNode node1 = node.get(ValidateResponse.INVALID_SCHEMA);
         final JsonNode node2 = node.get(ValidateResponse.INVALID_DATA);
 
@@ -116,6 +136,7 @@ public final class ValidateServletTest
         if (invalidSchema || invalidData)
             assertEquals(Sets.newHashSet(node.fieldNames()),
                 ValidateResponse.INVALID_INPUTS);
+        */
     }
 
     @DataProvider
@@ -149,7 +170,7 @@ public final class ValidateServletTest
         assertTrue(node.isBoolean());
         assertEquals(node.booleanValue(), valid);
         assertEquals(Sets.newHashSet(result.fieldNames()),
-            ValidateResponse.FULL_OUTPUTS);
+            ValidateResponse.OUTPUTS);
     }
 
     private static Enumeration<String> emptyEnumeration()

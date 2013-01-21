@@ -139,13 +139,10 @@ public final class ValidateServlet
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
-        final boolean invalidSchema = fillWithData(ret,
-            ValidateResponse.SCHEMA, rawSchema);
-        final boolean invalidData = fillWithData(ret,
-            ValidateResponse.DATA, rawData);
-
-        ret.put(ValidateResponse.INVALID_SCHEMA, invalidSchema);
-        ret.put(ValidateResponse.INVALID_DATA, invalidData);
+        final boolean invalidSchema = fillWithData(ret, ValidateResponse.SCHEMA,
+            ValidateResponse.INVALID_SCHEMA, rawSchema);
+        final boolean invalidData = fillWithData(ret, ValidateResponse.DATA,
+            ValidateResponse.INVALID_DATA, rawData);
 
         final JsonNode schemaNode = ret.remove(ValidateResponse.SCHEMA);
         final JsonNode data = ret.remove(ValidateResponse.DATA);
@@ -171,13 +168,14 @@ public final class ValidateServlet
      * This returns true if the data is invalid.
      */
     private static boolean fillWithData(final ObjectNode node,
-        final String fieldName, final String raw)
+        final String onSuccess, final String onFailure, final String raw)
         throws IOException
     {
         try {
-            node.put(fieldName, JsonLoader.fromString(raw));
+            node.put(onSuccess, JsonLoader.fromString(raw));
             return false;
-        } catch (JsonProcessingException ignored) {
+        } catch (JsonProcessingException e) {
+            node.put(onFailure, buildErrorMessage(e));
             return true;
         }
     }

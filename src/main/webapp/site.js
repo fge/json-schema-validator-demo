@@ -138,13 +138,27 @@ var main = function()
         // response is directly passed along as a JavaScript object.
         request.done(function (response, status, xhr)
         {
-            var invalidSchema = response["invalidSchema"];
-            var invalidData = response["invalidData"];
+            var obj, errmsg;
 
-            if (invalidSchema)
+            var invalidSchema = response.hasOwnProperty("invalidSchema");
+            var invalidData = response.hasOwnProperty("invalidData");
+
+            // Fill with appropriate text in case of parsing errors
+            if (invalidSchema) {
+                obj = response["invalidSchema"];
+                errmsg = "Invalid JSON: parse error at line "
+                    + obj["line"] + ", column " + obj["column"];
+                $(Messages.INVALID_SCHEMA).text(errmsg);
                 $(Messages.INVALID_SCHEMA).show();
-            if (invalidData)
+            }
+
+            if (invalidData) {
+                obj = response["invalidData"];
+                errmsg = "Invalid JSON: parse error at line "
+                    + obj["line"] + ", column " + obj["column"];
+                $(Messages.INVALID_DATA).text(errmsg);
                 $(Messages.INVALID_DATA).show();
+            }
 
             // Stop right now if we have invalid inputs. Other fields will not
             // be defined.

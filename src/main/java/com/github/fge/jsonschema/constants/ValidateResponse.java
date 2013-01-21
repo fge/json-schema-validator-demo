@@ -20,11 +20,5 @@ public final class ValidateResponse
     public static final String DATA = "data";
 
     @VisibleForTesting
-    public static final Set<String> INVALID_INPUTS
-        = ImmutableSet.of(INVALID_DATA, INVALID_SCHEMA);
-
-    @VisibleForTesting
-    public static final Set<String> FULL_OUTPUTS
-        = ImmutableSet.<String>builder().addAll(INVALID_INPUTS)
-            .add(RESULTS, VALID).build();
+    public static final Set<String> OUTPUTS = ImmutableSet.of(RESULTS, VALID);
 }
