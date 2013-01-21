@@ -21,6 +21,14 @@ var Servlets = {
     LOAD_SAMPLES: "/loadSamples"
 };
 
+// The list of member names in a sample response
+var SampleResponse = {
+    SCHEMA: "schema",
+    DATA: "data",
+    USE_V4: "useV4",
+    USE_ID: "useId"
+};
+
 // jQuery selectors for global elements
 var DomElements = {
     FORM: "#validate",
@@ -47,7 +55,6 @@ var ResultPane = {
 
 function loadSamples()
 {
-    // TODO: useV4 and useId toggles
     $(DomElements.STARTHIDDEN).hide();
     $(ResultPane.RESULTS).val("");
 
@@ -59,15 +66,15 @@ function loadSamples()
 
     request.done(function(response, status, xhr)
     {
-        var schema = response["schema"];
-        var data = response["data"];
-        var useV4 = response["useV4"];
-        var useId = response["useId"];
+        var schema = response[SampleResponse.SCHEMA];
+        var data = response[SampleResponse.DATA];
+        var useV4 = response[SampleResponse.USE_V4];
+        var useId = response[SampleResponse.USE_ID];
 
         $(FormElements.SCHEMA).val(JSON.stringify(schema, undefined, 4));
         $(FormElements.DATA).val(JSON.stringify(data, undefined, 4));
         $(FormElements.USE_V4).prop("checked", useV4);
-        $(FormElements.USE_ID).attr("checked", useId);
+        $(FormElements.USE_ID).prop("checked", useId);
     });
 
     request.fail(function (xhr, status, error)
