@@ -251,8 +251,5 @@ var main = function()
 
         // Prevent default post method
         event.preventDefault();
-
-        // TODO: test if actually necessary
-        return false;
     });
 };
