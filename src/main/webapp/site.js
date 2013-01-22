@@ -52,6 +52,8 @@ var ResultPane = {
 var Messages = {
     INVALID_SCHEMA: "#invalidSchema",
     INVALID_DATA: "#invalidData",
+    TOOLTIP_SCHEMA: "#qtip-schema",
+    TOOLTIP_DATA: "#qtip-data",
     VALIDATION_SUCCESS: "#validationSuccess",
     VALIDATION_FAILURE: "#validationFailure"
 };
@@ -138,6 +140,18 @@ function reportParseError(parseError, msgHandle, textArea)
         textArea.focus().setCursorPosition(parseError["offset"]);
     });
 
+    link.qtip("destroy");
+    link.qtip({
+        content: parseError["message"],
+        show: "mouseover",
+        hide: "mouseout",
+        position: {
+            corner: {
+                target: "topMiddle",
+                tooltip: "bottomMiddle"
+            }
+        }
+    });
     // Show the message
     msgHandle.show();
 }
@@ -145,8 +159,12 @@ function reportParseError(parseError, msgHandle, textArea)
 // On document.ready()
 var main = function()
 {
-    // References to what we need
+    // Attach handler to the main form
     var $form = $(DomElements.FORM);
+
+    // Create dummy qtips -- you cannot destroy a non existing one...
+    $(Messages.INVALID_SCHEMA).find("a").qtip({content: ""});
+    $(Messages.INVALID_DATA).find("a").qtip({content: ""});
 
     $form.submit(function (event)
     {
