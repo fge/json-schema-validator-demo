@@ -203,6 +203,9 @@ public final class ValidateServlet
             offset = offset - lineNr + 1;
         ret.put(ParseError.LINE, lineNr);
         ret.put(ParseError.OFFSET, offset);
+
+        // Finally, put the message
+        ret.put(ParseError.MESSAGE, e.getOriginalMessage());
         return ret;
     }
 }

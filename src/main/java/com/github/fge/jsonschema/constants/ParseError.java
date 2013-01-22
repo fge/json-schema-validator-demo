@@ -12,7 +12,8 @@ public final class ParseError
 
     public static final String LINE = "line";
     public static final String OFFSET = "offset";
+    public static final String MESSAGE = "message";
 
     public static final Set<String> ALL_FIELDS
-        = ImmutableSet.of(LINE, OFFSET);
+        = ImmutableSet.of(LINE, OFFSET, MESSAGE);
 }
