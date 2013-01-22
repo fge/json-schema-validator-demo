@@ -11,7 +11,8 @@ public final class ParseError
     }
 
     public static final String LINE = "line";
-    public static final String COLUMN = "column";
+    public static final String OFFSET = "offset";
 
-    public static final Set<String> ALL_FIELDS = ImmutableSet.of(LINE, COLUMN);
+    public static final Set<String> ALL_FIELDS
+        = ImmutableSet.of(LINE, OFFSET);
 }

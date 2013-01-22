@@ -121,6 +121,22 @@ new function ($)
     }
 }(jQuery);
 
+// Function to report a parse error
+function reportParseError(parseError, msgHandle, textArea)
+{
+    var link = msgHandle.find("a");
+
+    link.text("line " + parseError["line"]);
+
+    // Add an onclick hook to the link
+    link.on("click", function(e)
+    {
+        e.preventDefault();
+        textArea.focus().setCursorPosition(parseError["offset"]);
+    });
+    msgHandle.show();
+}
+
 var main = function()
 {
     // References to what we need
@@ -161,27 +177,18 @@ var main = function()
         // response is directly passed along as a JavaScript object.
         request.done(function (response, status, xhr)
         {
-            var obj, errmsg;
 
+            // This is the way to guarantee that an object has a key with
+            // JavaScript
             var invalidSchema = response.hasOwnProperty("invalidSchema");
             var invalidData = response.hasOwnProperty("invalidData");
 
-            // Fill with appropriate text in case of parsing errors
-            if (invalidSchema) {
-                obj = response["invalidSchema"];
-                errmsg = "Invalid JSON: parse error at line "
-                    + obj["line"] + ", column " + obj["column"];
-                $(Messages.INVALID_SCHEMA).text(errmsg);
-                $(Messages.INVALID_SCHEMA).show();
-            }
-
-            if (invalidData) {
-                obj = response["invalidData"];
-                errmsg = "Invalid JSON: parse error at line "
-                    + obj["line"] + ", column " + obj["column"];
-                $(Messages.INVALID_DATA).text(errmsg);
-                $(Messages.INVALID_DATA).show();
-            }
+            if (invalidSchema)
+                reportParseError(response["invalidSchema"],
+                    $(Messages.INVALID_SCHEMA), $(FormElements.SCHEMA));
+            if (invalidData)
+                reportParseError(response["invalidData"],
+                    $(Messages.INVALID_DATA), $(FormElements.DATA));
 
             // Stop right now if we have invalid inputs. Other fields will not
             // be defined.

@@ -123,20 +123,6 @@ public final class ValidateServletTest
             assertEquals(Sets.newHashSet(errnode.fieldNames()),
                 ParseError.ALL_FIELDS);
         }
-        /*
-        final JsonNode node1 = node.get(ValidateResponse.INVALID_SCHEMA);
-        final JsonNode node2 = node.get(ValidateResponse.INVALID_DATA);
-
-        assertTrue(node1.isBoolean());
-        assertEquals(node1.booleanValue(), invalidSchema);
-
-        assertTrue(node2.isBoolean());
-        assertEquals(node2.booleanValue(), invalidData);
-
-        if (invalidSchema || invalidData)
-            assertEquals(Sets.newHashSet(node.fieldNames()),
-                ValidateResponse.INVALID_INPUTS);
-        */
     }
 
     @DataProvider
