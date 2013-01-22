@@ -29,20 +29,27 @@
         </p>
     </noscript>
 
-    <p><a href="http://json-schema.org">JSON Schema</a> validation example. <a
-        href="/about.html">About this website</a>
+    <p>One of the capabilities of <a href="http://json-schema.org">JSON
+        Schema</a> is to validate your JSON data. If you have a schema ready,
+        and sample data which you think should succeed or fail, this is the
+        website for you.
     </p>
 
     <p>Paste your schema and data in the appropriate text areas, then press the
-        "Validate" button. Error messages will appear in the right pane as a
-        JSON Object. Keys are <a
-        href="http://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-08">
-        JSON Pointer</a>s into the data (the empty string <span
-        style="font: monospace">""</span> is the root of the data).
+        "Validate" button. The validation outcome, and its status, will appear
+        in the right pane.
     </p>
 
-    <p>You can also <a id="loadSamples" href="#">load a random schema
-        and data</a>.
+    <p>Should validation fail, a JSON Object describing validation failures
+        will be displayed. Keys are <a
+        href="http://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-08">
+        JSON Pointer</a>s into the data.
+    </p>
+
+    <p>You can also test the JSON Schema validation mechanics by <a
+        id="loadSamples" href="#">loading samples</a> from the <a
+        href="https://github.com/json-schema/JSON-Schema-Test-Suite">JSON Schema
+        test suite</a>.
     </p>
 
 </div>
