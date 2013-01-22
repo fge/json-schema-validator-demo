@@ -54,7 +54,7 @@ var Messages = {
     INVALID_DATA: "#invalidData",
     VALIDATION_SUCCESS: "#validationSuccess",
     VALIDATION_FAILURE: "#validationFailure"
-}
+};
 
 var TextAreas = {
     fillJson: function(selector, value)
@@ -67,6 +67,7 @@ var TextAreas = {
     }
 };
 
+// FIXME: #jquery people on FreeNode say this is not the way to do it
 function loadSamples()
 {
     $(DomElements.STARTHIDDEN).hide();
@@ -124,19 +125,24 @@ new function ($)
 // Function to report a parse error
 function reportParseError(parseError, msgHandle, textArea)
 {
+    // Find the inner link element -- there is only one, so this is "safe".
     var link = msgHandle.find("a");
 
     link.text("line " + parseError["line"]);
 
-    // Add an onclick hook to the link
+    // Add an onclick hook to the link. When clicking on the link, the caret
+    // in the text area will move to the position of the error.
     link.on("click", function(e)
     {
         e.preventDefault();
         textArea.focus().setCursorPosition(parseError["offset"]);
     });
+
+    // Show the message
     msgHandle.show();
 }
 
+// On document.ready()
 var main = function()
 {
     // References to what we need
@@ -149,8 +155,7 @@ var main = function()
         // Empty the results field
         TextAreas.clear(ResultPane.RESULTS);
 
-        // Grab fields in the form
-        // TODO: Complete list when necessary
+        // Grab the necessary input fields
         var $inputs = $form.find(FormElements.INPUTS);
 
         // Serialize all of the form -- _very_ convenient, that!
@@ -158,7 +163,7 @@ var main = function()
         // checked ones, they default to "on" but this can be changed by speci-
         // fying the "value" attribute of an input. Here we set it to "true",
         // this allows Java to effectively parse it (Boolean.parseBoolean()
-        // returns false when its argument is null).
+        // returns false when its argument is null, which is what we want).
         var payload = $form.serialize();
 
         // Lock inputs
