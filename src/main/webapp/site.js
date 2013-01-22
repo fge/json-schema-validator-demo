@@ -166,6 +166,13 @@ var main = function()
     $(Messages.INVALID_SCHEMA).find("a").qtip({content: ""});
     $(Messages.INVALID_DATA).find("a").qtip({content: ""});
 
+    // Attach loadSamples to the appropriate link
+    $("#loadSamples").on("click", function (event)
+    {
+        event.preventDefault();
+        loadSamples();
+    });
+
     $form.submit(function (event)
     {
         // Clear/hide all necessary elements
