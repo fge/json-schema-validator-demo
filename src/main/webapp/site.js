@@ -159,6 +159,9 @@ function reportParseError(parseError, msgHandle, textArea)
 // On document.ready()
 var main = function()
 {
+    // The guy has JavaScript, hide the warning that it should be enabled
+    $(".noscript").hide();
+
     // Attach handler to the main form
     var $form = $(DomElements.FORM);
 
