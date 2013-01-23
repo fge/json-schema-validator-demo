@@ -5,6 +5,10 @@
     "description": "Schema for a Geo JSON object",
     "type": "object",
     "required": [ "type" ],
+    "properties": {
+        "crs": { "$ref": "http://json-schema.org/geojson/crs.json#" },
+        "bbox": { "$ref": "http://json-schema.org/geojson/bbox.json#" }
+    },
     "oneOf": [
         { "$ref": "http://json-schema.org/geojson/geometry.json#" },
         { "$ref": "#/definitions/geometryCollection" },
