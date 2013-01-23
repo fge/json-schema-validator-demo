@@ -34,6 +34,8 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 import com.google.common.io.Closeables;
 import com.google.common.net.MediaType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -66,6 +68,9 @@ import java.util.Set;
 public final class ValidateServlet
     extends HttpServlet
 {
+    private static final Logger log
+        = LoggerFactory.getLogger(ValidateServlet.class);
+
     @Override
     public void doPost(final HttpServletRequest req,
         final HttpServletResponse resp)
@@ -91,6 +96,7 @@ public final class ValidateServlet
 
         // We have required parameters
         if (!params.containsAll(ValidateRequest.REQUIRED_PARAMS)) {
+            log.warn("Missing parameters! Someone using me as a web service?");
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
                 "Missing parameters");
             return;
@@ -100,6 +106,7 @@ public final class ValidateServlet
         params.removeAll(ValidateRequest.VALID_PARAMS);
 
         if (!params.isEmpty()) {
+            log.warn("Invalid parameters! Someone using me as a web service?");
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
                 "Invalid parameters");
             return;
@@ -116,6 +123,7 @@ public final class ValidateServlet
         final boolean useId
             = Boolean.parseBoolean(req.getParameter(ValidateRequest.USE_ID));
 
+        log.info("use V4: {}, use \"id\": {}", useV4, useId);
         final JsonNode ret = buildResult(rawSchema, data, useV4, useId);
 
         final OutputStream out = resp.getOutputStream();
@@ -147,8 +155,11 @@ public final class ValidateServlet
         final JsonNode schemaNode = ret.remove(ValidateResponse.SCHEMA);
         final JsonNode data = ret.remove(ValidateResponse.DATA);
 
-        if (invalidSchema || invalidData)
+        if (invalidSchema || invalidData) {
+            log.warn("Invalid inputs (schema: {}, data: {})", invalidSchema,
+                invalidData);
             return ret;
+        }
 
         final JsonSchemaFactory factory
             = JsonSchemaFactories.withOptions(useV4, useId);
@@ -156,7 +167,9 @@ public final class ValidateServlet
         final JsonSchema schema = factory.fromSchema(schemaNode);
         final ValidationReport report = schema.validate(data);
 
-        ret.put(ValidateResponse.VALID, report.isSuccess());
+        final boolean success = report.isSuccess();
+        log.info("Validation {}", success ? "succeeded" : "failed");
+        ret.put(ValidateResponse.VALID, success);
         ret.put(ValidateResponse.RESULTS, report.asJsonObject());
         return ret;
     }
