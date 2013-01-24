@@ -36,7 +36,6 @@ div {
 #top {
     position: fixed;
     width: 100%;
-    color: black;
     height: 95px;
     z-index: 2;
     padding-left: 5px;
@@ -47,7 +46,6 @@ div {
  */
 div.content {
     padding-top: 100px;
-    color: black;
     position: absolute;
     width: 49%;
     top: 0;
@@ -93,25 +91,22 @@ div.options > * {
 /*
  * Various
  */
+.starthidden {
+    display: none
+}
 .error {
     color: red;
-    display: none;
 }
-
 .success {
     color: green;
-    display: none;
 }
-
 textarea[readonly="readonly"] {
     background-color: #f2f1f0;
     border: #f2f1f0 1px solid;
 }
-
 p {
     margin-top: .2em;
 }
-
 a {
     color: #6495ed;
 }
@@ -122,7 +117,6 @@ a {
 div.about {
     margin: 10px;
 }
-
 div.about > * {
     margin: 5px;
 }

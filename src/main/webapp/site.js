@@ -32,7 +32,7 @@ var SampleResponse = {
 // jQuery selectors for global elements
 var DomElements = {
     FORM: "#validate",
-    STARTHIDDEN: ".error, .success"
+    STARTHIDDEN: ".starthidden"
 };
 
 // jQuery selectors for input form elements
