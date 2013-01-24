@@ -123,7 +123,6 @@ public final class ValidateServlet
         final boolean useId
             = Boolean.parseBoolean(req.getParameter(ValidateRequest.USE_ID));
 
-        log.info("use V4: {}, use \"id\": {}", useV4, useId);
         final JsonNode ret = buildResult(rawSchema, data, useV4, useId);
 
         final OutputStream out = resp.getOutputStream();
@@ -155,11 +154,8 @@ public final class ValidateServlet
         final JsonNode schemaNode = ret.remove(ValidateResponse.SCHEMA);
         final JsonNode data = ret.remove(ValidateResponse.DATA);
 
-        if (invalidSchema || invalidData) {
-            log.warn("Invalid inputs (schema: {}, data: {})", invalidSchema,
-                invalidData);
+        if (invalidSchema || invalidData)
             return ret;
-        }
 
         final JsonSchemaFactory factory
             = JsonSchemaFactories.withOptions(useV4, useId);
@@ -168,7 +164,6 @@ public final class ValidateServlet
         final ValidationReport report = schema.validate(data);
 
         final boolean success = report.isSuccess();
-        log.info("Validation {}", success ? "succeeded" : "failed");
         ret.put(ValidateResponse.VALID, success);
         ret.put(ValidateResponse.RESULTS, report.asJsonObject());
         return ret;
