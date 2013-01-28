@@ -104,9 +104,6 @@ textarea[readonly="readonly"] {
     background-color: #f2f1f0;
     border: #f2f1f0 1px solid;
 }
-textarea {
-    color: black;
-}
 p {
     margin-top: .2em;
 }
