@@ -25,7 +25,7 @@ var Servlets = {
 var SampleResponse = {
     SCHEMA: "schema",
     DATA: "data",
-    USE_V4: "useV4",
+    USE_V3: "useV3",
     USE_ID: "useId"
 };
 
@@ -40,7 +40,7 @@ var FormElements = {
     INPUTS: "textarea, input",
     SCHEMA: "#schema",
     DATA: "#data",
-    USE_V4: "#useV4",
+    USE_V3: "#useV3",
     USE_ID: "#useId"
 };
 
@@ -85,12 +85,12 @@ function loadSamples()
     {
         var schema = response[SampleResponse.SCHEMA];
         var data = response[SampleResponse.DATA];
-        var useV4 = response[SampleResponse.USE_V4];
+        var useV3 = response[SampleResponse.USE_V3];
         var useId = response[SampleResponse.USE_ID];
 
         TextAreas.fillJson(FormElements.SCHEMA, schema);
         TextAreas.fillJson(FormElements.DATA, data);
-        $(FormElements.USE_V4).prop("checked", useV4);
+        $(FormElements.USE_V3).prop("checked", useV3);
         $(FormElements.USE_ID).prop("checked", useId);
     });
 

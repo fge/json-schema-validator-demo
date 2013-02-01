@@ -39,9 +39,23 @@
         in the right pane.
     </p>
 
+    <!-- Draft v4 is now the default
     <p>You can also <a id="loadSamples" href="#">load samples</a> from the
         <a href="https://github.com/json-schema/JSON-Schema-Test-Suite">JSON
         Schema test suite</a>.
+    </p>
+    -->
+
+    <p>
+        <span style="font-weight: bold">Note:</span> draft v4 is now the current
+        official specification (links: <a
+        href="http://tools.ietf.org/html/draft-zyp-json-schema-04">core</a>,
+        <a
+        href="http://tools.ietf.org/html/draft-fge-json-schema-validation-00">
+        validation</a>,
+        <a href="http://tools.ietf.org/html/draft-luff-json-hyper-schema-00">
+        hyperschema</a>). As such, you must now select to use draft v3
+        explicitly.
     </p>
 
     <p>
@@ -62,8 +76,8 @@
         <div class="options">
             <p>Validation options:</p>
             <div>
-                <input type="checkbox" name="useV4" id="useV4" value="true">
-                <label for="useV4">Default to draft v4</label>
+                <input type="checkbox" name="useV3" id="useV3" value="true">
+                <label for="useV3">Use draft v3</label>
             </div>
             <div>
                 <input type="checkbox" name="useId" id="useId" value="true">

@@ -24,10 +24,10 @@ import com.github.fge.jsonschema.schema.AddressingMode;
 
 public final class JsonSchemaFactories
 {
-    private static final JsonSchemaFactory DRAFTV3_NO_ID;
-    private static final JsonSchemaFactory DRAFTV3_WITH_ID;
     private static final JsonSchemaFactory DRAFTV4_NO_ID;
     private static final JsonSchemaFactory DRAFTV4_WITH_ID;
+    private static final JsonSchemaFactory DRAFTV3_NO_ID;
+    private static final JsonSchemaFactory DRAFTV3_WITH_ID;
 
     /*
      * In theory, we should build one factory each time someone wants to support
@@ -60,12 +60,12 @@ public final class JsonSchemaFactories
     {
     }
 
-    public static JsonSchemaFactory withOptions(final boolean useDraftV4,
+    public static JsonSchemaFactory withOptions(final boolean useDraftV3,
         final boolean useId)
     {
-        if (useDraftV4)
-            return useId ? DRAFTV4_WITH_ID : DRAFTV4_NO_ID;
+        if (useDraftV3)
+            return useId ? DRAFTV3_WITH_ID : DRAFTV3_NO_ID;
 
-        return useId ? DRAFTV3_WITH_ID : DRAFTV3_NO_ID;
+        return useId ? DRAFTV4_WITH_ID : DRAFTV4_NO_ID;
     }
 }

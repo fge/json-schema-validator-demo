@@ -29,12 +29,12 @@ public final class ValidateRequest
 
     public static final String SCHEMA = "schema";
     public static final String DATA = "data";
-    public static final String USE_V4 = "useV4";
+    public static final String USE_V3 = "useV3";
     public static final String USE_ID = "useId";
 
     public static final Set<String> REQUIRED_PARAMS
         = ImmutableSet.of(SCHEMA, DATA);
 
     public static final Set<String> VALID_PARAMS
-        = ImmutableSet.of(SCHEMA, DATA, USE_V4, USE_ID);
+        = ImmutableSet.of(SCHEMA, DATA, USE_V3, USE_ID);
 }

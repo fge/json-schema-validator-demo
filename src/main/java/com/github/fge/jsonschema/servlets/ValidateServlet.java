@@ -118,12 +118,12 @@ public final class ValidateServlet
         // Set correct content type
         resp.setContentType(MediaType.JSON_UTF_8.toString());
 
-        final boolean useV4
-            = Boolean.parseBoolean(req.getParameter(ValidateRequest.USE_V4));
+        final boolean useV3
+            = Boolean.parseBoolean(req.getParameter(ValidateRequest.USE_V3));
         final boolean useId
             = Boolean.parseBoolean(req.getParameter(ValidateRequest.USE_ID));
 
-        final JsonNode ret = buildResult(rawSchema, data, useV4, useId);
+        final JsonNode ret = buildResult(rawSchema, data, useV3, useId);
 
         final OutputStream out = resp.getOutputStream();
 
@@ -141,7 +141,7 @@ public final class ValidateServlet
      */
     @VisibleForTesting
     static JsonNode buildResult(final String rawSchema,
-        final String rawData, final boolean useV4, final boolean useId)
+        final String rawData, final boolean useV3, final boolean useId)
         throws IOException
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
@@ -158,7 +158,7 @@ public final class ValidateServlet
             return ret;
 
         final JsonSchemaFactory factory
-            = JsonSchemaFactories.withOptions(useV4, useId);
+            = JsonSchemaFactories.withOptions(useV3, useId);
 
         final JsonSchema schema = factory.fromSchema(schemaNode);
         final ValidationReport report = schema.validate(data);
