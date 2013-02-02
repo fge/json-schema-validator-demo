@@ -22,16 +22,46 @@ import com.google.common.collect.ImmutableSet;
 
 import java.util.Set;
 
-public final class SyntaxValidateResponse
+public final class SyntaxValidateServletConstants
 {
-    private SyntaxValidateResponse()
+    private SyntaxValidateServletConstants()
     {
     }
 
-    public static final String INVALID_SCHEMA = "invalidSchema";
-    public static final String RESULTS = "results";
-    public static final String VALID = "valid";
+    public static class Request
+    {
+        private Request()
+        {
+        }
 
-    @VisibleForTesting
-    public static final Set<String> OUTPUTS = ImmutableSet.of(RESULTS, VALID);
+        public static final String SCHEMA = "schema";
+
+        public static Set<String> required()
+        {
+            return ImmutableSet.of(SCHEMA);
+        }
+
+        public static Set<String> valid()
+        {
+            return required();
+        }
+    }
+
+    public static class Response
+    {
+        private Response()
+        {
+        }
+
+        public static final String INVALID_SCHEMA = "invalidSchema";
+        public static final String SCHEMA = "schema";
+        public static final String RESULTS = "results";
+        public static final String VALID = "valid";
+
+        @VisibleForTesting
+        public static Set<String> all()
+        {
+            return ImmutableSet.of(INVALID_SCHEMA, RESULTS, VALID);
+        }
+    }
 }

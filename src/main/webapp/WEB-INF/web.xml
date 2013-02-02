@@ -17,6 +17,15 @@
         <url-pattern>/validate</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>validateSyntax</servlet-name>
+        <servlet-class>com.github.fge.jsonschema.servlets.SyntaxValidateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>validateSyntax</servlet-name>
+        <url-pattern>/validateSyntax</url-pattern>
+    </servlet-mapping>
+
     <!-- draft v4 is now the official spec
     <servlet>
         <servlet-name>loadSamples</servlet-name>
