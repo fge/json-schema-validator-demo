@@ -23,14 +23,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jsonschema.constants.ParseError;
+import com.github.fge.jsonschema.exceptions.ProcessingException;
 import com.github.fge.jsonschema.library.syntax.DraftV4SyntaxCheckerDictionary;
-import com.github.fge.jsonschema.processing.ProcessingException;
 import com.github.fge.jsonschema.processing.Processor;
-import com.github.fge.jsonschema.processing.ValidationData;
-import com.github.fge.jsonschema.processing.syntax.SyntaxProcessor;
+import com.github.fge.jsonschema.processors.data.ValidationData;
+import com.github.fge.jsonschema.processors.syntax.SyntaxProcessor;
 import com.github.fge.jsonschema.report.ListProcessingReport;
 import com.github.fge.jsonschema.tree.CanonicalSchemaTree;
-import com.github.fge.jsonschema.tree.JsonSchemaTree;
+import com.github.fge.jsonschema.tree.SchemaTree;
 import com.github.fge.jsonschema.util.JsonLoader;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
@@ -144,7 +144,7 @@ public final class SyntaxValidateServlet
         if (invalidSchema)
             return ret;
 
-        final JsonSchemaTree tree = new CanonicalSchemaTree(schemaNode);
+        final SchemaTree tree = new CanonicalSchemaTree(schemaNode);
         final ValidationData data = new ValidationData(tree);
         final ListProcessingReport report = new ListProcessingReport();
 

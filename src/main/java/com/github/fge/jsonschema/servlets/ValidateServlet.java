@@ -22,13 +22,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.fge.jsonschema.JsonSchemaFactories;
+import com.github.fge.jsonschema.CrudeValidators;
 import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.constants.ValidateRequest;
 import com.github.fge.jsonschema.constants.ValidateResponse;
-import com.github.fge.jsonschema.main.JsonSchema;
-import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import com.github.fge.jsonschema.report.ValidationReport;
+import com.github.fge.jsonschema.crude.CrudeValidator;
+import com.github.fge.jsonschema.report.ProcessingReport;
+import com.github.fge.jsonschema.util.AsJson;
 import com.github.fge.jsonschema.util.JsonLoader;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
@@ -62,7 +62,7 @@ import java.util.Set;
  *     <li>{@code valid} (only if the schema and data are valid): whether the
  *     validation has succeeded;</li>
  *     <li>{@code results} (only if the schema and data are valid): the result
- *     of {@link ValidationReport#asJsonObject()}.</li>
+ *     of {@link ProcessingReport#getMessages()}.</li>
  * </ul>
  */
 public final class ValidateServlet
@@ -157,15 +157,14 @@ public final class ValidateServlet
         if (invalidSchema || invalidData)
             return ret;
 
-        final JsonSchemaFactory factory
-            = JsonSchemaFactories.withOptions(useV3, useId);
-
-        final JsonSchema schema = factory.fromSchema(schemaNode);
-        final ValidationReport report = schema.validate(data);
+        final CrudeValidator validator
+            = CrudeValidators.withOptions(useV3, useId);
+        final ProcessingReport report
+            = validator.validateUnchecked(schemaNode, data);
 
         final boolean success = report.isSuccess();
         ret.put(ValidateResponse.VALID, success);
-        ret.put(ValidateResponse.RESULTS, report.asJsonObject());
+        ret.put(ValidateResponse.RESULTS, ((AsJson) report).asJson());
         return ret;
     }
 

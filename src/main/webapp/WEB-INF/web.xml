@@ -26,7 +26,6 @@
         <url-pattern>/validateSyntax</url-pattern>
     </servlet-mapping>
 
-    <!-- draft v4 is now the official spec
     <servlet>
         <servlet-name>loadSamples</servlet-name>
         <servlet-class>com.github.fge.jsonschema.servlets.LoadSamplesServlet</servlet-class>
@@ -35,7 +34,6 @@
         <servlet-name>loadSamples</servlet-name>
         <url-pattern>/loadSamples</url-pattern>
     </servlet-mapping>
-    -->
 
     <filter>
         <filter-name>gzip</filter-name>

@@ -19,8 +19,8 @@ package com.github.fge.jsonschema;
 
 import com.github.fge.jsonschema.library.syntax.DraftV4SyntaxCheckerDictionary;
 import com.github.fge.jsonschema.processing.Processor;
-import com.github.fge.jsonschema.processing.ValidationData;
-import com.github.fge.jsonschema.processing.syntax.SyntaxProcessor;
+import com.github.fge.jsonschema.processors.data.ValidationData;
+import com.github.fge.jsonschema.processors.syntax.SyntaxProcessor;
 
 public final class Processors
 {
