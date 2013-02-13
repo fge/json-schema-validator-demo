@@ -44,17 +44,6 @@ var Messages = {
     VALIDATION_FAILURE: "#validationFailure"
 };
 
-var TextAreas = {
-    fillJson: function(selector, value)
-    {
-        $(selector).val(JSON.stringify(value, undefined, 4));
-    },
-    clear: function(selector)
-    {
-        $(selector).val("");
-    }
-};
-
 /*
  * Function added to set the cursor position at a given offset in a text area
  *

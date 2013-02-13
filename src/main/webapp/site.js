@@ -58,17 +58,6 @@ var Messages = {
     VALIDATION_FAILURE: "#validationFailure"
 };
 
-var TextAreas = {
-    fillJson: function(selector, value)
-    {
-        $(selector).val(JSON.stringify(value, undefined, 4));
-    },
-    clear: function(selector)
-    {
-        $(selector).val("");
-    }
-};
-
 // FIXME: #jquery people on FreeNode say this is not the way to do it
 function loadSamples()
 {
