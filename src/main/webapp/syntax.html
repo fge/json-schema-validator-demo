@@ -48,15 +48,18 @@
     </div>
 
     <!-- TODO -->
-    <p>This page demonstrates the library's next version syntax validation
-    capabilities. It is but <a
+    <p>This page demonstrates the library's syntax validation capabilities. It
+    is but <a
     href="https://github.com/fge/json-schema-validator/wiki/Roadmap">one of the
     many things version 2.0.x will be able to do</a>.
     </a>
     </p>
 
     <p>You will note that you will get warnings if unknown keywords are spotted.
-    </p>
+    Also, messages are located accurately: the pointer into the schema will
+    tell the containing object where the error occured, and the <span
+    style="font-family: monospace;">keyword</span> member will tell you what
+    keyword was at fault.</p>
 
     <!--
         OK, whatever: some people dislike "onclick" on links, but it Works For
