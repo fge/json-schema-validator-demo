@@ -29,12 +29,6 @@ var SampleResponse = {
     USE_ID: "useId"
 };
 
-// jQuery selectors for global elements
-var DomElements = {
-    FORM: "#validate",
-    STARTHIDDEN: ".starthidden"
-};
-
 // jQuery selectors for input form elements
 var FormElements = {
     INPUTS: "textarea, input",
