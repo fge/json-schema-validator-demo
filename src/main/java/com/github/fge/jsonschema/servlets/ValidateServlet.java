@@ -22,11 +22,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.fge.jsonschema.CrudeValidators;
+import com.github.fge.jsonschema.JsonValidators;
 import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.constants.ValidateRequest;
 import com.github.fge.jsonschema.constants.ValidateResponse;
-import com.github.fge.jsonschema.crude.CrudeValidator;
+import com.github.fge.jsonschema.main.JsonValidator;
 import com.github.fge.jsonschema.report.ProcessingReport;
 import com.github.fge.jsonschema.util.AsJson;
 import com.github.fge.jsonschema.util.JsonLoader;
@@ -157,8 +157,8 @@ public final class ValidateServlet
         if (invalidSchema || invalidData)
             return ret;
 
-        final CrudeValidator validator
-            = CrudeValidators.withOptions(useV3, useId);
+        final JsonValidator validator
+            = JsonValidators.withOptions(useV3, useId);
         final ProcessingReport report
             = validator.validateUnchecked(schemaNode, data);
 
