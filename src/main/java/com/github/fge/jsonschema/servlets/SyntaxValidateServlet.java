@@ -25,8 +25,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.exceptions.ProcessingException;
 import com.github.fge.jsonschema.library.syntax.DraftV4SyntaxCheckerDictionary;
-import com.github.fge.jsonschema.processing.Processor;
-import com.github.fge.jsonschema.processors.data.ValidationData;
+import com.github.fge.jsonschema.processors.data.ValidationContext;
 import com.github.fge.jsonschema.processors.syntax.SyntaxProcessor;
 import com.github.fge.jsonschema.report.ListProcessingReport;
 import com.github.fge.jsonschema.tree.CanonicalSchemaTree;
@@ -57,7 +56,7 @@ public final class SyntaxValidateServlet
     private static final Logger log
         = LoggerFactory.getLogger(SyntaxValidateServlet.class);
 
-    private static final Processor<ValidationData, ValidationData> PROCESSOR
+    private static final SyntaxProcessor PROCESSOR
         = new SyntaxProcessor(DraftV4SyntaxCheckerDictionary.get());
 
     @Override
@@ -145,10 +144,10 @@ public final class SyntaxValidateServlet
             return ret;
 
         final SchemaTree tree = new CanonicalSchemaTree(schemaNode);
-        final ValidationData data = new ValidationData(tree);
+        final ValidationContext context = new ValidationContext(tree, null);
         final ListProcessingReport report = new ListProcessingReport();
 
-        PROCESSOR.process(report, data);
+        PROCESSOR.process(report, context);
         final boolean success = report.isSuccess();
 
         ret.put(Response.VALID, success);

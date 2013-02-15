@@ -18,8 +18,6 @@
 package com.github.fge.jsonschema;
 
 import com.github.fge.jsonschema.library.syntax.DraftV4SyntaxCheckerDictionary;
-import com.github.fge.jsonschema.processing.Processor;
-import com.github.fge.jsonschema.processors.data.ValidationData;
 import com.github.fge.jsonschema.processors.syntax.SyntaxProcessor;
 
 public final class Processors
@@ -28,10 +26,10 @@ public final class Processors
     {
     }
 
-    private static final Processor<ValidationData, ValidationData> PROCESSOR
+    private static final SyntaxProcessor PROCESSOR
         = new SyntaxProcessor(DraftV4SyntaxCheckerDictionary.get());
 
-    public static Processor<ValidationData, ValidationData> syntax()
+    public static SyntaxProcessor syntax()
     {
         return PROCESSOR;
     }
