@@ -19,7 +19,6 @@ package com.github.fge.jsonschema;
 
 import com.github.fge.jsonschema.cfg.LoadingConfiguration;
 import com.github.fge.jsonschema.cfg.ValidationConfiguration;
-import com.github.fge.jsonschema.library.SchemaVersion;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.github.fge.jsonschema.main.JsonSchemaFactoryBuilder;
 import com.github.fge.jsonschema.main.JsonValidator;
