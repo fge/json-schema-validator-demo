@@ -51,7 +51,7 @@
         <dependency>
             <groupId>com.github.fge</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>1.99.10</version>
+            <version>1.99.11</version>
         </dependency>
 
         <dependency>
