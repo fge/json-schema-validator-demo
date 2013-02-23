@@ -17,7 +17,7 @@
 
 // The list of our servlets
 var Servlets = {
-    VALIDATE_SYNTAX: "/validate",
+    VALIDATE_SYNTAX: "/x/x/validate",
     LOAD_SAMPLES: "/loadSamples"
 };
 
