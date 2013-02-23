@@ -26,33 +26,6 @@
         <url-pattern>/x/*</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>validate</servlet-name>
-        <servlet-class>com.github.fge.jsonschema.servlets.ValidateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>validate</servlet-name>
-        <url-pattern>/validate</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>validateSyntax</servlet-name>
-        <servlet-class>com.github.fge.jsonschema.servlets.SyntaxValidateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>validateSyntax</servlet-name>
-        <url-pattern>/validateSyntax</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>loadSamples</servlet-name>
-        <servlet-class>com.github.fge.jsonschema.servlets.LoadSamplesServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>loadSamples</servlet-name>
-        <url-pattern>/loadSamples</url-pattern>
-    </servlet-mapping>
-
     <filter>
         <filter-name>gzip</filter-name>
         <filter-class>org.eclipse.jetty.servlets.GzipFilter</filter-class>
