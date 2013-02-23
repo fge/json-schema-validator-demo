@@ -1,6 +1,7 @@
 package com.github.fge.jsonschema.app;
 
 import com.github.fge.jsonschema.servlets2.LoadSamplesServlet2;
+import com.github.fge.jsonschema.servlets2.SyntaxValidateServlet2;
 import com.google.common.collect.ImmutableSet;
 
 import javax.ws.rs.core.Application;
@@ -15,6 +16,7 @@ public final class App
         final ImmutableSet.Builder<Class<?>> builder = ImmutableSet.builder();
 
         builder.add(LoadSamplesServlet2.class);
+        builder.add(SyntaxValidateServlet2.class);
 
         return builder.build();
     }
