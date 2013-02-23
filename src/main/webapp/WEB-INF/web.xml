@@ -8,6 +8,24 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
+    <listener>
+        <listener-class>com.github.fge.jsonschema.app.JerseyUseSlf4jPlease</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>jersey</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.github.fge.jsonschema.app.App</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jersey</servlet-name>
+        <url-pattern>/x/*</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>validate</servlet-name>
         <servlet-class>com.github.fge.jsonschema.servlets.ValidateServlet</servlet-class>
