@@ -84,38 +84,6 @@ function loadSamples()
     });
 }
 
-// Function to report a parse error
-function reportParseError(parseError, msgHandle, textArea)
-{
-    // Find the inner link element -- there is only one, so this is "safe".
-    var link = msgHandle.find("a");
-
-    link.text("line " + parseError["line"]);
-
-    // Add an onclick hook to the link. When clicking on the link, the caret
-    // in the text area will move to the position of the error.
-    link.on("click", function(e)
-    {
-        e.preventDefault();
-        textArea.focus().setCursorPosition(parseError["offset"]);
-    });
-
-    link.qtip("destroy");
-    link.qtip({
-        content: parseError["message"],
-        show: "mouseover",
-        hide: "mouseout",
-        position: {
-            corner: {
-                target: "topMiddle",
-                tooltip: "bottomMiddle"
-            }
-        }
-    });
-    // Show the message
-    msgHandle.show();
-}
-
 // On document.ready()
 var main = function()
 {
