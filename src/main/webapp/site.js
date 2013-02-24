@@ -17,8 +17,8 @@
 
 // The list of our servlets
 var Servlets = {
-    VALIDATE_SYNTAX: "/x/x/validate",
-    LOAD_SAMPLES: "/loadSamples"
+    VALIDATE_SYNTAX: "/process/validate",
+    LOAD_SAMPLES: "/load/testSuite"
 };
 
 // The list of member names in a sample response

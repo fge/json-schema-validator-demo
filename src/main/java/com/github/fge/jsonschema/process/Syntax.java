@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.fge.jsonschema.servlets2;
+package com.github.fge.jsonschema.process;
 
 import com.fasterxml.jackson.core.JsonLocation;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -44,9 +44,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
-@Path("/x/syntax")
+@Path("/syntax")
 @Produces("application/json;charset=utf-8")
-public final class SyntaxValidateServlet2
+public final class Syntax
 {
     private static final String INVALID_SCHEMA = "invalidSchema";
     private static final String SCHEMA = "schema";
@@ -54,8 +54,7 @@ public final class SyntaxValidateServlet2
     private static final String VALID = "valid";
     private static final Response OOPS = Response.status(500).build();
 
-    private static final Logger log
-        = LoggerFactory.getLogger(SyntaxValidateServlet2.class);
+    private static final Logger log = LoggerFactory.getLogger(Syntax.class);
 
     private static final SyntaxProcessor PROCESSOR
         = new SyntaxProcessor(DraftV4SyntaxCheckerDictionary.get());

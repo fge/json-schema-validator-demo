@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.fge.jsonschema.servlets2;
+package com.github.fge.jsonschema.process;
 
 import com.fasterxml.jackson.core.JsonLocation;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -43,12 +43,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
-@Path("/x/validate")
+@Path("/validate")
 @Produces("application/json;charset=utf-8")
-public final class ValidateServlet2
+public final class Validate
 {
-    private static final Logger log
-        = LoggerFactory.getLogger(ValidateServlet2.class);
+    private static final Logger log = LoggerFactory.getLogger(Validate.class);
 
     private static final Response OOPS = Response.status(500).build();
 

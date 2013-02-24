@@ -1,10 +1,5 @@
 package com.github.fge.jsonschema.constants;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.ImmutableSet;
-
-import java.util.Set;
-
 public final class ValidateResponse
 {
     private ValidateResponse()
@@ -18,7 +13,4 @@ public final class ValidateResponse
 
     public static final String SCHEMA = "schema";
     public static final String DATA = "data";
-
-    @VisibleForTesting
-    public static final Set<String> OUTPUTS = ImmutableSet.of(RESULTS, VALID);
 }

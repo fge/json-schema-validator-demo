@@ -8,23 +8,53 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
+    <!--
+        Listener: tell Jersey to use slf4j instead of j.u.l
+    -->
+
     <listener>
-        <listener-class>com.github.fge.jsonschema.app.JerseyUseSlf4jPlease</listener-class>
+        <listener-class>com.github.fge.jsonschema.misc.JerseyUseSlf4jPlease</listener-class>
     </listener>
 
+    <!--
+        Processing servlets
+    -->
+
     <servlet>
-        <servlet-name>jersey</servlet-name>
+        <servlet-name>process</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.github.fge.jsonschema.app.App</param-value>
+            <param-value>com.github.fge.jsonschema.process.App</param-value>
         </init-param>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>jersey</servlet-name>
-        <url-pattern>/x/*</url-pattern>
+        <servlet-name>process</servlet-name>
+        <url-pattern>/process/*</url-pattern>
     </servlet-mapping>
+
+    <!--
+        Loading servlets
+    -->
+
+    <servlet>
+        <servlet-name>load</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.github.fge.jsonschema.load.App</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>load</servlet-name>
+        <url-pattern>/load/*</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        mod_gzip
+    -->
 
     <filter>
         <filter-name>gzip</filter-name>

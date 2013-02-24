@@ -17,7 +17,7 @@
 
 // The list of our servlets
 var Servlets = {
-    VALIDATE_SYNTAX: "/x/x/syntax"
+    VALIDATE_SYNTAX: "/process/syntax"
 };
 
 // jQuery selectors for input form elements

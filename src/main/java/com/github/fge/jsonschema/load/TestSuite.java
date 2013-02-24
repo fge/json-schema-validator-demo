@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.fge.jsonschema.servlets2;
+package com.github.fge.jsonschema.load;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jsonschema.util.JsonLoader;
@@ -29,9 +29,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-@Path("/x/samples")
+@Path("/testSuite")
 @Produces("application/json;charset=utf-8")
-public final class LoadSamplesServlet2
+public final class TestSuite
 {
     private static final Random RND = new Random();
     private static final List<JsonNode> SAMPLE_DATA;
