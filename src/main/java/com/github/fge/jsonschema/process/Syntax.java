@@ -22,14 +22,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.fge.jsonschema.cfg.ValidationConfiguration;
 import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.exceptions.ProcessingException;
-import com.github.fge.jsonschema.library.syntax.DraftV4SyntaxCheckerDictionary;
-import com.github.fge.jsonschema.processors.data.SchemaHolder;
-import com.github.fge.jsonschema.processors.syntax.SyntaxProcessor;
+import com.github.fge.jsonschema.processors.syntax.SyntaxValidator;
 import com.github.fge.jsonschema.report.ListProcessingReport;
-import com.github.fge.jsonschema.tree.CanonicalSchemaTree;
-import com.github.fge.jsonschema.tree.SchemaTree;
 import com.github.fge.jsonschema.util.JsonLoader;
 import com.google.common.annotations.VisibleForTesting;
 import org.slf4j.Logger;
@@ -56,8 +53,8 @@ public final class Syntax
 
     private static final Logger log = LoggerFactory.getLogger(Syntax.class);
 
-    private static final SyntaxProcessor PROCESSOR
-        = new SyntaxProcessor(DraftV4SyntaxCheckerDictionary.get());
+    private static final SyntaxValidator VALIDATOR
+        = new SyntaxValidator(ValidationConfiguration.byDefault());
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -94,11 +91,9 @@ public final class Syntax
         if (invalidSchema)
             return ret;
 
-        final SchemaTree tree = new CanonicalSchemaTree(schemaNode);
-        final SchemaHolder holder = new SchemaHolder(tree);
-        final ListProcessingReport report = new ListProcessingReport();
-
-        PROCESSOR.process(report, holder);
+        // FIXME
+        final ListProcessingReport report
+            =  (ListProcessingReport) VALIDATOR.validateSchema(schemaNode);
         final boolean success = report.isSuccess();
 
         ret.put(VALID, success);
