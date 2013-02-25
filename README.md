@@ -1,34 +1,43 @@
 ## What this is
 
-<p>This is a Heroku-based Java webapp which demonstrates the latest development release of <a
-href="https://github.com/fge/json-schema-validator">json-schema-validator</a>.</p>
+<p>This is a Heroku-based Java webapp which demonstrates usages of the following packages:</p>
 
-<p>The URL is <a href="http://json-schema-validator.herokuapp.com">here</a>. It is quite basic:
-input your schema and your data, press "validate", see results.</p>
+* <a href="https://github.com/fge/json-schema-core">json-schema-core</a>;</p>
+* <a href="https://github.com/fge/json-schema-validator">json-schema-validator</a>;</p>
+* <a href="https://github.com/reinert/JJSchema">JJSchema</a>;</p>
+* <a href="https://github.com/fge/json-schema-processor-examples">json-schema-processor-examples</a>.</p>
 
-<p>Contributions are of course more than welcome!</p>
+<p>This application is available <a href="http://json-schema-validator.herokuapp.com">here</a>.
+Right now, it has pages demonstrating the following:</p>
 
-## Credits
+* full validation (schema + data);
+* syntax validation for draft v4;
+* generation of a JSON Schema from a Java source file.
 
-My HTML/CSS/JavaScript/JQuery skills are close to nil. I'd never have obtained
-such a result without help, so I'd like to mention here where I got help:
-
-* IRC channels `#css`, `#html`, `##javascript` and `#jquery` on <a
-  href="http://freenode.net">FreeNode</a>;
-* helpful answers on <a href="http://stackoverflow.com">Stack Overflow</a>.
+<p>Please see the links to the relevant projects for more information.</p>
 
 ## Running the application locally
 
-This application uses an embedded Jetty server and is self contained. You need to have a JDK (at
-least 1.6) and maven installed (3.0.x preferably, but 2.x will also work).
+<p>This application uses an embedded Jetty server and is self contained. You need to have a JDK (at
+least 1.6) and maven installed (3.0.x preferably, but 2.x will also work).</p>
 
-Into the main directory, type
+<p>Into the main directory, type:</p>
 
-    mvn clean install
+</pre>
+mvn clean install
+```
 
-Then run the application with:
+<p>This will download all necessary artifacts and prepare everything. Then run the application
+with:</p>
 
-    java -cp target/classes:target/dependency/* com.github.fge.jsonschema.WebApp
+```
+java -cp target/classes:target/dependency/* com.github.fge.jsonschema.WebApp
+```
 
-It listens on port 8080 by default.
+<p>The application will listen on the loopback interface, and on port 8080 by default; in order to
+access it, you will therefore type the following as a URL in your browser:</p>
+
+<p>
+http://localhost:8080
+</p>
 
