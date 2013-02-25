@@ -14,6 +14,7 @@ public final class App
         final ImmutableSet.Builder<Class<?>> builder = ImmutableSet.builder();
 
         builder.add(TestSuite.class);
+        builder.add(SampleSource.class);
 
         return builder.build();
     }

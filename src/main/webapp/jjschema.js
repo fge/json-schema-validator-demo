@@ -17,12 +17,14 @@
 
 // The list of our servlets
 var Servlets = {
-    GEN_SCHEMA: "/process/genschema"
+    GEN_SCHEMA: "/process/genschema",
+    LOAD_SAMPLE_SOURCE: "/load/sampleSource"
 };
 
 // jQuery selectors for input form elements
 var FormElements = {
-    INPUTS: "textarea, input"
+    INPUTS: "textarea, input",
+    SOURCE: "#source"
 };
 
 // jQuery selectors for result pane elements
@@ -35,11 +37,41 @@ var Messages = {
     GENERATION_FAILURE: "#generationFailure"
 };
 
+function loadSampleSource()
+{
+    $(DomElements.STARTHIDDEN).hide();
+    TextAreas.clear(ResultPane.RESULTS);
+
+    var request = $.ajax({
+        url: Servlets.LOAD_SAMPLE_SOURCE,
+        type: "get",
+        dataType: "text"
+    });
+
+    request.done(function(response, status, xhr)
+    {
+        $(FormElements.SOURCE).val(response);
+    });
+
+    request.fail(function (xhr, status, error)
+    {
+        // FIXME: that is very, very basic
+        alert("Server error: " + status + " (" + error + ")");
+    });
+}
+
 // On document.ready()
 var main = function()
 {
     // The guy has JavaScript, hide the warning that it should be enabled
     $(".noscript").hide();
+
+    // Attach sample source loading to the appropriate link
+    $("#loadSource").on("click", function(event)
+    {
+        event.preventDefault();
+        loadSampleSource();
+    });
 
     // Attach handler to the main form
     var $form = $(DomElements.FORM);
