@@ -30,24 +30,21 @@
         </p>
     </div>
 
-    <p><a href="http://json-schema.org">JSON Schema</a> can validate your JSON
-    data. If you have a schema ready, and sample data which you think should
-    succeed or fail, this is the website for you.
-    </p>
+    <p>This web site demonstrates some sample usages of JSON Schema in Java.
+    The main page (this one) demonstrates instance validation. Paste your schema
+    and data in the appropriate text areas and press the <span
+    style="font-family: monospace;">Validate</span> button.</p>
 
-    <p>You can also <a id="loadSamples" href="#">load samples</a> from the
-    <a href="https://github.com/json-schema/JSON-Schema-Test-Suite">JSON Schema
-    test suite</a>.
-    </p>
+    <p>Two other pages exist:</p>
 
-    <p>If you have a draft v4 schema and are not sure whether its syntax is
-    correct, <a href="syntax.html">this page</a> can help you.
-    </p>
+    <ul>
+        <li><a href="syntax.html">this one</a> allows you to validate the syntax
+        of your schemas;</li>
+        <li><a href="jjschema.html">this one</a> allows you to generate a JSON
+        schema from a Java source file.</li>
+    </ul>
 
-    <p>More about this site <a href="about.html">here</a>. Final note: the
-    library used on this site has automatic
-    <span style="font-family: monospace;">$schema</span> detection when this
-    keyword is present at the root of a schema (as the spec dictates).</p>
+    <p>More about this site <a href="about.html">here</a>.</p>
 
 </div>
 
@@ -79,7 +76,13 @@
         </div>
         <textarea name="data" rows="20" cols="20" class="half"
             id="data"></textarea>
-        <input type="submit" value="Validate">
+        <div class="horiz">
+            <input type="submit" value="Validate">
+            <span>(you can also <a id="loadSamples" href="#">load samples</a>
+            from the <a
+            href="https://github.com/json-schema/JSON-Schema-Test-Suite"> JSON
+            Schema test suite)</a></span>
+        </div>
     </div>
 </form>
 <div id="right" class="content">

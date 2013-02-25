@@ -15,6 +15,7 @@ public final class App
 
         builder.add(Syntax.class);
         builder.add(Validate.class);
+        builder.add(GenSchema.class);
 
         return builder.build();
     }

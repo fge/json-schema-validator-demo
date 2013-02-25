@@ -17,25 +17,12 @@
 
 // The list of our servlets
 var Servlets = {
-    VALIDATE: "/process/validate",
-    LOAD_SAMPLES: "/load/testSuite"
-};
-
-// The list of member names in a sample response
-var SampleResponse = {
-    SCHEMA: "schema",
-    DATA: "data",
-    USE_V3: "useV3",
-    USE_ID: "useId"
+    GEN_SCHEMA: "/process/genschema"
 };
 
 // jQuery selectors for input form elements
 var FormElements = {
-    INPUTS: "textarea, input",
-    SCHEMA: "#schema",
-    DATA: "#data",
-    USE_V3: "#useV3",
-    USE_ID: "#useId"
+    INPUTS: "textarea, input"
 };
 
 // jQuery selectors for result pane elements
@@ -44,45 +31,9 @@ var ResultPane = {
 };
 
 var Messages = {
-    INVALID_SCHEMA: "#invalidSchema",
-    INVALID_DATA: "#invalidData",
-    TOOLTIP_SCHEMA: "#qtip-schema",
-    TOOLTIP_DATA: "#qtip-data",
-    VALIDATION_SUCCESS: "#validationSuccess",
-    VALIDATION_FAILURE: "#validationFailure"
+    GENERATION_SUCCESS: "#generationSuccess",
+    GENERATION_FAILURE: "#generationFailure"
 };
-
-// FIXME: #jquery people on FreeNode say this is not the way to do it
-function loadSamples()
-{
-    $(DomElements.STARTHIDDEN).hide();
-    TextAreas.clear(ResultPane.RESULTS);
-
-    var request = $.ajax({
-        url: Servlets.LOAD_SAMPLES,
-        type: "get",
-        dataType: "json"
-    });
-
-    request.done(function(response, status, xhr)
-    {
-        var schema = response[SampleResponse.SCHEMA];
-        var data = response[SampleResponse.DATA];
-        var useV3 = response[SampleResponse.USE_V3];
-        var useId = response[SampleResponse.USE_ID];
-
-        TextAreas.fillJson(FormElements.SCHEMA, schema);
-        TextAreas.fillJson(FormElements.DATA, data);
-        $(FormElements.USE_V3).prop("checked", useV3);
-        $(FormElements.USE_ID).prop("checked", useId);
-    });
-
-    request.fail(function (xhr, status, error)
-    {
-        // FIXME: that is very, very basic
-        alert("Server error: " + status + " (" + error + ")");
-    });
-}
 
 // On document.ready()
 var main = function()
@@ -92,17 +43,6 @@ var main = function()
 
     // Attach handler to the main form
     var $form = $(DomElements.FORM);
-
-    // Create dummy qtips -- you cannot destroy a non existing one...
-    $(Messages.INVALID_SCHEMA).find("a").qtip({content: ""});
-    $(Messages.INVALID_DATA).find("a").qtip({content: ""});
-
-    // Attach loadSamples to the appropriate link
-    $("#loadSamples").on("click", function (event)
-    {
-        event.preventDefault();
-        loadSamples();
-    });
 
     $form.submit(function (event)
     {
@@ -127,7 +67,7 @@ var main = function()
 
         // The request
         var request = $.ajax({
-            url: Servlets.VALIDATE,
+            url: Servlets.GEN_SCHEMA,
             type: "post",
             data: payload,
             dataType: "json"
@@ -138,27 +78,9 @@ var main = function()
         // response is directly passed along as a JavaScript object.
         request.done(function (response, status, xhr)
         {
-
-            // This is the way to guarantee that an object has a key with
-            // JavaScript
-            var invalidSchema = response.hasOwnProperty("invalidSchema");
-            var invalidData = response.hasOwnProperty("invalidData");
-
-            if (invalidSchema)
-                reportParseError(response["invalidSchema"],
-                    $(Messages.INVALID_SCHEMA), $(FormElements.SCHEMA));
-            if (invalidData)
-                reportParseError(response["invalidData"],
-                    $(Messages.INVALID_DATA), $(FormElements.DATA));
-
-            // Stop right now if we have invalid inputs. Other fields will not
-            // be defined.
-            if (invalidSchema || invalidData)
-                return;
-
             var validationMessage = response["valid"]
-                ? Messages.VALIDATION_SUCCESS
-                : Messages.VALIDATION_FAILURE;
+                ? Messages.GENERATION_SUCCESS
+                : Messages.GENERATION_FAILURE;
 
             // Show the appropriate validation message and inject pretty-printed
             // JSON into the results text area
