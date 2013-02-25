@@ -2,10 +2,10 @@
 
 <p>This is a Heroku-based Java webapp which demonstrates usages of the following packages:</p>
 
-* <a href="https://github.com/fge/json-schema-core">json-schema-core</a>;</p>
-* <a href="https://github.com/fge/json-schema-validator">json-schema-validator</a>;</p>
-* <a href="https://github.com/reinert/JJSchema">JJSchema</a>;</p>
-* <a href="https://github.com/fge/json-schema-processor-examples">json-schema-processor-examples</a>.</p>
+* <a href="https://github.com/fge/json-schema-core">json-schema-core</a>;
+* <a href="https://github.com/fge/json-schema-validator">json-schema-validator</a>;
+* <a href="https://github.com/reinert/JJSchema">JJSchema</a>;
+* <a href="https://github.com/fge/json-schema-processor-examples">json-schema-processor-examples</a>.
 
 <p>This application is available <a href="http://json-schema-validator.herokuapp.com">here</a>.
 Right now, it has pages demonstrating the following:</p>
