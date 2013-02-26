@@ -36,7 +36,7 @@ div {
 #top {
     position: fixed;
     width: 100%;
-    padding-top: 20px;
+    padding-top: 25px;
     height: 75px;
     z-index: 2;
     padding-left: 5px;
@@ -49,7 +49,7 @@ ul {
  * Content divs
  */
 div.content {
-    padding-top: 100px;
+    padding-top: 110px;
     position: absolute;
     width: 49%;
     top: 0;
@@ -73,7 +73,7 @@ div.content {
     display: block;
 }
 textarea {
-    height: 90%;
+    height: 88%;
     width: 95%;
     resize: none;
 }

@@ -56,25 +56,20 @@
         </p>
     </div>
 
-    <!-- TODO -->
-    <p>This class demonstrates the use of <a
-    href="https://github.com/reinert/JJSchema">JJSchema</a> to generate a JSON
-    schema out of a Java class.</p>
+    <p>This page allows you to generate a JSON Schema out of a Java
+    source code. Paste the source code into the text area, then press the <span
+    style="font-family: monospace">Generate schema</span> button. Notes:</p>
 
-    <p>Paste the source code of a Java class into the text area, then press the
-    "Generate schema" button. On success, the generated schema will be displayed
-    in the left pane.</p>
+    <ul>
+        <li>it is safe to put static initializers in the code: they will not be
+        executed;</li>
+        <li>on failure (compilation errors), the compiler messages are displayed
+        instead, with line and column information.</li>
+    </ul>
 
-    <p>On failure, errors (compile errors or any other) will appear instead.</p>
+    <p>Software used: <a
+    href="https://github.com/reinert/JJSchema">JJSchema</a>.</p>
 
-    <p>Note: it is safe to put static initializers in the source code; they will
-    not be executed.</p>
-
-    <!--
-        OK, whatever: some people dislike "onclick" on links, but it Works For
-        Me(tm). And it seems to have no side effect, so why should I bother?
-    -->
-    <a onclick="history.back(); return false;" href="#">Back</a>
 </div>
 
 <form id="validate" method="POST">

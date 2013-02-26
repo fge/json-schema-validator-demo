@@ -59,12 +59,9 @@
     </div>
 
     <!-- TODO -->
-    <p>This page allows you to validate the syntax of your schemas. Note that
-    the schema version is automatically detected (via <span
-    style="font-family: monospace">$schema</span>); it is draft v4 by default.
-    </p>
-
-    <p>You will note the following:</p>
+    <p>This page allows you to validate the syntax of your schemas. Paste your
+    schema in the text area and press the <span style="font-family: monospace">
+    Validate</span> button. You will note the following:</p>
 
     <ul>
         <li>unknown keywords are spotted, and reported as warnings;</li>
@@ -72,11 +69,8 @@
         the keyword which raised the error and details about the error.</li>
     </ul>
 
-    <!--
-        OK, whatever: some people dislike "onclick" on links, but it Works For
-        Me(tm). And it seems to have no side effect, so why should I bother?
-    -->
-    <a onclick="history.back(); return false;" href="#">Back</a>
+    <p>Software used: <a href="https://github.com/fge/json-schema-validator">
+    json-schema-validator</a>.</p>
 </div>
 
 <form id="validate" method="POST">

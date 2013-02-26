@@ -59,26 +59,23 @@
     </div>
 
     <!-- TODO -->
-    <p>This page allows you to generate a Java source file out of a JSON Schema
-    using <a
-    href="https://github.com/joelittlejohn/jsonschema2pojo">jsonschema2pojo</a>.
-    </p>
+    <p>This page allows you to generate a Java source file out of a JSON Schema.
+    Paste a JSON Schema into the text area and press the <span
+    style="font-family: monospace">Generate source</span> button. Notes:</p>
 
-    <p>It is first chained with a customized syntax validator which not only
-    checks that the schema is valid, but also that it is a draft v3 schema,
-    since this project currently does not support draft v4.</p>
+    <ul>
+        <li>the schema is first analyzed for syntax errors; it also aborts the
+        generation process if the schema is not a draft v3 schema, since
+        jsonschema2pojo does not support draft v4 yet;</li>
+        <li>a more complete demonstration of jsonschema2pojo is available <a
+        href="http://jsonschema2pojo.org">here</a>.</li>
+    </ul>
 
-    <p>On success, the generated source code is show on the right pane. On
-    failure, the list of errors is displayed instead.</p>
-
-    <p>Please note that jsonschema2pojo has <a
-    href="http://jsonschema2pojo.org">its own demonstration site</a>, which is
-    more complete than this one.</p>
-    <!--
-        OK, whatever: some people dislike "onclick" on links, but it Works For
-        Me(tm). And it seems to have no side effect, so why should I bother?
-    -->
-    <a onclick="history.back(); return false;" href="#">Back</a>
+    <p>Software used: <a
+    href="https://github.com/joelittlejohn/jsonschema2pojo">jsonschema2pojo</a>
+    (source code generation), <a
+    href="https://github.com/fge/json-schema-validator">
+    json-schema-validator</a> (syntax checking).</p>
 </div>
 
 <form id="validate" method="POST">
