@@ -6,7 +6,7 @@
     <li><a href="https://github.com/fge/json-schema-core">json-schema-core</a>;</li>
     <li><a href="https://github.com/fge/json-schema-validator">json-schema-validator</a>;</li>
     <li><a href="https://github.com/reinert/JJSchema">JJSchema</a>;</li>
-    <li><a href="https://github.com/joelittlejohn/jsonschema2pojo>jsonschema2pojo</a>;</li>
+    <li><a href="https://github.com/joelittlejohn/jsonschema2pojo">jsonschema2pojo</a>.</li>
 </ul>
 
 <p>This application is available <a href="http://json-schema-validator.herokuapp.com">here</a>.</p>
