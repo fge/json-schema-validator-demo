@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-03/schema#",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "A person",
+    "properties": {
+        "gender": {
+            "enum": [ "male", "female" ],
+            "required": true
+        },
+        "age": {
+            "type": "integer",
+            "minimum": 0,
+            "required": true
+        },
+        "size": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "hobbies": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true
+        }
+    }
+}

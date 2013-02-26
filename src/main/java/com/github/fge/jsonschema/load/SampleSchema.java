@@ -17,48 +17,33 @@
 
 package com.github.fge.jsonschema.load;
 
-import com.google.common.io.ByteStreams;
-import com.google.common.io.Closeables;
+import com.github.fge.jsonschema.util.JsonLoader;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
 
-@Path("/sampleSource")
-@Produces("text/plain;charset=utf-8")
-public final class SampleSource
+@Path("/sampleSchema")
+@Produces("application/json;charset=utf-8")
+public final class SampleSchema
 {
-    private static final String SAMPLE_SOURCE;
+    private static final String SAMPLE_SCHEMA;
 
     static {
-        final InputStream in
-            = SampleSource.class.getResourceAsStream("/product.txt");
-        if (in == null)
-            throw new ExceptionInInitializerError("sample source not found");
-
         try {
-            final ByteArrayOutputStream out = new ByteArrayOutputStream();
-            ByteStreams.copy(in, out);
-            out.flush();
-            SAMPLE_SOURCE = new String(out.toByteArray(),
-                Charset.forName("UTF-8"));
-            Closeables.closeQuietly(out);
+            SAMPLE_SCHEMA = JsonLoader.fromResource("/jsonschema2pojo.json")
+                .toString();
         } catch (IOException e) {
             throw new ExceptionInInitializerError(e);
-        } finally {
-            Closeables.closeQuietly(in);
         }
     }
 
     @GET
-    public static Response getSampleSource()
+    public static Response getSampleSchema()
     {
-        return Response.status(Response.Status.OK).entity(SAMPLE_SOURCE)
+        return Response.status(Response.Status.OK).entity(SAMPLE_SCHEMA)
             .build();
     }
 }

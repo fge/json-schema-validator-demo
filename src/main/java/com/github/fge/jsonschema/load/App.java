@@ -15,6 +15,7 @@ public final class App
 
         builder.add(TestSuite.class);
         builder.add(SampleSource.class);
+        builder.add(SampleSchema.class);
 
         return builder.build();
     }
