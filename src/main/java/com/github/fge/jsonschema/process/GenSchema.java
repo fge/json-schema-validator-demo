@@ -69,7 +69,7 @@ public final class GenSchema
         }
     }
 
-    static JsonNode buildResult(final String source)
+    private static JsonNode buildResult(final String source)
         throws IOException, ProcessingException
     {
         final SourceHolder input = new SourceHolder(source);

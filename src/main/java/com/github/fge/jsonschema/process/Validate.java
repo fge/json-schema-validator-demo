@@ -29,7 +29,6 @@ import com.github.fge.jsonschema.main.JsonValidator;
 import com.github.fge.jsonschema.report.ProcessingReport;
 import com.github.fge.jsonschema.util.AsJson;
 import com.github.fge.jsonschema.util.JsonLoader;
-import com.google.common.annotations.VisibleForTesting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,8 +72,7 @@ public final class Validate
      * Build the response. When we arrive here, we are guaranteed that we have
      * the needed elements.
      */
-    @VisibleForTesting
-    static JsonNode buildResult(final String rawSchema,
+    private static JsonNode buildResult(final String rawSchema,
         final String rawData, final boolean useV3, final boolean useId)
         throws IOException
     {

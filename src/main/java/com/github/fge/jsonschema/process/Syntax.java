@@ -28,7 +28,6 @@ import com.github.fge.jsonschema.exceptions.ProcessingException;
 import com.github.fge.jsonschema.processors.syntax.SyntaxValidator;
 import com.github.fge.jsonschema.report.ListProcessingReport;
 import com.github.fge.jsonschema.util.JsonLoader;
-import com.google.common.annotations.VisibleForTesting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,8 +76,7 @@ public final class Syntax
      * Build the response. When we arrive here, we are guaranteed that we have
      * the needed elements.
      */
-    @VisibleForTesting
-    static JsonNode buildResult(final String rawSchema)
+    private static JsonNode buildResult(final String rawSchema)
         throws IOException, ProcessingException
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
