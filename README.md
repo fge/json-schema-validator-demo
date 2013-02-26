@@ -6,19 +6,27 @@
     <li><a href="https://github.com/fge/json-schema-core">json-schema-core</a>;</li>
     <li><a href="https://github.com/fge/json-schema-validator">json-schema-validator</a>;</li>
     <li><a href="https://github.com/reinert/JJSchema">JJSchema</a>;</li>
-    <li><a href="https://github.com/fge/json-schema-processor-examples">json-schema-processor-examples</a>.</li>
+    <li><a href="https://github.com/joelittlejohn/jsonschema2pojo>jsonschema2pojo</a>;</li>
 </ul>
 
-<p>This application is available <a href="http://json-schema-validator.herokuapp.com">here</a>.
-Right now, it has pages demonstrating the following:</p>
+<p>This application is available <a href="http://json-schema-validator.herokuapp.com">here</a>.</p>
+
+<h2>Demo pages</h2>
+
+<p>All processors written for this site are gathered into a single package: <a
+href="https://github.com/fge/json-schema-processor-examples">json-schema-processor-examples</a>.
+Right now, the following pages exist:</p>
 
 <ul>
-    <li>full validation (schema + data);</li>
-    <li>syntax validation for draft v4;</li>
-    <li>generation of a JSON Schema from a Java source file.</li>
+    <li>full validation (schema + data) (<a
+    href="http://json-schema-validator.herokuapp.com">link</a>);</li>
+    <li>syntax validation (<a
+    href="http://json-schema-validator.herokuapp.com/syntax.html">link</a>);</li>
+    <li>generation of a JSON Schema from a Java source file (<a
+    href="http://json-schema-validator.herokuapp.com/jjschema.html">link</a>);</li>
+    <li>generation of a Java source file form a JSON Schema (<a
+    href="http://json-schema-validator.herokuapp.com/schema2pojo.html">link</a>).</li>
 </ul>
-
-<p>Please see the links to the relevant projects for more information.</p>
 
 <h2>Running the application locally</h2>
 
