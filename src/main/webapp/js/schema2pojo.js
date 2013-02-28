@@ -15,12 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// The list of our servlets
-var Servlets = {
-    PROCESS: "/process/schema2pojo",
-    LOAD: "/load/schema2pojo"
-};
-
 // jQuery selectors for input form elements
 var FormElements = {
     INPUTS: "textarea, input",

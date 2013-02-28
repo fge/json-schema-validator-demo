@@ -15,12 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// The list of our servlets
-var Servlets = {
-    PROCESS: "/process/index",
-    LOAD: "/load/index"
-};
-
 // The list of member names in a sample response
 var SampleResponse = {
     SCHEMA: "schema",
