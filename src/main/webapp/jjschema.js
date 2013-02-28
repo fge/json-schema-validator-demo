@@ -17,8 +17,8 @@
 
 // The list of our servlets
 var Servlets = {
-    GEN_SCHEMA: "/process/genschema",
-    LOAD_SAMPLE_SOURCE: "/load/sampleSource"
+    PROCESS: "/process/genschema",
+    LOAD: "/load/sampleSource"
 };
 
 // jQuery selectors for input form elements
@@ -43,7 +43,7 @@ function loadSampleSource()
     TextAreas.clear(ResultPane.RESULTS);
 
     var request = $.ajax({
-        url: Servlets.LOAD_SAMPLE_SOURCE,
+        url: Servlets.LOAD,
         type: "get",
         dataType: "text"
     });
@@ -99,7 +99,7 @@ var main = function()
 
         // The request
         var request = $.ajax({
-            url: Servlets.GEN_SCHEMA,
+            url: Servlets.PROCESS,
             type: "post",
             data: payload,
             dataType: "json"

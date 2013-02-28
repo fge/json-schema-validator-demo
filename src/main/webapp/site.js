@@ -17,8 +17,8 @@
 
 // The list of our servlets
 var Servlets = {
-    VALIDATE: "/process/validate",
-    LOAD_SAMPLES: "/load/testSuite"
+    PROCESS: "/process/validate",
+    LOAD: "/load/testSuite"
 };
 
 // The list of member names in a sample response
@@ -59,7 +59,7 @@ function loadSamples()
     TextAreas.clear(ResultPane.RESULTS);
 
     var request = $.ajax({
-        url: Servlets.LOAD_SAMPLES,
+        url: Servlets.LOAD,
         type: "get",
         dataType: "json"
     });
@@ -127,7 +127,7 @@ var main = function()
 
         // The request
         var request = $.ajax({
-            url: Servlets.VALIDATE,
+            url: Servlets.PROCESS,
             type: "post",
             data: payload,
             dataType: "json"

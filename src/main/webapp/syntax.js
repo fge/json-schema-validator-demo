@@ -17,7 +17,7 @@
 
 // The list of our servlets
 var Servlets = {
-    VALIDATE_SYNTAX: "/process/syntax"
+    PROCESS: "/process/syntax"
 };
 
 // jQuery selectors for input form elements
@@ -73,7 +73,7 @@ var main = function()
 
         // The request
         var request = $.ajax({
-            url: Servlets.VALIDATE_SYNTAX,
+            url: Servlets.PROCESS,
             type: "post",
             data: payload,
             dataType: "json"
