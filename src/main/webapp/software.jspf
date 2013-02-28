@@ -1,0 +1,30 @@
+<%@ page import="com.google.common.collect.ImmutableMap" %>
+<%
+    final ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
+
+    String name;
+    String link;
+
+    name = "json-schema-validator";
+    link = "https://github.com/fge/" + name;
+    builder.put(name, link);
+
+    name = "json-schema-core";
+    link = "https://github.com/fge/" + name;
+    builder.put(name, link);
+
+    name = "json-schema-processor-examples";
+    link = "https://github.com/fge/" + name;
+    builder.put(name, link);
+
+    name = "JJSchema";
+    link = "https://github.com/reinert/" + name;
+    builder.put(name, link);
+
+    name = "jsonschema2pojo";
+    link = "https://github.com/joelittlejohn/" + name;
+    builder.put(name, link);
+
+    request.setAttribute("software", builder.build());
+%>
+

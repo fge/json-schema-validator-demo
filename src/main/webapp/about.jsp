@@ -4,6 +4,7 @@
 <c:set var="pageTitle" value="About this web site" scope="request"/>
 <c:set var="pageDescription"
     value="JSON Schema software in Java used on this site" scope="request"/>
+<c:import url="software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <jsp:include page="head-common.jspf"/>
@@ -18,15 +19,13 @@
     <p>This web site uses the following software, all written in Java:</p>
 
     <ul>
-        <li><a href="https://github.com/fge/json-schema-core">
-        json-schema-core</a>;</li>
-        <li><a href="https://github.com/fge/json-schema-validator">
-        json-schema-validator</a>;</li>
-        <li><a href="https://github.com/reinert/JJSchema">JJSchema</a>;</li>
-        <li><a href="https://github.com/joelittlejohn/jsonschema2pojo">
-        jsonschema2pojo</a>;</li>
-        <li><a href="https://github.com/fge/json-schema-processor-examples">
-        json-schema-processor-examples</a>.</li>
+        <li><a href="${software['json-schema-core']}">json-schema-core</a>;</li>
+        <li><a href="${software['json-schema-validator']}">
+            json-schema-validator</a>;</li>
+        <li><a href="${software['JJSchema']}">JJSchema</a>;</li>
+        <li><a href="${software['jsonschema2pojo']}">jsonschema2pojo</a>;</li>
+        <li><a href="${software['json-schema-processor-examples']}">
+            json-schema-processor-examples</a>;</li>
     </ul>
 
     <p>The source code for this web site is also available <a

@@ -7,6 +7,7 @@
 <c:set var="inputTitle" value="Schema" scope="request"/>
 <c:set var="buttonTitle" value="Check syntax" scope="request"/>
 <c:set var="resultTitle" value="Validation results" scope="request"/>
+<c:import url="software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <jsp:include page="head-common.jspf"/>
@@ -33,7 +34,7 @@
         the keyword which raised the error and details about the error.</li>
     </ul>
 
-    <p>Software used: <a href="https://github.com/fge/json-schema-validator">
+    <p>Software used: <a href="${software['json-schema-validator']}">
     json-schema-validator</a>.</p>
 </div>
 

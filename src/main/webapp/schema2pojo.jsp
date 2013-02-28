@@ -7,6 +7,7 @@
 <c:set var="inputTitle" value="Schema" scope="request"/>
 <c:set var="buttonTitle" value="Generate source code" scope="request"/>
 <c:set var="resultTitle" value="Generation result" scope="request"/>
+<c:import url="software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <jsp:include page="head-common.jspf"/>
@@ -35,11 +36,10 @@
         href="http://jsonschema2pojo.org">here</a>.</li>
     </ul>
 
-    <p>Software used: <a
-    href="https://github.com/joelittlejohn/jsonschema2pojo">jsonschema2pojo</a>
-    (source code generation), <a
-    href="https://github.com/fge/json-schema-validator">
-    json-schema-validator</a> (syntax checking).</p>
+    <p>Software used: <a href="${software['jsonschema2pojo']}">
+    jsonschema2pojo</a> (source code generation), <a
+    href="${software['json-schema-validator']}">json-schema-validator</a>
+    (syntax checking).</p>
 </div>
 
 <jsp:include page="singleInputForm.jspf"/>
