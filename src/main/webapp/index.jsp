@@ -22,8 +22,9 @@
     style="font-family: monospace;">Validate</span> button. Notes:</p>
 
     <ul>
-        <li>inline dereferencing (using <span style="font-family: monospace">id
-        </span>) is disabled for security reasons;</li>
+        <li>inline dereferencing (using <span
+        style="font-family: monospace">id</span>) is disabled for security
+        reasons;</li>
         <li><b>Draft v4 is assumed</b>. If you want to use a draft v3 schema,
         add a <span style="font-family: monospace">$schema</span> at the root of
         your schema, with <span style="font-family: monospace;">

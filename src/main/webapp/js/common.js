@@ -37,6 +37,12 @@ var DomElements = {
     STARTHIDDEN: ".starthidden"
 };
 
+// Servlets
+var Servlets = {
+    PROCESS: "/process/" + pageName,
+    LOAD: "/load/" + pageName
+};
+
 /*
  * Function added to set the cursor position at a given offset in a text area
  *
