@@ -17,7 +17,6 @@
 
 package com.github.fge.jsonschema.process;
 
-import com.fasterxml.jackson.core.JsonLocation;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
@@ -28,7 +27,6 @@ import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.github.fge.jsonschema.main.JsonValidator;
 import com.github.fge.jsonschema.report.ProcessingReport;
 import com.github.fge.jsonschema.util.AsJson;
-import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.JsonLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -112,37 +110,8 @@ public final class Index
             node.put(onSuccess, JsonLoader.fromString(raw));
             return false;
         } catch (JsonProcessingException e) {
-            node.put(onFailure, buildParsingError(e, raw.contains("\r\n")));
+            node.put(onFailure, ParseError.build(e, raw.contains("\r\n")));
             return true;
         }
-    }
-
-    private static JsonNode buildParsingError(final JsonProcessingException e,
-        final boolean crlf)
-    {
-        final JsonLocation location = e.getLocation();
-        final ObjectNode ret = JacksonUtils.nodeFactory().objectNode();
-
-        /*
-         * Unfortunately, for some reason, Jackson botches the column number in
-         * its JsonPosition -- I cannot figure out why exactly. However, it does
-         * have a correct offset into the buffer.
-         *
-         * The problem is that if the input has CR/LF line terminators, its
-         * offset will be "off" by the number of lines minus 1 with regards to
-         * what JavaScript sees as positions in text areas. Make the necessary
-         * adjustments so that the caret jumps at the correct position in this
-         * case.
-         */
-        final int lineNr = location.getLineNr();
-        int offset = (int) location.getCharOffset();
-        if (crlf)
-            offset = offset - lineNr + 1;
-        ret.put(ParseError.LINE, lineNr);
-        ret.put(ParseError.OFFSET, offset);
-
-        // Finally, put the message
-        ret.put(ParseError.MESSAGE, e.getOriginalMessage());
-        return ret;
     }
 }
