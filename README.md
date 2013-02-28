@@ -19,13 +19,13 @@ Right now, the following pages exist:</p>
 
 <ul>
     <li>full validation (schema + data) (<a
-    href="http://json-schema-validator.herokuapp.com">link</a>);</li>
+    href="http://json-schema-validator.herokuapp.com/index.jsp">link</a>);</li>
     <li>syntax validation (<a
-    href="http://json-schema-validator.herokuapp.com/syntax.html">link</a>);</li>
+    href="http://json-schema-validator.herokuapp.com/syntax.jsp">link</a>);</li>
     <li>generation of a JSON Schema from a Java source file (<a
-    href="http://json-schema-validator.herokuapp.com/jjschema.html">link</a>);</li>
+    href="http://json-schema-validator.herokuapp.com/jjschema.jsp">link</a>);</li>
     <li>generation of a Java source file form a JSON Schema (<a
-    href="http://json-schema-validator.herokuapp.com/schema2pojo.html">link</a>).</li>
+    href="http://json-schema-validator.herokuapp.com/schema2pojo.jsp">link</a>).</li>
 </ul>
 
 <h2>Running the application locally</h2>

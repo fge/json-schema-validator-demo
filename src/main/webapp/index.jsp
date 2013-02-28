@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<c:set var="pageName" value="index"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>JSON Schema validation online</title>
@@ -15,7 +17,7 @@
     <script src="js/ext/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="js/ext/jquery.qtip-1.0.0-rc3.js" type="text/javascript"></script>
     <script src="js/common.js" type="text/javascript"></script>
-    <script src="js/index.js" type="text/javascript"></script>
+    <script src="js/${pageName}.js" type="text/javascript"></script>
     <script type="text/javascript">
         // "main" is defined in site.js
         $(document).ready(main);
@@ -25,10 +27,10 @@
 <div class="horizMenu">
     <ul>
         <li>Select page:</li>
-        <li><a href="index.html">Instance validation</a></li>
-        <li><a href="syntax.html">Schema syntax validation</a></li>
-        <li><a href="jjschema.html">Source code to JSON Schema</a></li>
-        <li><a href="schema2pojo.html">JSON Schema to source code</a></li>
+        <li><a href="index.jsp">Instance validation</a></li>
+        <li><a href="syntax.jsp">Schema syntax validation</a></li>
+        <li><a href="jjschema.jsp">Source code to JSON Schema</a></li>
+        <li><a href="schema2pojo.jsp">JSON Schema to source code</a></li>
         <li><a href="about.html">About this site</a></li>
     </ul>
 </div>
