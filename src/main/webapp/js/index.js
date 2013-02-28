@@ -24,8 +24,8 @@ var SampleResponse = {
 // jQuery selectors for input form elements
 var FormElements = {
     INPUTS: "textarea, input",
-    SCHEMA: "#schema",
-    DATA: "#data"
+    INPUT: "#input",
+    INPUT2: "#input2"
 };
 
 // jQuery selectors for result pane elements
@@ -59,8 +59,8 @@ function loadSamples()
         var schema = response[SampleResponse.SCHEMA];
         var data = response[SampleResponse.DATA];
 
-        TextAreas.fillJson(FormElements.SCHEMA, schema);
-        TextAreas.fillJson(FormElements.DATA, data);
+        TextAreas.fillJson(FormElements.INPUT, schema);
+        TextAreas.fillJson(FormElements.INPUT2, data);
     });
 
     request.fail(function (xhr, status, error)
@@ -132,10 +132,10 @@ var main = function()
 
             if (invalidSchema)
                 reportParseError(response["invalidSchema"],
-                    $(Messages.INVALID_SCHEMA), $(FormElements.SCHEMA));
+                    $(Messages.INVALID_SCHEMA), $(FormElements.INPUT));
             if (invalidData)
                 reportParseError(response["invalidData"],
-                    $(Messages.INVALID_DATA), $(FormElements.DATA));
+                    $(Messages.INVALID_DATA), $(FormElements.INPUT2));
 
             // Stop right now if we have invalid inputs. Other fields will not
             // be defined.

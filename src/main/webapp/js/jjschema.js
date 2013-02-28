@@ -18,7 +18,7 @@
 // jQuery selectors for input form elements
 var FormElements = {
     INPUTS: "textarea, input",
-    SOURCE: "#source"
+    INPUT: "#input"
 };
 
 // jQuery selectors for result pane elements
@@ -44,7 +44,7 @@ function loadSampleSource()
 
     request.done(function(response, status, xhr)
     {
-        $(FormElements.SOURCE).val(response);
+        $(FormElements.INPUT).val(response);
     });
 
     request.fail(function (xhr, status, error)

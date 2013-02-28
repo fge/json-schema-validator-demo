@@ -40,11 +40,11 @@
 <form id="process" method="POST">
     <div id="left" class="content">
         <div class="horiz">
-            <label for="schema">Schema:</label>
+            <label for="input">Schema:</label>
             <span class="error starthidden" id="invalidSchema">Invalid JSON:
                 parse error, <a href="#"></a></span>
         </div>
-        <textarea name="schema" rows="20" cols="20" id="schema"></textarea>
+        <textarea name="input" rows="20" cols="20" id="input"></textarea>
         <div class="horiz">
             <input type="submit" value="Generate source code">
             <span>(<a id="load" href="#">load sample data</a>)</span>

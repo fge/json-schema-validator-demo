@@ -66,7 +66,7 @@ public final class Schema2Pojo
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public static Response checkSyntax(@FormParam("schema") final String schema)
+    public static Response checkSyntax(@FormParam("input") final String schema)
     {
         try {
             final JsonNode ret = buildResult(schema);

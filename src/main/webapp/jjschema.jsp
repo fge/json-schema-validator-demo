@@ -36,9 +36,9 @@
 <form id="process" method="POST">
     <div id="left" class="content">
         <div class="horiz">
-            <label for="source">Source code:</label>
+            <label for="input">Source code:</label>
         </div>
-        <textarea name="source" rows="20" cols="20" id="source"></textarea>
+        <textarea name="input" rows="20" cols="20" id="input"></textarea>
         <div class="horiz">
             <input type="submit" value="Generate schema">
             <span>(<a id="load" href="#">load sample data</a>)</span>

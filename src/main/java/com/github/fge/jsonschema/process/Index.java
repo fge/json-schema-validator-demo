@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jsonschema.constants.ParseError;
-import com.github.fge.jsonschema.constants.ValidateResponse;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.github.fge.jsonschema.main.JsonValidator;
 import com.github.fge.jsonschema.report.ProcessingReport;
@@ -44,6 +43,13 @@ import java.io.IOException;
 @Produces("application/json;charset=utf-8")
 public final class Index
 {
+    private static final String INVALID_SCHEMA = "invalidSchema";
+    private static final String INVALID_DATA = "invalidData";
+    private static final String RESULTS = "results";
+    private static final String VALID = "valid";
+
+    private static final String INPUT = "input";
+    private static final String INPUT2 = "input2";
     private static final Logger log = LoggerFactory.getLogger(Index.class);
     private static final Response OOPS = Response.status(500).build();
     private static final JsonValidator VALIDATOR
@@ -52,8 +58,8 @@ public final class Index
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public static Response validate(
-        @FormParam("schema") final String schema,
-        @FormParam("data") final String data
+        @FormParam("input") final String schema,
+        @FormParam("input2") final String data
     )
     {
         try {
@@ -76,13 +82,13 @@ public final class Index
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
-        final boolean invalidSchema = fillWithData(ret, ValidateResponse.SCHEMA,
-            ValidateResponse.INVALID_SCHEMA, rawSchema);
-        final boolean invalidData = fillWithData(ret, ValidateResponse.DATA,
-            ValidateResponse.INVALID_DATA, rawData);
+        final boolean invalidSchema = fillWithData(ret, INPUT, INVALID_SCHEMA,
+            rawSchema);
+        final boolean invalidData = fillWithData(ret, INPUT2, INVALID_DATA,
+            rawData);
 
-        final JsonNode schemaNode = ret.remove(ValidateResponse.SCHEMA);
-        final JsonNode data = ret.remove(ValidateResponse.DATA);
+        final JsonNode schemaNode = ret.remove(INPUT);
+        final JsonNode data = ret.remove(INPUT2);
 
         if (invalidSchema || invalidData)
             return ret;
@@ -91,8 +97,8 @@ public final class Index
             = VALIDATOR.validateUnchecked(schemaNode, data);
 
         final boolean success = report.isSuccess();
-        ret.put(ValidateResponse.VALID, success);
-        ret.put(ValidateResponse.RESULTS, ((AsJson) report).asJson());
+        ret.put(VALID, success);
+        ret.put(RESULTS, ((AsJson) report).asJson());
         return ret;
     }
 

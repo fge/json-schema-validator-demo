@@ -55,7 +55,7 @@ public final class JJSchema
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public static Response checkSyntax(@FormParam("source") final String source)
+    public static Response checkSyntax(@FormParam("input") final String source)
     {
         try {
             final JsonNode ret = buildResult(source);

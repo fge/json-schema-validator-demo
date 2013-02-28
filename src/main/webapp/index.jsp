@@ -39,19 +39,19 @@
 <form id="process" method="POST">
     <div id="left" class="content">
         <div class="horiz">
-            <label for="schema">Schema:</label>
+            <label for="input">Schema:</label>
             <span class="error starthidden" id="invalidSchema">Invalid JSON:
                 parse error, <a href="#"></a></span>
         </div>
-        <textarea name="schema" rows="20" cols="20" class="half"
-            id="schema"></textarea>
+        <textarea name="input" rows="20" cols="20" class="half"
+            id="input"></textarea>
         <div class="horiz">
-            <label for="data">Data:</label>
+            <label for="input2">Data:</label>
             <span class="error starthidden" id="invalidData">Invalid JSON: parse
                 error, <a href="#"></a></span>
         </div>
-        <textarea name="data" rows="20" cols="20" class="half"
-            id="data"></textarea>
+        <textarea name="input2" rows="20" cols="20" class="half"
+            id="input2"></textarea>
         <div class="horiz">
             <input type="submit" value="Validate">
             <span>(<a id="load" href="#">load sample data</a>)</span>

@@ -18,7 +18,7 @@
 // jQuery selectors for input form elements
 var FormElements = {
     INPUTS: "textarea, input",
-    SCHEMA: "#schema"
+    INPUT: "#input"
 };
 
 // jQuery selectors for result pane elements
@@ -46,7 +46,7 @@ function loadSampleSchema()
 
     request.done(function(response, status, xhr)
     {
-        TextAreas.fillJson(FormElements.SCHEMA, response);
+        TextAreas.fillJson(FormElements.INPUT, response);
     });
 
     request.fail(function (xhr, status, error)
@@ -115,7 +115,7 @@ var main = function()
 
             if (invalidSchema) {
                 reportParseError(response["invalidSchema"],
-                    $(Messages.INVALID_SCHEMA), $(FormElements.SCHEMA));
+                    $(Messages.INVALID_SCHEMA), $(FormElements.INPUT));
                 return;
             }
 
