@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <c:set var="pageName" value="syntax" scope="request"/>
+<c:set var="pageTitle" value="JSON Schema syntax validation" scope="request"/>
+<c:set var="pageDescription"
+    value="Validate the syntax of your JSON Schemas" scope="request"/>
 <c:set var="inputTitle" value="Schema" scope="request"/>
 <c:set var="buttonTitle" value="Check syntax" scope="request"/>
 <c:set var="resultTitle" value="Validation results" scope="request"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Draft v4 JSON Schema syntax validation</title>
-    <meta name="description" content="JSON Schema syntax validation">
-    <jsp:include page="head.jspf"/>
+    <jsp:include page="head-common.jspf"/>
+    <jsp:include page="head-js.jspf"/>
 </head>
 <body>
 <jsp:include page="menu.jspf"/>

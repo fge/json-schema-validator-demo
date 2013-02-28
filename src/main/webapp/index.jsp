@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <c:set var="pageName" value="index" scope="request"/>
+<c:set var="pageTitle" value="JSON Schema validation online" scope="request"/>
+<c:set var="pageDescription"
+    value="Validate your JSON data against a JSON schema" scope="request"/>
+<c:set var="inputTitle" value="Schema" scope="request"/>
+<c:set var="inputTitle2" value="Data" scope="request"/>
+<c:set var="buttonTitle" value="Validate" scope="request"/>
 <c:set var="resultTitle" value="Validation results" scope="request"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>JSON Schema validation online</title>
-    <meta name="description" content="Validate your JSON Schema online">
-    <jsp:include page="head.jspf"/>
+    <jsp:include page="head-common.jspf"/>
+    <jsp:include page="head-js.jspf"/>
 </head>
 <body>
 <jsp:include page="menu.jspf"/>
@@ -37,28 +42,7 @@
 
 </div>
 
-<form id="process" method="POST">
-    <div id="left" class="content">
-        <div class="horiz">
-            <label for="input">Schema:</label>
-            <span class="error starthidden" id="invalidInput">Invalid JSON:
-                parse error, <a href="#"></a></span>
-        </div>
-        <textarea name="input" rows="20" cols="20" class="half"
-            id="input"></textarea>
-        <div class="horiz">
-            <label for="input2">Data:</label>
-            <span class="error starthidden" id="invalidInput2">Invalid JSON:
-            parse error, <a href="#"></a></span>
-        </div>
-        <textarea name="input2" rows="20" cols="20" class="half"
-            id="input2"></textarea>
-        <div class="horiz">
-            <input type="submit" value="Validate">
-            <span>(<a id="load" href="#">load sample data</a>)</span>
-        </div>
-    </div>
-</form>
+<jsp:include page="doubleInputForm.jspf"/>
 <jsp:include page="resultPane.jspf"/>
 </body>
 </html>

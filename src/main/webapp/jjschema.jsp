@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <c:set var="pageName" value="jjschema" scope="request"/>
+<c:set var="pageTitle" value="Java to JSON Schema" scope="request"/>
+<c:set var="pageDescription"
+    value="Generate a JSON Schema out of your Java classes" scope="request"/>
 <c:set var="inputTitle" value="Java source code" scope="request"/>
 <c:set var="buttonTitle" value="Generate schema" scope="request"/>
 <c:set var="resultTitle" value="Generation result" scope="request"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>POJO to JSON Schema</title>
-    <meta name="description" content="Java source to JSON Schema conversion">
-    <jsp:include page="head.jspf"/>
+    <jsp:include page="head-common.jspf"/>
+    <jsp:include page="head-js.jspf"/>
 </head>
 <body>
 <jsp:include page="menu.jspf"/>

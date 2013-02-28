@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <c:set var="pageName" value="about" scope="request"/>
+<c:set var="pageTitle" value="About this web site" scope="request"/>
+<c:set var="pageDescription"
+    value="JSON Schema software in Java used on this site" scope="request"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <title>About this web site</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <jsp:include page="head-common.jspf"/>
 </head>
 <body>
 

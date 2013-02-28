@@ -1,0 +1,22 @@
+<form id="process" method="POST">
+    <div id="left" class="content">
+        <div class="horiz">
+            <label for="input">${inputTitle}:</label>
+            <span class="error starthidden" id="invalidInput">Invalid JSON:
+                parse error, <a href="#"></a></span>
+        </div>
+        <textarea name="input" rows="20" cols="20" class="half"
+            id="input"></textarea>
+        <div class="horiz">
+            <label for="input2">${inputTitle2}:</label>
+            <span class="error starthidden" id="invalidInput2">Invalid JSON:
+            parse error, <a href="#"></a></span>
+        </div>
+        <textarea name="input2" rows="20" cols="20" class="half"
+            id="input2"></textarea>
+        <div class="horiz">
+            <input type="submit" value="${buttonTitle}">
+            <span>(<a id="load" href="#">load sample data</a>)</span>
+        </div>
+    </div>
+</form>

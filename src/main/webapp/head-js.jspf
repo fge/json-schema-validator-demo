@@ -1,0 +1,10 @@
+    <script src="js/ext/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="js/ext/jquery.qtip-1.0.0-rc3.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var pageName = "${pageName}";
+    </script>
+    <script src="js/common.js" type="text/javascript"></script>
+    <script src="js/${pageName}.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(main);
+    </script>
