@@ -78,12 +78,9 @@ textarea {
     resize: none;
 }
 textarea.half {
-    height: 41%;
+    height: 42%;
 }
-div.options > * {
-    display: inline-block;
-    margin-top: 0;
-}
+
 /*
  * Horizontally aligned elements
  */
@@ -147,9 +144,10 @@ div.about > * {
 .horizMenu li {
     float: left;
     border-right: #CCCCCC solid 1px;
+    height: 100%;
 }
 
 .horizMenu ul * {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
