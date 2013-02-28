@@ -28,6 +28,7 @@ import com.github.fge.jsonschema.constants.ValidateResponse;
 import com.github.fge.jsonschema.main.JsonValidator;
 import com.github.fge.jsonschema.report.ProcessingReport;
 import com.github.fge.jsonschema.util.AsJson;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.JsonLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -123,7 +124,7 @@ public final class Index
         final boolean crlf)
     {
         final JsonLocation location = e.getLocation();
-        final ObjectNode ret = JsonNodeFactory.instance.objectNode();
+        final ObjectNode ret = JacksonUtils.nodeFactory().objectNode();
 
         /*
          * Unfortunately, for some reason, Jackson botches the column number in

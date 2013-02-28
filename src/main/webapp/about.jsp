@@ -1,21 +1,6 @@
 <!DOCTYPE html>
-<!--
-  ~ Copyright (c) 2013, Francis Galiegue <fgaliegue@gmail.com>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the Lesser GNU General Public License as
-  ~ published by the Free Software Foundation, either version 3 of the
-  ~ License, or (at your option) any later version.
-  ~
-  ~ This program is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ Lesser GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<c:set var="pageName" value="about" scope="request"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -24,16 +9,7 @@
 </head>
 <body>
 
-<div class="horizMenu">
-    <ul>
-        <li>Select page:</li>
-        <li><a href="index.jsp">Instance validation</a></li>
-        <li><a href="syntax.jsp">Schema syntax validation</a></li>
-        <li><a href="jjschema.jsp">Source code to JSON Schema</a></li>
-        <li><a href="schema2pojo.jsp">JSON Schema to source code</a></li>
-        <li><a href="about.html">About this site</a></li>
-    </ul>
-</div>
+<jsp:include page="menu.jspf"/>
 <div class="about">
 
     <h2>Software used</h2>

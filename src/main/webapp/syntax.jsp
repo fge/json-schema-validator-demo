@@ -8,16 +8,7 @@
     <jsp:include page="head.jspf"/>
 </head>
 <body>
-<div class="horizMenu">
-    <ul>
-        <li>Select page:</li>
-        <li><a href="index.jsp">Instance validation</a></li>
-        <li><a href="syntax.jsp">Schema syntax validation</a></li>
-        <li><a href="jjschema.jsp">Source code to JSON Schema</a></li>
-        <li><a href="schema2pojo.jsp">JSON Schema to source code</a></li>
-        <li><a href="about.html">About this site</a></li>
-    </ul>
-</div>
+<jsp:include page="menu.jspf"/>
 <div id="top">
     <div class="noscript">
         <p>
