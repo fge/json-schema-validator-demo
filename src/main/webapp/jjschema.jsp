@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <c:set var="pageName" value="jjschema" scope="request"/>
+<c:set var="resultTitle" value="Generation result" scope="request"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>POJO to JSON Schema</title>
@@ -45,14 +46,6 @@
         </div>
     </div>
 </form>
-<div id="right" class="content">
-    <div class="horiz">
-        <label for="results">Generation result:</label>
-        <span class="error starthidden" id="processingFailure">failure</span>
-        <span class="success starthidden" id="processingSuccess">success</span>
-    </div>
-    <textarea name="results" rows="20" cols="20" id="results"
-        readonly="readonly"></textarea>
-</div>
+<jsp:include page="resultPane.jspf"/>
 </body>
 </html>
