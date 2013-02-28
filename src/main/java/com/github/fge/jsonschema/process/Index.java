@@ -20,25 +20,20 @@ package com.github.fge.jsonschema.process;
 import com.fasterxml.jackson.core.JsonLocation;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.fge.jsonschema.JsonValidators;
 import com.github.fge.jsonschema.constants.ParseError;
-import com.github.fge.jsonschema.processing.ProcessingResult;
-import com.github.fge.jsonschema.processors.data.SchemaHolder;
-import com.github.fge.jsonschema.report.ListProcessingReport;
-import com.github.fge.jsonschema.report.ProcessingMessage;
+import com.github.fge.jsonschema.constants.ValidateResponse;
+import com.github.fge.jsonschema.main.JsonValidator;
 import com.github.fge.jsonschema.report.ProcessingReport;
-import com.github.fge.jsonschema.tree.CanonicalSchemaTree;
-import com.github.fge.jsonschema.tree.SchemaTree;
-import com.github.fge.jsonschema.util.JacksonUtils;
+import com.github.fge.jsonschema.util.AsJson;
 import com.github.fge.jsonschema.util.JsonLoader;
-import com.github.fge.jsonschema.util.ValueHolder;
-import com.github.fge.jsonschema2pojo.JsonSchema2SourceCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -47,71 +42,61 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
-@Path("/gensource")
+@Path("/index")
 @Produces("application/json;charset=utf-8")
-public final class GenSource
+public final class Index
 {
-    private static final JsonNodeFactory FACTORY = JacksonUtils.nodeFactory();
+    private static final Logger log = LoggerFactory.getLogger(Index.class);
 
-    private static final String INVALID_SCHEMA = "invalidSchema";
-    private static final String SCHEMA = "schema";
-    private static final String RESULTS = "results";
-    private static final String VALID = "valid";
     private static final Response OOPS = Response.status(500).build();
-
-    private static final Logger log = LoggerFactory.getLogger(GenSource.class);
-
-    private static final JsonSchema2SourceCode PROCESSOR
-        = new JsonSchema2SourceCode();
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public static Response checkSyntax(@FormParam("schema") final String schema)
+    public static Response validate(
+        @FormParam("schema") final String schema,
+        @FormParam("data") final String data,
+        @FormParam("useV3") @DefaultValue("false") final boolean useV3,
+        @FormParam("useId") @DefaultValue("false") final boolean useId)
     {
         try {
-            final JsonNode ret = buildResult(schema);
+            final JsonNode ret = buildResult(schema, data, useV3, useId);
             return Response.ok().entity(ret.toString()).build();
         } catch (IOException e) {
-            log.error("I/O error while building response", e);
+            log.error("I/O error while validating data", e);
             return OOPS;
         }
     }
+
 
     /*
      * Build the response. When we arrive here, we are guaranteed that we have
      * the needed elements.
      */
-    private static JsonNode buildResult(final String rawSchema)
+    private static JsonNode buildResult(final String rawSchema,
+        final String rawData, final boolean useV3, final boolean useId)
         throws IOException
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
-        final boolean invalidSchema = fillWithData(ret, SCHEMA, INVALID_SCHEMA,
-            rawSchema);
+        final boolean invalidSchema = fillWithData(ret, ValidateResponse.SCHEMA,
+            ValidateResponse.INVALID_SCHEMA, rawSchema);
+        final boolean invalidData = fillWithData(ret, ValidateResponse.DATA,
+            ValidateResponse.INVALID_DATA, rawData);
 
-        final JsonNode schemaNode = ret.remove(SCHEMA);
+        final JsonNode schemaNode = ret.remove(ValidateResponse.SCHEMA);
+        final JsonNode data = ret.remove(ValidateResponse.DATA);
 
-        if (invalidSchema)
+        if (invalidSchema || invalidData)
             return ret;
 
-        final SchemaTree tree = new CanonicalSchemaTree(schemaNode);
-        final SchemaHolder input = new SchemaHolder(tree);
+        final JsonValidator validator
+            = JsonValidators.withOptions(useV3, useId);
+        final ProcessingReport report
+            = validator.validateUnchecked(schemaNode, data);
 
-        final ProcessingReport report = new ListProcessingReport();
-        final ProcessingResult<ValueHolder<String>> result
-            = ProcessingResult.uncheckedResult(PROCESSOR, report, input);
-
-        final boolean  success = result.isSuccess();
-        ret.put(VALID, success);
-
-        if (success)
-            ret.put(RESULTS, FACTORY.textNode(result.getResult().getValue()));
-        else {
-            final ArrayNode node = FACTORY.arrayNode();
-            for (final ProcessingMessage message: result.getReport())
-                node.add(message.asJson());
-            ret.put(RESULTS, node);
-        }
+        final boolean success = report.isSuccess();
+        ret.put(ValidateResponse.VALID, success);
+        ret.put(ValidateResponse.RESULTS, ((AsJson) report).asJson());
         return ret;
     }
 

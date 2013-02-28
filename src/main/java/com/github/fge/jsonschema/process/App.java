@@ -14,9 +14,9 @@ public final class App
         final ImmutableSet.Builder<Class<?>> builder = ImmutableSet.builder();
 
         builder.add(Syntax.class);
-        builder.add(Validate.class);
-        builder.add(GenSchema.class);
-        builder.add(GenSource.class);
+        builder.add(Index.class);
+        builder.add(JJSchema.class);
+        builder.add(Schema2Pojo.class);
 
         return builder.build();
     }

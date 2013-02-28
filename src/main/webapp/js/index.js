@@ -17,8 +17,8 @@
 
 // The list of our servlets
 var Servlets = {
-    PROCESS: "/process/validate",
-    LOAD: "/load/testSuite"
+    PROCESS: "/process/index",
+    LOAD: "/load/index"
 };
 
 // The list of member names in a sample response
@@ -98,7 +98,7 @@ var main = function()
     $(Messages.INVALID_DATA).find("a").qtip({content: ""});
 
     // Attach loadSamples to the appropriate link
-    $("#loadSamples").on("click", function (event)
+    $("#load").on("click", function (event)
     {
         event.preventDefault();
         loadSamples();

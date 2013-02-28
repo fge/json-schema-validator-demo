@@ -40,15 +40,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
-@Path("/genschema")
+@Path("/jjschema")
 @Produces("application/json;charset=utf-8")
-public final class GenSchema
+public final class JJSchema
 {
     private static final String RESULTS = "results";
     private static final String VALID = "valid";
     private static final Response OOPS = Response.status(500).build();
 
-    private static final Logger log = LoggerFactory.getLogger(GenSchema.class);
+    private static final Logger log = LoggerFactory.getLogger(JJSchema.class);
 
     private static final JJSchemaFromSource PROCESSOR
         = JJSchemaFromSource.getInstance();

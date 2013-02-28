@@ -13,9 +13,9 @@ public final class App
     {
         final ImmutableSet.Builder<Class<?>> builder = ImmutableSet.builder();
 
-        builder.add(TestSuite.class);
-        builder.add(SampleSource.class);
-        builder.add(SampleSchema.class);
+        builder.add(Index.class);
+        builder.add(JJSchema.class);
+        builder.add(Schema2Pojo.class);
 
         return builder.build();
     }

@@ -17,8 +17,8 @@
 
 // The list of our servlets
 var Servlets = {
-    PROCESS: "/process/genschema",
-    LOAD: "/load/sampleSource"
+    PROCESS: "/process/jjschema",
+    LOAD: "/load/jjschema"
 };
 
 // jQuery selectors for input form elements
@@ -67,7 +67,7 @@ var main = function()
     $(".noscript").hide();
 
     // Attach sample source loading to the appropriate link
-    $("#loadSource").on("click", function(event)
+    $("#load").on("click", function(event)
     {
         event.preventDefault();
         loadSampleSource();

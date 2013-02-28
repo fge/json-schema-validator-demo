@@ -29,15 +29,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
-@Path("/sampleSource")
+@Path("/jjschema")
 @Produces("text/plain;charset=utf-8")
-public final class SampleSource
+public final class JJSchema
 {
     private static final String SAMPLE_SOURCE;
 
     static {
         final InputStream in
-            = SampleSource.class.getResourceAsStream("/product.txt");
+            = JJSchema.class.getResourceAsStream("/product.txt");
         if (in == null)
             throw new ExceptionInInitializerError("sample source not found");
 

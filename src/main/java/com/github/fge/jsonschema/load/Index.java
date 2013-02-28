@@ -17,33 +17,43 @@
 
 package com.github.fge.jsonschema.load;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jsonschema.util.JsonLoader;
+import com.google.common.collect.ImmutableList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
-@Path("/sampleSchema")
+@Path("/index")
 @Produces("application/json;charset=utf-8")
-public final class SampleSchema
+public final class Index
 {
-    private static final String SAMPLE_SCHEMA;
+    private static final Random RND = new Random();
+    private static final List<JsonNode> SAMPLE_DATA;
+    private static final int SAMPLE_DATA_SIZE;
 
     static {
         try {
-            SAMPLE_SCHEMA = JsonLoader.fromResource("/jsonschema2pojo.json")
-                .toString();
+            final JsonNode node = JsonLoader.fromResource("/samples.json");
+            SAMPLE_DATA = ImmutableList.copyOf(node);
+            SAMPLE_DATA_SIZE = SAMPLE_DATA.size();
         } catch (IOException e) {
             throw new ExceptionInInitializerError(e);
         }
     }
 
     @GET
-    public static Response getSampleSchema()
+    public static Response getSamples()
     {
-        return Response.status(Response.Status.OK).entity(SAMPLE_SCHEMA)
+        final int index = RND.nextInt(SAMPLE_DATA_SIZE);
+        final JsonNode ret = SAMPLE_DATA.get(index);
+
+        return Response.status(Response.Status.OK).entity(ret.toString())
             .build();
     }
 }
