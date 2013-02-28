@@ -54,9 +54,7 @@
             id="data"></textarea>
         <div class="horiz">
             <input type="submit" value="Validate">
-            <span>(you can also <a id="load" href="#">load samples</a> from the
-            <a href="https://github.com/json-schema/JSON-Schema-Test-Suite">JSON
-            Schema test suite)</a></span>
+            <span>(<a id="load" href="#">load sample data</a>)</span>
         </div>
     </div>
 </form>

@@ -41,8 +41,7 @@
         <textarea name="source" rows="20" cols="20" id="source"></textarea>
         <div class="horiz">
             <input type="submit" value="Generate schema">
-            <span>(you can also <a id="load" href="#">load an example source
-            file</a>)</span>
+            <span>(<a id="load" href="#">load sample data</a>)</span>
         </div>
     </div>
 </form>

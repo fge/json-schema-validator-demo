@@ -16,6 +16,7 @@ public final class App
         builder.add(Index.class);
         builder.add(JJSchema.class);
         builder.add(Schema2Pojo.class);
+        builder.add(Syntax.class);
 
         return builder.build();
     }

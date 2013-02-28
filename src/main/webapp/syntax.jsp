@@ -40,7 +40,10 @@
                 parse error, <a href="#"></a></span>
         </div>
         <textarea name="schema" rows="20" cols="20" id="schema"></textarea>
-        <input type="submit" value="Validate">
+        <div class="horiz">
+            <input type="submit" value="Validate">
+            <span>(<a id="load" href="#">load sample data</a>)</span>
+        </div>
     </div>
 </form>
 <div id="right" class="content">
