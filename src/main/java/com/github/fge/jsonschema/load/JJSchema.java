@@ -58,7 +58,6 @@ public final class JJSchema
     @GET
     public static Response getSampleSource()
     {
-        return Response.status(Response.Status.OK).entity(SAMPLE_SOURCE)
-            .build();
+        return Response.ok().entity(SAMPLE_SOURCE).build();
     }
 }

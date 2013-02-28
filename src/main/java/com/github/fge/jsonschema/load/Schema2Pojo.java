@@ -43,7 +43,6 @@ public final class Schema2Pojo
     @GET
     public static Response getSampleSchema()
     {
-        return Response.status(Response.Status.OK).entity(SAMPLE_SCHEMA)
-            .build();
+        return Response.ok().entity(SAMPLE_SCHEMA).build();
     }
 }

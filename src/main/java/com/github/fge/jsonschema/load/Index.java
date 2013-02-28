@@ -53,7 +53,6 @@ public final class Index
         final int index = RND.nextInt(SAMPLE_DATA_SIZE);
         final JsonNode ret = SAMPLE_DATA.get(index);
 
-        return Response.status(Response.Status.OK).entity(ret.toString())
-            .build();
+        return Response.ok().entity(ret.toString()).build();
     }
 }
