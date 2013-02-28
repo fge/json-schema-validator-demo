@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <c:set var="pageName" value="jjschema" scope="request"/>
+<c:set var="inputTitle" value="Java source code" scope="request"/>
+<c:set var="buttonTitle" value="Generate schema" scope="request"/>
 <c:set var="resultTitle" value="Generation result" scope="request"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,18 +36,7 @@
 
 </div>
 
-<form id="process" method="POST">
-    <div id="left" class="content">
-        <div class="horiz">
-            <label for="input">Source code:</label>
-        </div>
-        <textarea name="input" rows="20" cols="20" id="input"></textarea>
-        <div class="horiz">
-            <input type="submit" value="Generate schema">
-            <span>(<a id="load" href="#">load sample data</a>)</span>
-        </div>
-    </div>
-</form>
+<jsp:include page="singleInputForm.jspf"/>
 <jsp:include page="resultPane.jspf"/>
 </body>
 </html>
