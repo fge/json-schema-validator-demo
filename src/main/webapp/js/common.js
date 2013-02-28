@@ -102,11 +102,26 @@ function reportParseError(parseError, msgHandle, textArea)
 var FormElements = {
     INPUTS: "textarea, input",
     INPUT: "#input",
-    INPUT2: "#input2"
+    INPUT2: "#input2",
+    INVALID_INPUT: "#invalidInput",
+    INVALID_INPUT2: "#invalidInput2",
+    INVALID_QTIP: "#qtip-input",
+    INVALID_QTIP2: "#qtip-input2"
 };
 
 // jQuery selectors for result pane elements
 var ResultPane = {
-    RESULTS: "textarea#results"
+    RESULTS: "textarea#results",
+    PROCESSING_SUCCESS: "#processingSuccess",
+    PROCESSING_FAILURE: "#processingFailure"
 };
 
+// Message
+var Message = {
+    INPUT: "input",
+    INVALID_INPUT: "invalidInput",
+    INPUT2: "input2",
+    INVALID_INPUT2: "invalidInput2",
+    VALID: "valid",
+    RESULTS: "results"
+};

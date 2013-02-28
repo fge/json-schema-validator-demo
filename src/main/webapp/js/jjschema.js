@@ -15,11 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Messages = {
-    GENERATION_SUCCESS: "#generationSuccess",
-    GENERATION_FAILURE: "#generationFailure"
-};
-
 function loadSampleSource()
 {
     $(DomElements.STARTHIDDEN).hide();
@@ -93,14 +88,14 @@ var main = function()
         // response is directly passed along as a JavaScript object.
         request.done(function (response, status, xhr)
         {
-            var validationMessage = response["valid"]
-                ? Messages.GENERATION_SUCCESS
-                : Messages.GENERATION_FAILURE;
+            var validationMessage = response[Message.VALID]
+                ? ResultPane.PROCESSING_SUCCESS
+                : ResultPane.PROCESSING_FAILURE;
 
             // Show the appropriate validation message and inject pretty-printed
             // JSON into the results text area
             $(validationMessage).show();
-            TextAreas.fillJson(ResultPane.RESULTS, response["results"]);
+            TextAreas.fillJson(ResultPane.RESULTS, response[Message.RESULTS]);
         });
 
         // On failure

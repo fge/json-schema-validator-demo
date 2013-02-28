@@ -15,21 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// The list of member names in a sample response
-var SampleResponse = {
-    SCHEMA: "schema",
-    DATA: "data"
-};
-
-var Messages = {
-    INVALID_SCHEMA: "#invalidSchema",
-    INVALID_DATA: "#invalidData",
-    TOOLTIP_SCHEMA: "#qtip-schema",
-    TOOLTIP_DATA: "#qtip-data",
-    VALIDATION_SUCCESS: "#validationSuccess",
-    VALIDATION_FAILURE: "#validationFailure"
-};
-
 // FIXME: #jquery people on FreeNode say this is not the way to do it
 function loadSamples()
 {
@@ -44,8 +29,8 @@ function loadSamples()
 
     request.done(function(response, status, xhr)
     {
-        var schema = response[SampleResponse.SCHEMA];
-        var data = response[SampleResponse.DATA];
+        var schema = response[Message.INPUT];
+        var data = response[Message.INPUT2];
 
         TextAreas.fillJson(FormElements.INPUT, schema);
         TextAreas.fillJson(FormElements.INPUT2, data);
@@ -68,8 +53,8 @@ var main = function()
     var $form = $(DomElements.FORM);
 
     // Create dummy qtips -- you cannot destroy a non existing one...
-    $(Messages.INVALID_SCHEMA).find("a").qtip({content: ""});
-    $(Messages.INVALID_DATA).find("a").qtip({content: ""});
+    $(FormElements.INVALID_INPUT).find("a").qtip({content: ""});
+    $(FormElements.INVALID_INPUT2).find("a").qtip({content: ""});
 
     // Attach loadSamples to the appropriate link
     $("#load").on("click", function (event)
@@ -115,29 +100,29 @@ var main = function()
 
             // This is the way to guarantee that an object has a key with
             // JavaScript
-            var invalidSchema = response.hasOwnProperty("invalidSchema");
-            var invalidData = response.hasOwnProperty("invalidData");
+            var invalidSchema = response.hasOwnProperty(Message.INVALID_INPUT);
+            var invalidData = response.hasOwnProperty(Message.INVALID_INPUT2);
 
             if (invalidSchema)
-                reportParseError(response["invalidSchema"],
-                    $(Messages.INVALID_SCHEMA), $(FormElements.INPUT));
+                reportParseError(response[Message.INVALID_INPUT],
+                    $(FormElements.INVALID_INPUT), $(FormElements.INPUT));
             if (invalidData)
-                reportParseError(response["invalidData"],
-                    $(Messages.INVALID_DATA), $(FormElements.INPUT2));
+                reportParseError(response[Message.INVALID_INPUT2],
+                    $(FormElements.INVALID_INPUT2), $(FormElements.INPUT2));
 
             // Stop right now if we have invalid inputs. Other fields will not
             // be defined.
             if (invalidSchema || invalidData)
                 return;
 
-            var validationMessage = response["valid"]
-                ? Messages.VALIDATION_SUCCESS
-                : Messages.VALIDATION_FAILURE;
+            var validationMessage = response[Message.VALID]
+                ? ResultPane.PROCESSING_SUCCESS
+                : ResultPane.PROCESSING_FAILURE;
 
             // Show the appropriate validation message and inject pretty-printed
             // JSON into the results text area
             $(validationMessage).show();
-            TextAreas.fillJson(ResultPane.RESULTS, response["results"]);
+            TextAreas.fillJson(ResultPane.RESULTS, response[Message.RESULTS]);
         });
 
         // On failure

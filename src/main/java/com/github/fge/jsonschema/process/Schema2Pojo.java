@@ -45,6 +45,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import static com.github.fge.jsonschema.constants.ResponseFields.*;
 
 @Path("/schema2pojo")
 @Produces("application/json;charset=utf-8")
@@ -52,10 +53,6 @@ public final class Schema2Pojo
 {
     private static final JsonNodeFactory FACTORY = JacksonUtils.nodeFactory();
 
-    private static final String INVALID_SCHEMA = "invalidSchema";
-    private static final String SCHEMA = "schema";
-    private static final String RESULTS = "results";
-    private static final String VALID = "valid";
     private static final Response OOPS = Response.status(500).build();
 
     private static final Logger log
@@ -86,10 +83,10 @@ public final class Schema2Pojo
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
-        final boolean invalidSchema = fillWithData(ret, SCHEMA, INVALID_SCHEMA,
+        final boolean invalidSchema = fillWithData(ret, INPUT, INVALID_INPUT,
             rawSchema);
 
-        final JsonNode schemaNode = ret.remove(SCHEMA);
+        final JsonNode schemaNode = ret.remove(INPUT);
 
         if (invalidSchema)
             return ret;

@@ -1,19 +1,19 @@
 [
     {
-        "data": "x",
-        "schema": {
+        "input2": "x",
+        "input": {
             "maximum": 3
         }
     },
     {
-        "data": "2962",
-        "schema": {
+        "input2": "2962",
+        "input": {
             "format": "email"
         }
     },
     {
-        "data": [null, 2, 3, 4],
-        "schema": {
+        "input2": [null, 2, 3, 4],
+        "input": {
             "additionalItems": {
                 "type": "integer"
             },
@@ -23,11 +23,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -55,23 +55,23 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "minLength": 2
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "any"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 1
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {},
                 "foo": {}
@@ -80,15 +80,15 @@
         }
     },
     {
-        "data": "f",
-        "schema": {
+        "input2": "f",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maxLength": 2
         }
     },
     {
-        "data": [1, 2, 3, "foo"],
-        "schema": {
+        "input2": [1, 2, 3, "foo"],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": [],
             "additionalItems": {
@@ -97,11 +97,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": "foo"
@@ -109,10 +109,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "a": "bar"
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "a*": {
                     "type": "integer"
@@ -124,39 +124,39 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "quux": ["foo", "bar"]
             }
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "minLength": 2
         }
     },
     {
-        "data": "8:30 AM",
-        "schema": {
+        "input2": "8:30 AM",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "time"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": "foo"
@@ -164,19 +164,19 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "any"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": 3
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "quux": ["foo", "bar"]
@@ -184,49 +184,49 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "type": "null"
         }
     },
     {
-        "data": {
+        "input2": {
             "minLength": -1
         },
-        "schema": {
+        "input": {
             "$ref": "http://json-schema.org/draft-04/schema#"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", "string"]
         }
     },
     {
-        "data": 2.2,
-        "schema": {
+        "input2": 2.2,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maximum": 3,
             "exclusiveMaximum": true
         }
     },
     {
-        "data": 12345678910111213141516171819202122232425262728293031,
-        "schema": {
+        "input2": 12345678910111213141516171819202122232425262728293031,
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "type": "array"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["array", {
                 "type": "object"
@@ -234,29 +234,29 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": "-a-host-name-that-starts-with--",
-        "schema": {
+        "input2": "-a-host-name-that-starts-with--",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "host-name"
         }
     },
     {
-        "data": 98249283749234923498293171823948729348710298301928331,
-        "schema": {
+        "input2": 98249283749234923498293171823948729348710298301928331,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "number"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "anyOf": [
                 {
                     "maxLength": 2
@@ -269,34 +269,34 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "type": "number"
         }
     },
     {
-        "data": {
+        "input2": {
             "items": {
                 "type": 1
             }
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "$ref": "http://json-schema.org/draft-03/schema#"
         }
     },
     {
-        "data": 3.5,
-        "schema": {
+        "input2": 3.5,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maximum": 3
         }
     },
     {
-        "data": {
+        "input2": {
             "quux": []
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {
@@ -309,12 +309,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": {
                 "foo": false
             }
         },
-        "schema": {
+        "input": {
             "additionalProperties": false,
             "properties": {
                 "foo": {
@@ -324,10 +324,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "a_x_3": 3
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "X_": {
@@ -340,10 +340,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "a31b": null
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "X_": {
@@ -356,10 +356,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "fxo": [1, 2]
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "integer"
@@ -381,8 +381,8 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {
@@ -395,30 +395,30 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "array"
         }
     },
     {
-        "data": 0.6,
-        "schema": {
+        "input2": 0.6,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minimum": 1.1
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "type": "null"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": {
                 "type": "integer"
@@ -426,8 +426,8 @@
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": false,
             "properties": {
@@ -437,22 +437,22 @@
         }
     },
     {
-        "data": 2.6,
-        "schema": {
+        "input2": 2.6,
+        "input": {
             "minimum": 1.1
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minimum": 1.1,
             "exclusiveMinimum": true
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": [
                 {
@@ -465,8 +465,8 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["array", {
                 "type": "object"
@@ -474,11 +474,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar",
             "foooooo": "baz"
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "f.*o": {
                     "type": "integer"
@@ -487,10 +487,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "slash": "aoeu"
         },
-        "schema": {
+        "input": {
             "percent%field": {
                 "type": "integer"
             },
@@ -514,14 +514,14 @@
         }
     },
     {
-        "data": "fo",
-        "schema": {
+        "input2": "fo",
+        "input": {
             "maxLength": 2
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": [
                 {},
@@ -532,16 +532,16 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "not": {
                 "type": ["integer", "boolean"]
             }
         }
     },
     {
-        "data": 12,
-        "schema": {
+        "input2": 12,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "f.*o": {
@@ -551,23 +551,23 @@
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "type": "string"
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": {
+        "input2": {
             "quux": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "quux": ["foo", "bar"]
@@ -575,11 +575,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": {},
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {
@@ -592,18 +592,18 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "boolean"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1,
             "foooooo": 2
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "f.*o": {
@@ -613,12 +613,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "baz": null,
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "extends": [
                 {
@@ -647,20 +647,20 @@
         }
     },
     {
-        "data": "f",
-        "schema": {
+        "input2": "f",
+        "input": {
             "minLength": 2
         }
     },
     {
-        "data": "x",
-        "schema": {
+        "input2": "x",
+        "input": {
             "minimum": 1.1
         }
     },
     {
-        "data": "a",
-        "schema": {
+        "input2": "a",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "$ref": "#/definitions/c",
             "definitions": {
@@ -677,8 +677,8 @@
         }
     },
     {
-        "data": 3,
-        "schema": {
+        "input2": 3,
+        "input": {
             "oneOf": [
                 {
                     "minLength": 2
@@ -691,14 +691,14 @@
         }
     },
     {
-        "data": "127.0.0.0.1",
-        "schema": {
+        "input2": "127.0.0.0.1",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "ip-address"
         }
     },
     {
-        "data": [
+        "input2": [
             {
                 "foo": "bar"
             },
@@ -706,18 +706,18 @@
                 "foo": "baz"
             }
         ],
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": true
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "boolean"
             },
@@ -728,26 +728,26 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "bar": ["foo"]
             }
         }
     },
     {
-        "data": "http://foo.bar/?baz=qux#quux",
-        "schema": {
+        "input2": "http://foo.bar/?baz=qux#quux",
+        "input": {
             "format": "uri"
         }
     },
     {
-        "data": {
+        "input2": {
             "tilda": "aoeu"
         },
-        "schema": {
+        "input": {
             "percent%field": {
                 "type": "integer"
             },
@@ -771,8 +771,8 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "enum": [6, "foo", [], true, {
                 "foo": 12
@@ -780,16 +780,16 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "type": "object"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "additionalProperties": false,
             "properties": {
                 "bar": {},
@@ -798,21 +798,21 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "type": ["integer", "string"]
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "object"
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "anyOf": [
                 {
                     "type": "integer"
@@ -824,15 +824,15 @@
         }
     },
     {
-        "data": "(?<=foo)bar",
-        "schema": {
+        "input2": "(?<=foo)bar",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "regex"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "foo": {}
@@ -840,29 +840,29 @@
         }
     },
     {
-        "data": "256.256.256.256",
-        "schema": {
+        "input2": "256.256.256.256",
+        "input": {
             "format": "ipv4"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "string"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "type": "object"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": [1, 2, 3, 4]
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "integer"
@@ -884,35 +884,35 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "string"
         }
     },
     {
-        "data": [1, 1],
-        "schema": {
+        "input2": [1, 1],
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "definitions": {
                 "foo": {
                     "type": 1
                 }
             }
         },
-        "schema": {
+        "input": {
             "$ref": "http://json-schema.org/draft-04/schema#"
         }
     },
     {
-        "data": {
+        "input2": {
             "quux": "foo"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "integer"
@@ -934,10 +934,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "extends": {
                 "properties": {
@@ -956,14 +956,14 @@
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "any"
         }
     },
     {
-        "data": [
+        "input2": [
             {},
             [1],
             true,
@@ -971,23 +971,23 @@
             {},
             1
         ],
-        "schema": {
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "enum": [6, "foo", [], true, {
                 "foo": 12
             }]
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {},
@@ -998,10 +998,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "fxo": []
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "integer"
@@ -1023,12 +1023,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": {
                 "bar": false
             }
         },
-        "schema": {
+        "input": {
             "additionalProperties": false,
             "properties": {
                 "foo": {
@@ -1038,10 +1038,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "boolean"
@@ -1053,10 +1053,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": ["string", {
                 "properties": {
@@ -1069,11 +1069,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar",
             "fooooo": 2
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "f.*o": {
@@ -1083,33 +1083,33 @@
         }
     },
     {
-        "data": "www.example.com",
-        "schema": {
+        "input2": "www.example.com",
+        "input": {
             "format": "hostname"
         }
     },
     {
-        "data": 2.6,
-        "schema": {
+        "input2": 2.6,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maximum": 3
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "type": ["integer", "string"]
         }
     },
     {
-        "data": "1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1",
-        "schema": {
+        "input2": "1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1",
+        "input": {
             "format": "ipv6"
         }
     },
     {
-        "data": "foobar",
-        "schema": {
+        "input2": "foobar",
+        "input": {
             "oneOf": [
                 {
                     "minLength": 2
@@ -1122,10 +1122,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "a": 21
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "a*": {
@@ -1138,16 +1138,16 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "minLength": 1
         },
-        "schema": {
+        "input": {
             "$ref": "http://json-schema.org/draft-04/schema#"
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": {
                 "type": "integer"
@@ -1155,37 +1155,37 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "array"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "type": "array"
         }
     },
     {
-        "data": [
+        "input2": [
             ["foo"],
             ["foo"]
         ],
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": 7,
-        "schema": {
+        "input2": 7,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "divisibleBy": 2
         }
     },
     {
-        "data": [
+        "input2": [
             {
                 "foo": {
                     "bar": {
@@ -1201,20 +1201,20 @@
                 }
             }
         ],
-        "schema": {
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": 2.2,
-        "schema": {
+        "input2": 2.2,
+        "input": {
             "exclusiveMaximum": true,
             "maximum": 3
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": [
                 {
@@ -1227,38 +1227,38 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", "string"]
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "not": {
                 "type": "integer"
             }
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "type": "number"
         }
     },
     {
-        "data": "::1",
-        "schema": {
+        "input2": "::1",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "ipv6"
         }
     },
     {
-        "data": {
+        "input2": {
             "quux": 3
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "integer"
@@ -1280,8 +1280,8 @@
         }
     },
     {
-        "data": 35,
-        "schema": {
+        "input2": 35,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minimum": 20,
             "extends": {
@@ -1290,33 +1290,33 @@
         }
     },
     {
-        "data": 35,
-        "schema": {
+        "input2": 35,
+        "input": {
             "multipleOf": 1.5
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "type": "string"
         }
     },
     {
-        "data": "08:30:06",
-        "schema": {
+        "input2": "08:30:06",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "time"
         }
     },
     {
-        "data": [1],
-        "schema": {
+        "input2": [1],
+        "input": {
             "minItems": 1
         }
     },
     {
-        "data": [null, 2, 3, "foo"],
-        "schema": {
+        "input2": [null, 2, 3, "foo"],
+        "input": {
             "additionalItems": {
                 "type": "integer"
             },
@@ -1326,11 +1326,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "aaa": "foo",
             "aaaa": 31
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "a*": {
                     "type": "integer"
@@ -1342,17 +1342,17 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": "integer"
         }
     },
     {
-        "data": {
+        "input2": {
             "quux": "foo"
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "integer"
             },
@@ -1373,12 +1373,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": {
                 "foo": false
             }
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": false,
             "properties": {
@@ -1389,37 +1389,37 @@
         }
     },
     {
-        "data": 2.6,
-        "schema": {
+        "input2": 2.6,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minimum": 1.1
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "type": "string"
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "type": "boolean"
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "boolean"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": "quux",
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": {
@@ -1436,24 +1436,24 @@
         }
     },
     {
-        "data": 9.727837981879871E+26,
-        "schema": {
+        "input2": 9.727837981879871E+26,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maximum": 9.727837981879871E+26,
             "exclusiveMaximum": true
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "minProperties": 1
         }
     },
     {
-        "data": {
+        "input2": {
             "aaaa": 31
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "a*": {
                     "type": "integer"
@@ -1465,10 +1465,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": false
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": false,
             "properties": {
@@ -1479,8 +1479,8 @@
         }
     },
     {
-        "data": "foobar",
-        "schema": {
+        "input2": "foobar",
+        "input": {
             "anyOf": [
                 {
                     "maxLength": 2
@@ -1493,12 +1493,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": {
                 "bar": false
             }
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": false,
             "properties": {
@@ -1509,10 +1509,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": [1, 2, 3, 4]
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "integer"
             },
@@ -1533,10 +1533,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": []
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "integer"
             },
@@ -1557,17 +1557,17 @@
         }
     },
     {
-        "data": "joe.bloggs@example.com",
-        "schema": {
+        "input2": "joe.bloggs@example.com",
+        "input": {
             "format": "email"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "baz": null
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -1595,11 +1595,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": "quux",
             "foo": "baz"
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -1621,50 +1621,50 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "multipleOf": 2
         }
     },
     {
-        "data": 98249283749234923498293171823948729348710298301928331,
-        "schema": {
+        "input2": 98249283749234923498293171823948729348710298301928331,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "string"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "type": "number"
         }
     },
     {
-        "data": 2.6,
-        "schema": {
+        "input2": 2.6,
+        "input": {
             "maximum": 3
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", "string"]
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "null"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "baz": null
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "extends": [
                 {
@@ -1693,17 +1693,17 @@
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "type": "number"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar",
             "fooooo": 2
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "f.*o": {
                     "type": "integer"
@@ -1712,8 +1712,8 @@
         }
     },
     {
-        "data": 25,
-        "schema": {
+        "input2": 25,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minimum": 20,
             "extends": {
@@ -1722,12 +1722,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": 12
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "boolean"
@@ -1739,10 +1739,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {},
@@ -1753,35 +1753,35 @@
         }
     },
     {
-        "data": "fo",
-        "schema": {
+        "input2": "fo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minLength": 2
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 1,
             "quux": 2
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "quux": ["foo", "bar"]
             }
         }
     },
     {
-        "data": "06/19/1963 08:30:06 PST",
-        "schema": {
+        "input2": "06/19/1963 08:30:06 PST",
+        "input": {
             "format": "date-time"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": "baz",
             "foo": 1
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {
                     "type": "string"
@@ -1793,14 +1793,14 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": 2.5,
-        "schema": {
+        "input2": 2.5,
+        "input": {
             "oneOf": [
                 {
                     "type": "integer"
@@ -1812,11 +1812,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": "quux",
             "foo": 2
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "bar": {
                     "properties": {
@@ -1832,36 +1832,36 @@
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "type": ["integer", "string"]
         }
     },
     {
-        "data": [0, false],
-        "schema": {
+        "input2": [0, false],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": [
+        "input2": [
             {},
             [1],
             true,
             null,
             1
         ],
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "aaaa": 31
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "a*": {
@@ -1874,19 +1874,19 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "items": {
                 "type": "integer"
             }
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "$ref": "http://json-schema.org/draft-03/schema#"
         }
     },
     {
-        "data": 1.5,
-        "schema": {
+        "input2": 1.5,
+        "input": {
             "oneOf": [
                 {
                     "type": "integer"
@@ -1898,17 +1898,17 @@
         }
     },
     {
-        "data": [
+        "input2": [
             ["foo"],
             ["bar"]
         ],
-        "schema": {
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", {
                 "properties": {
@@ -1920,43 +1920,43 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": ["integer", "boolean"]
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "object"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "type": "number"
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": "number"
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": "boolean"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "bar": {
                     "properties": {
@@ -1972,17 +1972,17 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "type": "boolean"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": "baz"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "extends": {
                 "properties": {
@@ -2001,46 +2001,46 @@
         }
     },
     {
-        "data": "",
-        "schema": {
+        "input2": "",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minItems": 1
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "string"
         }
     },
     {
-        "data": "1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1",
-        "schema": {
+        "input2": "1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "ipv6"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "bar": ["foo"]
             }
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": "string"
         }
     },
     {
-        "data": 35,
-        "schema": {
+        "input2": 35,
+        "input": {
             "allOf": [
                 {
                     "maximum": 30
@@ -2052,46 +2052,46 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "object"
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "null"
         }
     },
     {
-        "data": [1, 2, 3, 4, 5],
-        "schema": {
+        "input2": [1, 2, 3, 4, 5],
+        "input": {
             "additionalItems": false,
             "items": {}
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "number"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "extends": [
                 {
@@ -2120,56 +2120,56 @@
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "object"
         }
     },
     {
-        "data": "06/19/1963",
-        "schema": {
+        "input2": "06/19/1963",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "date"
         }
     },
     {
-        "data": [1, 1, 1],
-        "schema": {
+        "input2": [1, 1, 1],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": 10,
-        "schema": {
+        "input2": 10,
+        "input": {
             "maxLength": 2
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "not": {
                 "type": "integer"
             }
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "type": "array"
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": "integer"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["array", {
                 "type": "object"
@@ -2177,10 +2177,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "a_X_3": 3
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "X_": {
                     "type": "string"
@@ -2192,11 +2192,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "quux": ["foo", "bar"]
@@ -2204,8 +2204,8 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": [
                 {
@@ -2218,10 +2218,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "aaaa": 18
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "a*": {
@@ -2234,23 +2234,23 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", "string"]
         }
     },
     {
-        "data": [1, 2, 3, 4, 5],
-        "schema": {
+        "input2": [1, 2, 3, 4, 5],
+        "input": {
             "additionalItems": false
         }
     },
     {
-        "data": {
+        "input2": {
             "a_x_3": 3
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "X_": {
                     "type": "string"
@@ -2262,31 +2262,31 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "type": "boolean"
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "not": {
                 "type": ["integer", "boolean"]
             }
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "type": "null"
         }
     },
     {
-        "data": {
+        "input2": {
             "a": 21,
             "aaaa": 18
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "a*": {
                     "type": "integer"
@@ -2298,27 +2298,27 @@
         }
     },
     {
-        "data": "f",
-        "schema": {
+        "input2": "f",
+        "input": {
             "maxLength": 2
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "boolean"
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "array"
         }
     },
     {
-        "data": [
+        "input2": [
             {},
             [1],
             true,
@@ -2326,32 +2326,32 @@
             {},
             1
         ],
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "minProperties": 1
         }
     },
     {
-        "data": "06/19/1963 08:30:06 PST",
-        "schema": {
+        "input2": "06/19/1963 08:30:06 PST",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "date-time"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": true
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {
                     "$ref": "#/properties/foo"
@@ -2363,18 +2363,18 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "string"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "bar": {
                     "properties": {
@@ -2390,44 +2390,44 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": "null"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": false
         },
-        "schema": {
+        "input": {
             "enum": [6, "foo", [], true, {
                 "foo": 12
             }]
         }
     },
     {
-        "data": 0.00751,
-        "schema": {
+        "input2": 0.00751,
+        "input": {
             "multipleOf": 0.0001
         }
     },
     {
-        "data": "a-vvvvvvvvvvvvvvvveeeeeeeeeeeeeeeerrrrrrrrrrrrrrrryyyyyyyyyyyyyyyy-long-host-name-component",
-        "schema": {
+        "input2": "a-vvvvvvvvvvvvvvvveeeeeeeeeeeeeeeerrrrrrrrrrrrrrrryyyyyyyyyyyyyyyy-long-host-name-component",
+        "input": {
             "format": "hostname"
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "type": ["integer", "string"]
         }
     },
     {
-        "data": {
+        "input2": {
             "quux": []
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {
                     "type": "string"
@@ -2439,41 +2439,41 @@
         }
     },
     {
-        "data": 4,
-        "schema": {
+        "input2": 4,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "enum": [1, 2, 3]
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "array"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": 7,
-        "schema": {
+        "input2": 7,
+        "input": {
             "multipleOf": 2
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "boolean"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": ["string", {
                 "properties": {
@@ -2486,10 +2486,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 3
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {
@@ -2502,10 +2502,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "baz"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "extends": {
                 "properties": {
@@ -2524,36 +2524,36 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "type": "null"
         }
     },
     {
-        "data": "-a-host-name-that-starts-with--",
-        "schema": {
+        "input2": "-a-host-name-that-starts-with--",
+        "input": {
             "format": "hostname"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "type": "object"
         }
     },
     {
-        "data": [1, 2, 3, 4, 5],
-        "schema": {
+        "input2": [1, 2, 3, 4, 5],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": {},
             "additionalItems": false
         }
     },
     {
-        "data": {
+        "input2": {
             "a_X_3": 3
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "X_": {
@@ -2566,19 +2566,19 @@
         }
     },
     {
-        "data": 1.2,
-        "schema": {
+        "input2": 1.2,
+        "input": {
             "exclusiveMinimum": true,
             "minimum": 1.1
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": "boom"
         },
-        "schema": {
+        "input": {
             "additionalProperties": false,
             "properties": {
                 "bar": {},
@@ -2587,44 +2587,44 @@
         }
     },
     {
-        "data": [1],
-        "schema": {
+        "input2": [1],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minItems": 1
         }
     },
     {
-        "data": {
+        "input2": {
             "definitions": {
                 "foo": {
                     "type": "integer"
                 }
             }
         },
-        "schema": {
+        "input": {
             "$ref": "http://json-schema.org/draft-04/schema#"
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", "string"]
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minLength": 2
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": {
@@ -2641,23 +2641,23 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "boolean"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "type": "boolean"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": false
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "enum": [6, "foo", [], true, {
                 "foo": 12
@@ -2665,25 +2665,25 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "null"
         }
     },
     {
-        "data": 0.00751,
-        "schema": {
+        "input2": 0.00751,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "divisibleBy": 0.0001
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1,
             "quux": 2
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "quux": ["foo", "bar"]
@@ -2691,10 +2691,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "percent": "aoeu"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "slash/field": {
                 "type": "integer"
@@ -2719,10 +2719,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "fxo": [1, 2]
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "integer"
             },
@@ -2743,52 +2743,52 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "number"
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "array"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "enum": [6, "foo", [], true, {
                 "foo": 12
             }]
         }
     },
     {
-        "data": 0.0075,
-        "schema": {
+        "input2": 0.0075,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "divisibleBy": 0.0001
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "type": "boolean"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": []
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "integer"
             },
@@ -2809,10 +2809,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "slash": "aoeu"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "slash/field": {
                 "type": "integer"
@@ -2837,23 +2837,23 @@
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "properties": {
                 "foo": {}
             }
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "null"
         }
     },
     {
-        "data": [1, "foo", false],
-        "schema": {
+        "input2": [1, "foo", false],
+        "input": {
             "items": [
                 {
                     "type": "integer"
@@ -2862,11 +2862,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": {},
             "foo": []
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {
@@ -2879,19 +2879,19 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalItems": false
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "bar": {
                     "properties": {
@@ -2907,8 +2907,8 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["array", {
                 "type": "object"
@@ -2916,8 +2916,8 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "properties": {
                 "bar": {
                     "type": "string"
@@ -2929,16 +2929,16 @@
         }
     },
     {
-        "data": "",
-        "schema": {
+        "input2": "",
+        "input": {
             "minItems": 1
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": ["string", {
                 "properties": {
@@ -2951,30 +2951,30 @@
         }
     },
     {
-        "data": [1],
-        "schema": {
+        "input2": [1],
+        "input": {
             "maxItems": 2
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "type": "number"
         }
     },
     {
-        "data": [1, 2],
-        "schema": {
+        "input2": [1, 2],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minItems": 1
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": {
@@ -2991,10 +2991,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": [1, 2]
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "integer"
             },
@@ -3015,51 +3015,51 @@
         }
     },
     {
-        "data": 0,
-        "schema": {
+        "input2": 0,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "divisibleBy": 1.5
         }
     },
     {
-        "data": {
+        "input2": {
             "quux": 1
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "quux": ["foo", "bar"]
             }
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "type": "array"
         }
     },
     {
-        "data": "foobar",
-        "schema": {
+        "input2": "foobar",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maxItems": 2
         }
     },
     {
-        "data": 12345678910111213141516171819202122232425262728293031,
-        "schema": {
+        "input2": 12345678910111213141516171819202122232425262728293031,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": "::laptop",
-        "schema": {
+        "input2": "::laptop",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "ipv6"
         }
     },
     {
-        "data": [
+        "input2": [
             {
                 "foo": {
                     "bar": {
@@ -3075,23 +3075,23 @@
                 }
             }
         ],
-        "schema": {
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar"
         },
-        "schema": {
+        "input": {
             "additionalItems": false
         }
     },
     {
-        "data": {
+        "input2": {
             "aaaa": 18
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "a*": {
                     "type": "integer"
@@ -3103,17 +3103,17 @@
         }
     },
     {
-        "data": 10,
-        "schema": {
+        "input2": 10,
+        "input": {
             "multipleOf": 2
         }
     },
     {
-        "data": {
+        "input2": {
             "baz": null,
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -3141,10 +3141,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "a": 21
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "a*": {
                     "type": "integer"
@@ -3156,11 +3156,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 1,
             "quux": 2
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "quux": ["foo", "bar"]
@@ -3168,17 +3168,17 @@
         }
     },
     {
-        "data": "^(abc]",
-        "schema": {
+        "input2": "^(abc]",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "regex"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": false
         },
-        "schema": {
+        "input": {
             "additionalProperties": false,
             "properties": {
                 "foo": {
@@ -3188,10 +3188,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": false
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": false,
             "properties": {
@@ -3202,13 +3202,13 @@
         }
     },
     {
-        "data": "127.0.0.0.1",
-        "schema": {
+        "input2": "127.0.0.0.1",
+        "input": {
             "format": "ipv4"
         }
     },
     {
-        "data": [
+        "input2": [
             {
                 "foo": "bar"
             },
@@ -3216,13 +3216,13 @@
                 "foo": "bar"
             }
         ],
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": [
+        "input2": [
             {
                 "foo": "bar"
             },
@@ -3230,23 +3230,23 @@
                 "foo": "bar"
             }
         ],
-        "schema": {
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": "[^]",
-        "schema": {
+        "input2": "[^]",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "regex"
         }
     },
     {
-        "data": {
+        "input2": {
             "aaa": "foo",
             "aaaa": 31
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "a*": {
@@ -3259,17 +3259,17 @@
         }
     },
     {
-        "data": "2962",
-        "schema": {
+        "input2": "2962",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "email"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "not": {
                 "properties": {
                     "foo": {
@@ -3281,8 +3281,8 @@
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "additionalProperties": false,
             "properties": {
                 "bar": {},
@@ -3291,29 +3291,29 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "maxProperties": 2
         }
     },
     {
-        "data": 3,
-        "schema": {
+        "input2": 3,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maximum": 3,
             "exclusiveMaximum": true
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "baz": null,
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -3341,10 +3341,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": []
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "integer"
@@ -3366,8 +3366,8 @@
         }
     },
     {
-        "data": 1.5,
-        "schema": {
+        "input2": 1.5,
+        "input": {
             "anyOf": [
                 {
                     "type": "integer"
@@ -3379,24 +3379,24 @@
         }
     },
     {
-        "data": "1963-06-19",
-        "schema": {
+        "input2": "1963-06-19",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "date"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", "string"]
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": false,
             "properties": {
@@ -3406,15 +3406,15 @@
         }
     },
     {
-        "data": 9.727837981879871E+26,
-        "schema": {
+        "input2": 9.727837981879871E+26,
+        "input": {
             "exclusiveMaximum": true,
             "maximum": 9.727837981879871E+26
         }
     },
     {
-        "data": ["foo", 1],
-        "schema": {
+        "input2": ["foo", 1],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": [
                 {
@@ -3427,10 +3427,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "a": "bar"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "a*": {
@@ -3443,11 +3443,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": "baz",
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {
@@ -3460,35 +3460,35 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "not": {
                 "type": ["integer", "boolean"]
             }
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": "fo",
-        "schema": {
+        "input2": "fo",
+        "input": {
             "minLength": 2
         }
     },
     {
-        "data": "12345::",
-        "schema": {
+        "input2": "12345::",
+        "input": {
             "format": "ipv6"
         }
     },
     {
-        "data": 3,
-        "schema": {
+        "input2": 3,
+        "input": {
             "anyOf": [
                 {
                     "maxLength": 2
@@ -3501,19 +3501,19 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "array"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": "boom"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": false,
             "properties": {
@@ -3523,10 +3523,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", {
                 "properties": {
@@ -3538,8 +3538,8 @@
         }
     },
     {
-        "data": 5,
-        "schema": {
+        "input2": 5,
+        "input": {
             "$ref": "#/definitions/c",
             "definitions": {
                 "a": {
@@ -3555,27 +3555,27 @@
         }
     },
     {
-        "data": "\\\\WINDOWS\\fileshare",
-        "schema": {
+        "input2": "\\\\WINDOWS\\fileshare",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "uri"
         }
     },
     {
-        "data": [
+        "input2": [
             ["foo"],
             ["bar"]
         ],
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": true
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {
@@ -3588,16 +3588,16 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "minItems": 1
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -3619,12 +3619,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": true
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {},
                 "foo": {}
@@ -3632,22 +3632,22 @@
         }
     },
     {
-        "data": [1, 1, 1],
-        "schema": {
+        "input2": [1, 1, 1],
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": [1, "x"],
-        "schema": {
+        "input2": [1, "x"],
+        "input": {
             "items": {
                 "type": "integer"
             }
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "oneOf": [
                 {
                     "type": "integer"
@@ -3659,34 +3659,34 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "type": "object"
         }
     },
     {
-        "data": "",
-        "schema": {
+        "input2": "",
+        "input": {
             "minProperties": 1
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minLength": 2
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "enum": [1, 2, 3]
         }
     },
     {
-        "data": [1, "foo"],
-        "schema": {
+        "input2": [1, "foo"],
+        "input": {
             "items": [
                 {
                     "type": "integer"
@@ -3698,17 +3698,17 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "null"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "boolean"
             },
@@ -3719,17 +3719,17 @@
         }
     },
     {
-        "data": "([abc])+\\s+$",
-        "schema": {
+        "input2": "([abc])+\\s+$",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "regex"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": null
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", {
                 "properties": {
@@ -3741,8 +3741,8 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["array", {
                 "type": "object"
@@ -3750,28 +3750,28 @@
         }
     },
     {
-        "data": 4,
-        "schema": {
+        "input2": 4,
+        "input": {
             "enum": [1, 2, 3]
         }
     },
     {
-        "data": [
+        "input2": [
             {},
             [1],
             true,
             null,
             1
         ],
-        "schema": {
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar"
         },
-        "schema": {
+        "input": {
             "not": {
                 "properties": {
                     "foo": {
@@ -3783,39 +3783,39 @@
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "type": ["integer", "string"]
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "divisibleBy": 2
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "items": {
                 "type": "integer"
             }
         }
     },
     {
-        "data": [1, true],
-        "schema": {
+        "input2": [1, true],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": "quux",
             "foo": "quux"
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "bar": {
                     "properties": {
@@ -3831,8 +3831,8 @@
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "additionalItems": false,
             "items": [
                 {},
@@ -3842,29 +3842,29 @@
         }
     },
     {
-        "data": "abc",
-        "schema": {
+        "input2": "abc",
+        "input": {
             "pattern": "^a*$"
         }
     },
     {
-        "data": 4.5,
-        "schema": {
+        "input2": 4.5,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "divisibleBy": 1.5
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "minProperties": 1
         }
     },
     {
-        "data": [1, 2, 3, 4],
-        "schema": {
+        "input2": [1, 2, 3, 4],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": [
                 {},
@@ -3875,25 +3875,25 @@
         }
     },
     {
-        "data": [1, "foo", false],
-        "schema": {
+        "input2": [1, "foo", false],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": []
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "number"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": "baz"
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -3915,10 +3915,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "quux": 3
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "integer"
             },
@@ -3939,16 +3939,16 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "maxProperties": 2
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "not": {
                 "properties": {
                     "foo": {
@@ -3960,10 +3960,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "answer 1": "42"
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "X_": {
                     "type": "string"
@@ -3975,33 +3975,33 @@
         }
     },
     {
-        "data": [0, false],
-        "schema": {
+        "input2": [0, false],
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "type": "null"
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": ["integer", "boolean"]
         }
     },
     {
-        "data": 10,
-        "schema": {
+        "input2": 10,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maxLength": 2
         }
     },
     {
-        "data": [
+        "input2": [
             {
                 "foo": "bar"
             },
@@ -4009,26 +4009,26 @@
                 "foo": "baz"
             }
         ],
-        "schema": {
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": "\\\\WINDOWS\\fileshare",
-        "schema": {
+        "input2": "\\\\WINDOWS\\fileshare",
+        "input": {
             "format": "uri"
         }
     },
     {
-        "data": "fo",
-        "schema": {
+        "input2": "fo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maxLength": 2
         }
     },
     {
-        "data": [1, "x"],
-        "schema": {
+        "input2": [1, "x"],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": {
                 "type": "integer"
@@ -4036,17 +4036,17 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": {
+        "input2": {
             "a31b": null
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "X_": {
                     "type": "string"
@@ -4058,45 +4058,45 @@
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minItems": 1
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "number"
         }
     },
     {
-        "data": "192.168.0.1",
-        "schema": {
+        "input2": "192.168.0.1",
+        "input": {
             "format": "ipv4"
         }
     },
     {
-        "data": "256.256.256.256",
-        "schema": {
+        "input2": "256.256.256.256",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "ip-address"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "dependencies": {
                 "quux": ["foo", "bar"]
             }
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": "foo"
@@ -4104,15 +4104,15 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "null"
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["array", {
                 "type": "object"
@@ -4120,10 +4120,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {},
                 "foo": {}
@@ -4132,15 +4132,15 @@
         }
     },
     {
-        "data": 35,
-        "schema": {
+        "input2": 35,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "divisibleBy": 1.5
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": ["string", {
                 "properties": {
@@ -4153,33 +4153,33 @@
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "array"
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": "object"
         }
     },
     {
-        "data": 0.6,
-        "schema": {
+        "input2": 0.6,
+        "input": {
             "minimum": 1.1
         }
     },
     {
-        "data": 98249283749234923498293171823948729348710298301928331,
-        "schema": {
+        "input2": 98249283749234923498293171823948729348710298301928331,
+        "input": {
             "type": "string"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["array", {
                 "type": "object"
@@ -4187,8 +4187,8 @@
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "quux": ["foo", "bar"]
@@ -4196,33 +4196,33 @@
         }
     },
     {
-        "data": [1, 2],
-        "schema": {
+        "input2": [1, 2],
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": "http://foo.bar/?baz=qux#quux",
-        "schema": {
+        "input2": "http://foo.bar/?baz=qux#quux",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "uri"
         }
     },
     {
-        "data": "foobar",
-        "schema": {
+        "input2": "foobar",
+        "input": {
             "maxItems": 2
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maxLength": 2
         }
     },
     {
-        "data": [
+        "input2": [
             {
                 "foo": {
                     "bar": {
@@ -4238,28 +4238,28 @@
                 }
             }
         ],
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "boolean"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "any"
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "enum": [6, "foo", [], true, {
                 "foo": 12
@@ -4267,14 +4267,14 @@
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "maxItems": 2
         }
     },
     {
-        "data": [1, 2, 3, 4],
-        "schema": {
+        "input2": [1, 2, 3, 4],
+        "input": {
             "additionalItems": false,
             "items": [
                 {},
@@ -4284,33 +4284,33 @@
         }
     },
     {
-        "data": [1, true],
-        "schema": {
+        "input2": [1, true],
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "baz": 3,
             "foo": 1
         },
-        "schema": {
+        "input": {
             "maxProperties": 2
         }
     },
     {
-        "data": [1, 2, 3, 4, 5],
-        "schema": {
+        "input2": [1, 2, 3, 4, 5],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalItems": false
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": false
         },
-        "schema": {
+        "input": {
             "additionalProperties": false,
             "properties": {
                 "foo": {
@@ -4320,15 +4320,15 @@
         }
     },
     {
-        "data": "abc",
-        "schema": {
+        "input2": "abc",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "pattern": "^a*$"
         }
     },
     {
-        "data": ["foo", 1],
-        "schema": {
+        "input2": ["foo", 1],
+        "input": {
             "items": [
                 {
                     "type": "integer"
@@ -4340,17 +4340,17 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "enum": [1, 2, 3]
         }
     },
     {
-        "data": {
+        "input2": {
             "a": 21,
             "aaaa": 18
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "a*": {
@@ -4363,10 +4363,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "f.*o": {
@@ -4376,36 +4376,36 @@
         }
     },
     {
-        "data": 10,
-        "schema": {
+        "input2": 10,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "divisibleBy": 2
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "string"
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": ["integer", "string"]
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "null"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "oneOf": [
                 {
                     "minLength": 2
@@ -4418,11 +4418,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": "quux",
             "foo": 2
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": {
@@ -4439,30 +4439,30 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "type": "object"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "dependencies": {
                 "bar": ["foo"]
             }
         }
     },
     {
-        "data": 3.5,
-        "schema": {
+        "input2": 3.5,
+        "input": {
             "maximum": 3
         }
     },
     {
-        "data": {
+        "input2": {
             "tilda": "aoeu"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "slash/field": {
                 "type": "integer"
@@ -4487,75 +4487,75 @@
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "type": "array"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": "x",
-        "schema": {
+        "input2": "x",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maximum": 3
         }
     },
     {
-        "data": [1, 1],
-        "schema": {
+        "input2": [1, 1],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": 0,
-        "schema": {
+        "input2": 0,
+        "input": {
             "multipleOf": 1.5
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "string"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "maxLength": 2
         }
     },
     {
-        "data": 98249283749234923498293171823948729348710298301928331,
-        "schema": {
+        "input2": 98249283749234923498293171823948729348710298301928331,
+        "input": {
             "type": "number"
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "type": "array"
         }
     },
     {
-        "data": "x",
-        "schema": {
+        "input2": "x",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minimum": 1.1
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1,
             "foooooo": 2
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "f.*o": {
                     "type": "integer"
@@ -4564,12 +4564,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": true
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "boolean"
@@ -4581,83 +4581,83 @@
         }
     },
     {
-        "data": "192.168.0.1",
-        "schema": {
+        "input2": "192.168.0.1",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "ip-address"
         }
     },
     {
-        "data": 1.2,
-        "schema": {
+        "input2": 1.2,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minimum": 1.1,
             "exclusiveMinimum": true
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "type": ["integer", "string"]
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": "array"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "type": "boolean"
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "type": "string"
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "exclusiveMinimum": true,
             "minimum": 1.1
         }
     },
     {
-        "data": "www.example.com",
-        "schema": {
+        "input2": "www.example.com",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "host-name"
         }
     },
     {
-        "data": [1, 2],
-        "schema": {
+        "input2": [1, 2],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "object"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "dependencies": {
                 "bar": ["foo"]
             }
         }
     },
     {
-        "data": 3,
-        "schema": {
+        "input2": 3,
+        "input": {
             "anyOf": [
                 {
                     "type": "integer"
@@ -4669,41 +4669,41 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "boolean"
         }
     },
     {
-        "data": [1, 2],
-        "schema": {
+        "input2": [1, 2],
+        "input": {
             "maxItems": 2
         }
     },
     {
-        "data": 0.0075,
-        "schema": {
+        "input2": 0.0075,
+        "input": {
             "multipleOf": 0.0001
         }
     },
     {
-        "data": "::1",
-        "schema": {
+        "input2": "::1",
+        "input": {
             "format": "ipv6"
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": []
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "integer"
@@ -4725,10 +4725,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "percent": "aoeu"
         },
-        "schema": {
+        "input": {
             "percent%field": {
                 "type": "integer"
             },
@@ -4752,8 +4752,8 @@
         }
     },
     {
-        "data": [1, 2, 3, 4],
-        "schema": {
+        "input2": [1, 2, 3, 4],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": [],
             "additionalItems": {
@@ -4762,10 +4762,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "baz"
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -4787,36 +4787,36 @@
         }
     },
     {
-        "data": "f",
-        "schema": {
+        "input2": "f",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "minLength": 2
         }
     },
     {
-        "data": "a-vvvvvvvvvvvvvvvveeeeeeeeeeeeeeeerrrrrrrrrrrrrrrryyyyyyyyyyyyyyyy-long-host-name-component",
-        "schema": {
+        "input2": "a-vvvvvvvvvvvvvvvveeeeeeeeeeeeeeeerrrrrrrrrrrrrrrryyyyyyyyyyyyyyyy-long-host-name-component",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "host-name"
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "type": "object"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "type": "null"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "extends": [
                 {
@@ -4845,12 +4845,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": true
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "bar": {},
@@ -4859,8 +4859,8 @@
         }
     },
     {
-        "data": 3,
-        "schema": {
+        "input2": 3,
+        "input": {
             "oneOf": [
                 {
                     "type": "integer"
@@ -4872,42 +4872,42 @@
         }
     },
     {
-        "data": "foobar",
-        "schema": {
+        "input2": "foobar",
+        "input": {
             "maxProperties": 2
         }
     },
     {
-        "data": "aaa",
-        "schema": {
+        "input2": "aaa",
+        "input": {
             "pattern": "^a*$"
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "pattern": "^a*$"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "disallow": ["integer", "boolean"]
         }
     },
     {
-        "data": [
+        "input2": [
             ["foo"],
             ["foo"]
         ],
-        "schema": {
+        "input": {
             "uniqueItems": true
         }
     },
     {
-        "data": [1, "foo"],
-        "schema": {
+        "input2": [1, "foo"],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "items": [
                 {
@@ -4920,17 +4920,17 @@
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "object"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2
         },
-        "schema": {
+        "input": {
             "allOf": [
                 {
                     "properties": {
@@ -4958,17 +4958,17 @@
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "any"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": "foo"
@@ -4976,40 +4976,40 @@
         }
     },
     {
-        "data": [1, 2, 3],
-        "schema": {
+        "input2": [1, 2, 3],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maxItems": 2
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1,
             "quux": 2
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "quux": ["foo", "bar"]
             }
         }
     },
     {
-        "data": "aaa",
-        "schema": {
+        "input2": "aaa",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "pattern": "^a*$"
         }
     },
     {
-        "data": "joe.bloggs@example.com",
-        "schema": {
+        "input2": "joe.bloggs@example.com",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "email"
         }
     },
     {
-        "data": "a",
-        "schema": {
+        "input2": "a",
+        "input": {
             "$ref": "#/definitions/c",
             "definitions": {
                 "a": {
@@ -5025,17 +5025,17 @@
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "number"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 3
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {
                     "$ref": "#/properties/foo"
@@ -5047,8 +5047,8 @@
         }
     },
     {
-        "data": 12,
-        "schema": {
+        "input2": 12,
+        "input": {
             "patternProperties": {
                 "f.*o": {
                     "type": "integer"
@@ -5057,20 +5057,20 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "bar": ["foo"]
             }
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": 1
         },
-        "schema": {
+        "input": {
             "patternProperties": {
                 "f.*o": {
                     "type": "integer"
@@ -5079,42 +5079,42 @@
         }
     },
     {
-        "data": "::laptop",
-        "schema": {
+        "input2": "::laptop",
+        "input": {
             "format": "ipv6"
         }
     },
     {
-        "data": 3,
-        "schema": {
+        "input2": 3,
+        "input": {
             "exclusiveMaximum": true,
             "maximum": 3
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "object"
         }
     },
     {
-        "data": {
+        "input2": {
             "answer 1": "42"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "X_": {
@@ -5127,42 +5127,42 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar"
         },
-        "schema": {
+        "input": {
             "items": {
                 "type": "integer"
             }
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": 3
         },
-        "schema": {
+        "input": {
             "dependencies": {
                 "quux": ["foo", "bar"]
             }
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "integer"
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "type": "string"
         }
     },
     {
-        "data": [
+        "input2": [
             {
                 "foo": {
                     "bar": {
@@ -5178,17 +5178,17 @@
                 }
             }
         ],
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "uniqueItems": true
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": {},
             "foo": []
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {
                     "type": "string"
@@ -5200,15 +5200,15 @@
         }
     },
     {
-        "data": "12345::",
-        "schema": {
+        "input2": "12345::",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "format": "ipv6"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "properties": {
                 "foo": {
@@ -5218,15 +5218,15 @@
         }
     },
     {
-        "data": [1, 2],
-        "schema": {
+        "input2": [1, 2],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maxItems": 2
         }
     },
     {
-        "data": 5,
-        "schema": {
+        "input2": 5,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "$ref": "#/definitions/c",
             "definitions": {
@@ -5243,11 +5243,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": "quux",
             "foo": "baz"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "extends": {
                 "properties": {
@@ -5266,22 +5266,22 @@
         }
     },
     {
-        "data": [1],
-        "schema": {
+        "input2": [1],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "maxItems": 2
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "number"
         }
     },
     {
-        "data": 2.5,
-        "schema": {
+        "input2": 2.5,
+        "input": {
             "anyOf": [
                 {
                     "type": "integer"
@@ -5293,12 +5293,12 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": 2,
             "foo": 1,
             "quux": 12
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "boolean"
             },
@@ -5309,11 +5309,11 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": "bar",
             "foooooo": "baz"
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "f.*o": {
@@ -5323,8 +5323,8 @@
         }
     },
     {
-        "data": 25,
-        "schema": {
+        "input2": 25,
+        "input": {
             "allOf": [
                 {
                     "maximum": 30
@@ -5336,10 +5336,10 @@
         }
     },
     {
-        "data": {
+        "input2": {
             "foo": [1, 2]
         },
-        "schema": {
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "additionalProperties": {
                 "type": "integer"
@@ -5361,56 +5361,56 @@
         }
     },
     {
-        "data": 1.1,
-        "schema": {
+        "input2": 1.1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "any"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "any"
         }
     },
     {
-        "data": null,
-        "schema": {
+        "input2": null,
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": 4.5,
-        "schema": {
+        "input2": 4.5,
+        "input": {
             "multipleOf": 1.5
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": "integer"
         }
     },
     {
-        "data": {},
-        "schema": {
+        "input2": {},
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "string"
         }
     },
     {
-        "data": [],
-        "schema": {
+        "input2": [],
+        "input": {
             "type": "string"
         }
     },
     {
-        "data": {
+        "input2": {
             "bar": {},
             "foo": 1
         },
-        "schema": {
+        "input": {
             "properties": {
                 "bar": {
                     "type": "string"
@@ -5422,15 +5422,15 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "type": "number"
         }
     },
     {
-        "data": "foo",
-        "schema": {
+        "input2": "foo",
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": "foo"
@@ -5438,29 +5438,29 @@
         }
     },
     {
-        "data": 1,
-        "schema": {
+        "input2": 1,
+        "input": {
             "type": ["integer", "string"]
         }
     },
     {
-        "data": true,
-        "schema": {
+        "input2": true,
+        "input": {
             "$schema": "http://json-schema.org/draft-03/schema#",
             "pattern": "^a*$"
         }
     },
     {
-        "data": [1, 2],
-        "schema": {
+        "input2": [1, 2],
+        "input": {
             "minItems": 1
         }
     },
     {
-        "data": {
+        "input2": {
             "fxo": []
         },
-        "schema": {
+        "input": {
             "additionalProperties": {
                 "type": "integer"
             },

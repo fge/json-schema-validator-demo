@@ -36,7 +36,7 @@
     <div id="left" class="content">
         <div class="horiz">
             <label for="input">Schema:</label>
-            <span class="error starthidden" id="invalidSchema">Invalid JSON:
+            <span class="error starthidden" id="invalidInput">Invalid JSON:
                 parse error, <a href="#"></a></span>
         </div>
         <textarea name="input" rows="20" cols="20" id="input"></textarea>
@@ -49,8 +49,8 @@
 <div id="right" class="content">
     <div class="horiz">
         <label for="results">Validation result:</label>
-        <span class="error starthidden" id="validationFailure">failure</span>
-        <span class="success starthidden" id="validationSuccess">success</span>
+        <span class="error starthidden" id="processingFailure">failure</span>
+        <span class="success starthidden" id="processingSuccess">success</span>
     </div>
     <textarea name="results" rows="20" cols="20" id="results"
         readonly="readonly"></textarea>

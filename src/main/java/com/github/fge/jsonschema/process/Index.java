@@ -38,18 +38,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import static com.github.fge.jsonschema.constants.ResponseFields.*;
+
 
 @Path("/index")
 @Produces("application/json;charset=utf-8")
 public final class Index
 {
-    private static final String INVALID_SCHEMA = "invalidSchema";
-    private static final String INVALID_DATA = "invalidData";
-    private static final String RESULTS = "results";
-    private static final String VALID = "valid";
-
-    private static final String INPUT = "input";
-    private static final String INPUT2 = "input2";
     private static final Logger log = LoggerFactory.getLogger(Index.class);
     private static final Response OOPS = Response.status(500).build();
     private static final JsonValidator VALIDATOR
@@ -82,9 +77,9 @@ public final class Index
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
-        final boolean invalidSchema = fillWithData(ret, INPUT, INVALID_SCHEMA,
+        final boolean invalidSchema = fillWithData(ret, INPUT, INVALID_INPUT,
             rawSchema);
-        final boolean invalidData = fillWithData(ret, INPUT2, INVALID_DATA,
+        final boolean invalidData = fillWithData(ret, INPUT2, INVALID_INPUT2,
             rawData);
 
         final JsonNode schemaNode = ret.remove(INPUT);

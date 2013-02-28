@@ -39,13 +39,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import static com.github.fge.jsonschema.constants.ResponseFields.*;
 
 @Path("/jjschema")
 @Produces("application/json;charset=utf-8")
 public final class JJSchema
 {
-    private static final String RESULTS = "results";
-    private static final String VALID = "valid";
     private static final Response OOPS = Response.status(500).build();
 
     private static final Logger log = LoggerFactory.getLogger(JJSchema.class);

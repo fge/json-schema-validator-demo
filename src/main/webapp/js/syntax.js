@@ -15,13 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Messages = {
-    INVALID_SCHEMA: "#invalidSchema",
-    TOOLTIP_SCHEMA: "#qtip-schema",
-    VALIDATION_SUCCESS: "#validationSuccess",
-    VALIDATION_FAILURE: "#validationFailure"
-};
-
 function loadSampleSchema()
 {
     $(DomElements.STARTHIDDEN).hide();
@@ -60,7 +53,7 @@ var main = function()
     var $form = $(DomElements.FORM);
 
     // Create dummy qtips -- you cannot destroy a non existing one...
-    $(Messages.INVALID_SCHEMA).find("a").qtip({content: ""});
+    $(FormElements.INVALID_INPUT).find("a").qtip({content: ""});
 
     $form.submit(function (event)
     {
@@ -99,22 +92,22 @@ var main = function()
 
             // This is the way to guarantee that an object has a key with
             // JavaScript
-            var invalidSchema = response.hasOwnProperty("invalidSchema");
+            var invalidSchema = response.hasOwnProperty(Message.INVALID_INPUT);
 
             if (invalidSchema) {
-                reportParseError(response["invalidSchema"],
-                    $(Messages.INVALID_SCHEMA), $(FormElements.INPUT));
+                reportParseError(response[Message.INVALID_INPUT],
+                    $(FormElements.INVALID_INPUT), $(FormElements.INPUT));
                 return;
             }
 
-            var validationMessage = response["valid"]
-                ? Messages.VALIDATION_SUCCESS
-                : Messages.VALIDATION_FAILURE;
+            var validationMessage = response[Message.VALID]
+                ? ResultPane.PROCESSING_SUCCESS
+                : ResultPane.PROCESSING_FAILURE;
 
             // Show the appropriate validation message and inject pretty-printed
             // JSON into the results text area
             $(validationMessage).show();
-            TextAreas.fillJson(ResultPane.RESULTS, response["results"]);
+            TextAreas.fillJson(ResultPane.RESULTS, response[Message.RESULTS]);
         });
 
         // On failure
