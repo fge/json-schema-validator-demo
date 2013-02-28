@@ -33,7 +33,7 @@ var TextAreas = {
 
 // jQuery selectors for global elements
 var DomElements = {
-    FORM: "#validate",
+    FORM: "#process",
     STARTHIDDEN: ".starthidden"
 };
 
