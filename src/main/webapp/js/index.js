@@ -21,18 +21,6 @@ var SampleResponse = {
     DATA: "data"
 };
 
-// jQuery selectors for input form elements
-var FormElements = {
-    INPUTS: "textarea, input",
-    INPUT: "#input",
-    INPUT2: "#input2"
-};
-
-// jQuery selectors for result pane elements
-var ResultPane = {
-    RESULTS: "textarea#results"
-};
-
 var Messages = {
     INVALID_SCHEMA: "#invalidSchema",
     INVALID_DATA: "#invalidData",

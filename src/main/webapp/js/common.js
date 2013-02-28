@@ -98,3 +98,15 @@ function reportParseError(parseError, msgHandle, textArea)
     msgHandle.show();
 }
 
+// jQuery selectors for input form elements
+var FormElements = {
+    INPUTS: "textarea, input",
+    INPUT: "#input",
+    INPUT2: "#input2"
+};
+
+// jQuery selectors for result pane elements
+var ResultPane = {
+    RESULTS: "textarea#results"
+};
+

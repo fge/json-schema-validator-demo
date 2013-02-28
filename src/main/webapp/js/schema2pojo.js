@@ -15,17 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// jQuery selectors for input form elements
-var FormElements = {
-    INPUTS: "textarea, input",
-    INPUT: "#input"
-};
-
-// jQuery selectors for result pane elements
-var ResultPane = {
-    RESULTS: "textarea#results"
-};
-
 var Messages = {
     INVALID_SCHEMA: "#invalidSchema",
     TOOLTIP_SCHEMA: "#qtip-schema",
