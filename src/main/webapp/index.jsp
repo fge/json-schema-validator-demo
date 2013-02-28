@@ -22,9 +22,12 @@
     style="font-family: monospace;">Validate</span> button. Notes:</p>
 
     <ul>
-        <li>schema syntax validation is also performed;</li>
-        <li>on errors, you have the full paths into the schema and the instance
-        where the error has occurred, and details about the error.</li>
+        <li>inline dereferencing (using <span style="font-family: monospace">id
+        </span>) is disabled for security reasons;</li>
+        <li><b>Draft v4 is assumed</b>. If you want to use a draft v3 schema,
+        add a <span style="font-family: monospace">$schema</span> at the root of
+        your schema, with <span style="font-family: monospace;">
+        http://json-schema.org/draft-03/schema#</span> as a value.</li>
     </ul>
 
     <p>Software used: <a href="https://github.com/fge/json-schema-validator">
@@ -41,18 +44,6 @@
         </div>
         <textarea name="schema" rows="20" cols="20" class="half"
             id="schema"></textarea>
-        <div class="options">
-            <p>Validation options:</p>
-            <div>
-                <input type="checkbox" name="useV3" id="useV3" value="true">
-                <label for="useV3">Use draft v3</label>
-            </div>
-            <div>
-                <input type="checkbox" name="useId" id="useId" value="true">
-                <label for="useId">Trust <span style="font-family: monospace">id
-                </span> (inline dereferencing)</label>
-            </div>
-        </div>
         <div class="horiz">
             <label for="data">Data:</label>
             <span class="error starthidden" id="invalidData">Invalid JSON: parse
@@ -74,8 +65,8 @@
         <span class="error starthidden" id="validationFailure">failure</span>
         <span class="success starthidden" id="validationSuccess">success</span>
     </div>
-    <textarea name="results" rows="20" cols="20"
-        id="results" readonly="readonly"></textarea>
+    <textarea name="results" rows="20" cols="20" id="results"
+        readonly="readonly"></textarea>
 </div>
 </body>
 </html>

@@ -22,9 +22,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.fge.jsonschema.JsonValidators;
 import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.constants.ValidateResponse;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.github.fge.jsonschema.main.JsonValidator;
 import com.github.fge.jsonschema.report.ProcessingReport;
 import com.github.fge.jsonschema.util.AsJson;
@@ -34,7 +34,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -48,19 +47,19 @@ import java.io.IOException;
 public final class Index
 {
     private static final Logger log = LoggerFactory.getLogger(Index.class);
-
     private static final Response OOPS = Response.status(500).build();
+    private static final JsonValidator VALIDATOR
+        = JsonSchemaFactory.byDefault().getValidator();
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public static Response validate(
         @FormParam("schema") final String schema,
-        @FormParam("data") final String data,
-        @FormParam("useV3") @DefaultValue("false") final boolean useV3,
-        @FormParam("useId") @DefaultValue("false") final boolean useId)
+        @FormParam("data") final String data
+    )
     {
         try {
-            final JsonNode ret = buildResult(schema, data, useV3, useId);
+            final JsonNode ret = buildResult(schema, data);
             return Response.ok().entity(ret.toString()).build();
         } catch (IOException e) {
             log.error("I/O error while validating data", e);
@@ -74,7 +73,7 @@ public final class Index
      * the needed elements.
      */
     private static JsonNode buildResult(final String rawSchema,
-        final String rawData, final boolean useV3, final boolean useId)
+        final String rawData)
         throws IOException
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
@@ -90,10 +89,8 @@ public final class Index
         if (invalidSchema || invalidData)
             return ret;
 
-        final JsonValidator validator
-            = JsonValidators.withOptions(useV3, useId);
         final ProcessingReport report
-            = validator.validateUnchecked(schemaNode, data);
+            = VALIDATOR.validateUnchecked(schemaNode, data);
 
         final boolean success = report.isSuccess();
         ret.put(ValidateResponse.VALID, success);

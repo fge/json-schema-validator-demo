@@ -1,73 +1,117 @@
 [
     {
+        "data": "x",
         "schema": {
-            "minimum": 1.1,
-            "exclusiveMinimum": true
-        },
-        "data": 1.2,
-        "useV3": true,
-        "useId": false
+            "maximum": 3
+        }
     },
     {
+        "data": "2962",
         "schema": {
-            "type": [ "integer", "string" ]
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
+            "format": "email"
+        }
     },
     {
+        "data": [null, 2, 3, 4],
         "schema": {
-            "type": "array"
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
+            "additionalItems": {
+                "type": "integer"
+            },
+            "items": [
+                {}
+            ]
+        }
     },
     {
-        "schema": {
-            "type": [ "array", {
-                "type": "object"
-            } ]
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "disallow": [ "string", {
-                "type": "object",
-                "properties": {
-                    "foo": {
-                        "type": "string"
-                    }
-                }
-            } ]
-        },
         "data": {
-            "foo": 1
+            "bar": 2,
+            "foo": "quux"
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "maxLength": 2
-        },
-        "data": "f",
-        "useV3": true,
-        "useId": false
+            "allOf": [
+                {
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["foo"]
+                },
+                {
+                    "properties": {
+                        "baz": {
+                            "type": "null"
+                        }
+                    },
+                    "required": ["baz"]
+                }
+            ],
+            "properties": {
+                "bar": {
+                    "type": "integer"
+                }
+            },
+            "required": ["bar"]
+        }
     },
     {
+        "data": "foo",
         "schema": {
             "minLength": 2
-        },
-        "data": "f",
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "any"
+        }
+    },
+    {
+        "data": {
+            "bar": 1
+        },
+        "schema": {
+            "properties": {
+                "bar": {},
+                "foo": {}
+            },
+            "required": ["foo"]
+        }
+    },
+    {
+        "data": "f",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maxLength": 2
+        }
+    },
+    {
+        "data": [1, 2, 3, "foo"],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": [],
+            "additionalItems": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "bar": "foo"
+            }
+        }
+    },
+    {
+        "data": {
+            "a": "bar"
+        },
         "schema": {
             "patternProperties": {
                 "a*": {
@@ -77,229 +121,2944 @@
                     "maximum": 20
                 }
             }
-        },
+        }
+    },
+    {
         "data": {
-            "aaaa": 31
+            "bar": 2,
+            "foo": 1
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "type": "null"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
     },
     {
-        "schema": {
-            "type": "integer"
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maximum": 3
-        },
-        "data": "x",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "pattern": "^a*$"
-        },
-        "data": "aaa",
-        "useV3": true,
-        "useId": false
-    },
-    {
+        "data": 1,
         "schema": {
             "minLength": 2
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": "8:30 AM",
         "schema": {
-            "type": "object"
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "time"
+        }
     },
     {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "bar": "foo"
+            }
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "any"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": 3
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "type": "null"
+        }
+    },
+    {
+        "data": {
+            "minLength": -1
+        },
+        "schema": {
+            "$ref": "http://json-schema.org/draft-04/schema#"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": 2.2,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maximum": 3,
+            "exclusiveMaximum": true
+        }
+    },
+    {
+        "data": 12345678910111213141516171819202122232425262728293031,
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "type": "array"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["array", {
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
+    },
+    {
+        "data": "-a-host-name-that-starts-with--",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "host-name"
+        }
+    },
+    {
+        "data": 98249283749234923498293171823948729348710298301928331,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "number"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "anyOf": [
+                {
+                    "maxLength": 2
+                },
+                {
+                    "minLength": 4
+                }
+            ],
+            "type": "string"
+        }
+    },
+    {
+        "data": 1.1,
         "schema": {
             "type": "number"
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
+        }
     },
     {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "integer"
-                },
-                "bar": {
-                    "$ref": "#/properties/foo"
-                }
+        "data": {
+            "items": {
+                "type": 1
             }
         },
-        "data": {
-            "bar": 3
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "maximum": 3
-        },
-        "data": 3.5,
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "$ref": "http://json-schema.org/draft-03/schema#"
+        }
     },
     {
+        "data": 3.5,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maximum": 3
+        }
+    },
+    {
+        "data": {
+            "quux": []
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": {
+                "foo": false
+            }
+        },
+        "schema": {
+            "additionalProperties": false,
+            "properties": {
+                "foo": {
+                    "$ref": "#"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "a_x_3": 3
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "X_": {
+                    "type": "string"
+                },
+                "[0-9]{2,}": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "a31b": null
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "X_": {
+                    "type": "string"
+                },
+                "[0-9]{2,}": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "fxo": [1, 2]
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "array"
+        }
+    },
+    {
+        "data": 0.6,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minimum": 1.1
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "type": "null"
+        }
+    },
+    {
+        "data": {
+            "foo": "bar"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": [1, 2, 3],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": false,
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": 2.6,
+        "schema": {
+            "minimum": 1.1
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minimum": 1.1,
+            "exclusiveMinimum": true
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": [
+                {
+                    "type": ["string"]
+                },
+                {
+                    "type": ["array", "null"]
+                }
+            ]
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["array", {
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": {
+            "foo": "bar",
+            "foooooo": "baz"
+        },
         "schema": {
             "patternProperties": {
                 "f.*o": {
                     "type": "integer"
                 }
             }
+        }
+    },
+    {
+        "data": {
+            "slash": "aoeu"
         },
+        "schema": {
+            "percent%field": {
+                "type": "integer"
+            },
+            "properties": {
+                "percent": {
+                    "$ref": "#/percent%25field"
+                },
+                "slash": {
+                    "$ref": "#/slash~1field"
+                },
+                "tilda": {
+                    "$ref": "#/tilda~0field"
+                }
+            },
+            "slash/field": {
+                "type": "integer"
+            },
+            "tilda~field": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": "fo",
+        "schema": {
+            "maxLength": 2
+        }
+    },
+    {
+        "data": [1, 2, 3],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": [
+                {},
+                {},
+                {}
+            ],
+            "additionalItems": false
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "not": {
+                "type": ["integer", "boolean"]
+            }
+        }
+    },
+    {
+        "data": 12,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "type": "string"
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
+    },
+    {
+        "data": {
+            "quux": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": {},
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "boolean"
+        }
+    },
+    {
+        "data": {
+            "foo": 1,
+            "foooooo": 2
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "baz": null,
+            "foo": "quux"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "extends": [
+                {
+                    "properties": {
+                        "foo": {
+                            "required": true,
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "baz": {
+                            "required": true,
+                            "type": "null"
+                        }
+                    }
+                }
+            ],
+            "properties": {
+                "bar": {
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": "f",
+        "schema": {
+            "minLength": 2
+        }
+    },
+    {
+        "data": "x",
+        "schema": {
+            "minimum": 1.1
+        }
+    },
+    {
+        "data": "a",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "$ref": "#/definitions/c",
+            "definitions": {
+                "a": {
+                    "type": "integer"
+                },
+                "b": {
+                    "$ref": "#/definitions/a"
+                },
+                "c": {
+                    "$ref": "#/definitions/b"
+                }
+            }
+        }
+    },
+    {
+        "data": 3,
+        "schema": {
+            "oneOf": [
+                {
+                    "minLength": 2
+                },
+                {
+                    "maxLength": 4
+                }
+            ],
+            "type": "string"
+        }
+    },
+    {
+        "data": "127.0.0.0.1",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "ip-address"
+        }
+    },
+    {
+        "data": [
+            {
+                "foo": "bar"
+            },
+            {
+                "foo": "baz"
+            }
+        ],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": true
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": 2
+        },
+        "schema": {
+            "dependencies": {
+                "bar": ["foo"]
+            }
+        }
+    },
+    {
+        "data": "http://foo.bar/?baz=qux#quux",
+        "schema": {
+            "format": "uri"
+        }
+    },
+    {
+        "data": {
+            "tilda": "aoeu"
+        },
+        "schema": {
+            "percent%field": {
+                "type": "integer"
+            },
+            "properties": {
+                "percent": {
+                    "$ref": "#/percent%25field"
+                },
+                "slash": {
+                    "$ref": "#/slash~1field"
+                },
+                "tilda": {
+                    "$ref": "#/tilda~0field"
+                }
+            },
+            "slash/field": {
+                "type": "integer"
+            },
+            "tilda~field": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "enum": [6, "foo", [], true, {
+                "foo": 12
+            }]
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "type": "object"
+        }
+    },
+    {
         "data": {
             "foo": 1
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "type": "number"
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "integer", "string" ]
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "any"
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
+            "additionalProperties": false,
             "properties": {
-                "foo": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "object"
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "anyOf": [
+                {
                     "type": "integer"
                 },
+                {
+                    "minimum": 2
+                }
+            ]
+        }
+    },
+    {
+        "data": "(?<=foo)bar",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "regex"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": "256.256.256.256",
+        "schema": {
+            "format": "ipv4"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "string"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "type": "object"
+        }
+    },
+    {
+        "data": {
+            "foo": [1, 2, 3, 4]
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
                 "bar": {
-                    "type": "string"
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "string"
+        }
+    },
+    {
+        "data": [1, 1],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": {
+            "definitions": {
+                "foo": {
+                    "type": 1
                 }
             }
         },
+        "schema": {
+            "$ref": "http://json-schema.org/draft-04/schema#"
+        }
+    },
+    {
         "data": {
-            "foo": [ ],
-            "bar": { }
+            "quux": "foo"
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "type": "null"
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "bar": "foo"
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
             }
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": {
+            "bar": 2
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "extends": {
+                "properties": {
+                    "foo": {
+                        "required": true,
+                        "type": "string"
+                    }
+                }
+            },
+            "properties": {
+                "bar": {
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "any"
+        }
+    },
+    {
+        "data": [
+            {},
+            [1],
+            true,
+            null,
+            {},
+            1
+        ],
         "schema": {
             "uniqueItems": true
-        },
-        "data": [
-            [ "foo" ],
-            [ "bar" ]
-        ],
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": null,
+        "schema": {
+            "enum": [6, "foo", [], true, {
+                "foo": 12
+            }]
+        }
+    },
+    {
+        "data": {
+            "bar": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {},
+                "foo": {
+                    "required": true
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "fxo": []
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": {
+                "bar": false
+            }
+        },
+        "schema": {
+            "additionalProperties": false,
+            "properties": {
+                "foo": {
+                    "$ref": "#"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": "bar"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": ["string", {
+                "properties": {
+                    "foo": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": {
+            "foo": "bar",
+            "fooooo": 2
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": "www.example.com",
+        "schema": {
+            "format": "hostname"
+        }
+    },
+    {
+        "data": 2.6,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maximum": 3
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": "1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1",
+        "schema": {
+            "format": "ipv6"
+        }
+    },
+    {
+        "data": "foobar",
+        "schema": {
+            "oneOf": [
+                {
+                    "minLength": 2
+                },
+                {
+                    "maxLength": 4
+                }
+            ],
+            "type": "string"
+        }
+    },
+    {
+        "data": {
+            "a": 21
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "a*": {
+                    "type": "integer"
+                },
+                "aaa*": {
+                    "maximum": 20
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "minLength": 1
+        },
+        "schema": {
+            "$ref": "http://json-schema.org/draft-04/schema#"
+        }
+    },
+    {
+        "data": [1, 2, 3],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "array"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "type": "array"
+        }
+    },
+    {
+        "data": [
+            ["foo"],
+            ["foo"]
+        ],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": 7,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "divisibleBy": 2
+        }
+    },
+    {
+        "data": [
+            {
+                "foo": {
+                    "bar": {
+                        "baz": true
+                    }
+                }
+            },
+            {
+                "foo": {
+                    "bar": {
+                        "baz": true
+                    }
+                }
+            }
+        ],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": 2.2,
+        "schema": {
+            "exclusiveMaximum": true,
+            "maximum": 3
+        }
+    },
+    {
+        "data": [1, 2, 3],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": [
+                {
+                    "type": ["string"]
+                },
+                {
+                    "type": ["array", "null"]
+                }
+            ]
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "not": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": true,
         "schema": {
             "type": "number"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": "::1",
         "schema": {
-            "type": "null"
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "ipv6"
+        }
     },
     {
+        "data": {
+            "quux": 3
+        },
         "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": 35,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minimum": 20,
+            "extends": {
+                "maximum": 30
+            }
+        }
+    },
+    {
+        "data": 35,
+        "schema": {
+            "multipleOf": 1.5
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "type": "string"
+        }
+    },
+    {
+        "data": "08:30:06",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "time"
+        }
+    },
+    {
+        "data": [1],
+        "schema": {
+            "minItems": 1
+        }
+    },
+    {
+        "data": [null, 2, 3, "foo"],
+        "schema": {
+            "additionalItems": {
+                "type": "integer"
+            },
+            "items": [
+                {}
+            ]
+        }
+    },
+    {
+        "data": {
+            "aaa": "foo",
+            "aaaa": 31
+        },
+        "schema": {
+            "patternProperties": {
+                "a*": {
+                    "type": "integer"
+                },
+                "aaa*": {
+                    "maximum": 20
+                }
+            }
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": "integer"
+        }
+    },
+    {
+        "data": {
+            "quux": "foo"
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": {
+                "foo": false
+            }
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": false,
+            "properties": {
+                "foo": {
+                    "$ref": "#"
+                }
+            }
+        }
+    },
+    {
+        "data": 2.6,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minimum": 1.1
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "type": "string"
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "type": "boolean"
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "boolean"
+        }
+    },
+    {
+        "data": {
+            "bar": "quux",
+            "foo": "quux"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
                 "bar": {
                     "properties": {
-                        "foo": {
+                        "bar": {
                             "type": "integer"
                         },
-                        "bar": {
+                        "foo": {
                             "type": "integer"
                         }
                     }
                 }
             }
-        },
-        "data": {
-            "foo": 2,
-            "bar": "quux"
-        },
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": 9.727837981879871E+26,
         "schema": {
-            "type": "boolean"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maximum": 9.727837981879871E+26,
+            "exclusiveMaximum": true
+        }
     },
     {
+        "data": {},
+        "schema": {
+            "minProperties": 1
+        }
+    },
+    {
+        "data": {
+            "aaaa": 31
+        },
+        "schema": {
+            "patternProperties": {
+                "a*": {
+                    "type": "integer"
+                },
+                "aaa*": {
+                    "maximum": 20
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": false
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": false,
+            "properties": {
+                "foo": {
+                    "$ref": "#"
+                }
+            }
+        }
+    },
+    {
+        "data": "foobar",
+        "schema": {
+            "anyOf": [
+                {
+                    "maxLength": 2
+                },
+                {
+                    "minLength": 4
+                }
+            ],
+            "type": "string"
+        }
+    },
+    {
+        "data": {
+            "foo": {
+                "bar": false
+            }
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": false,
+            "properties": {
+                "foo": {
+                    "$ref": "#"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": [1, 2, 3, 4]
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": []
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": "joe.bloggs@example.com",
+        "schema": {
+            "format": "email"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "baz": null
+        },
+        "schema": {
+            "allOf": [
+                {
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["foo"]
+                },
+                {
+                    "properties": {
+                        "baz": {
+                            "type": "null"
+                        }
+                    },
+                    "required": ["baz"]
+                }
+            ],
+            "properties": {
+                "bar": {
+                    "type": "integer"
+                }
+            },
+            "required": ["bar"]
+        }
+    },
+    {
+        "data": {
+            "bar": "quux",
+            "foo": "baz"
+        },
+        "schema": {
+            "allOf": [
+                {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["bar"]
+                },
+                {
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["foo"]
+                }
+            ]
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "multipleOf": 2
+        }
+    },
+    {
+        "data": 98249283749234923498293171823948729348710298301928331,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "string"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "type": "number"
+        }
+    },
+    {
+        "data": 2.6,
+        "schema": {
+            "maximum": 3
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "null"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "baz": null
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "extends": [
+                {
+                    "properties": {
+                        "foo": {
+                            "required": true,
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "baz": {
+                            "required": true,
+                            "type": "null"
+                        }
+                    }
+                }
+            ],
+            "properties": {
+                "bar": {
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "type": "number"
+        }
+    },
+    {
+        "data": {
+            "foo": "bar",
+            "fooooo": 2
+        },
+        "schema": {
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": 25,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minimum": 20,
+            "extends": {
+                "maximum": 30
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": 12
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {},
+                "foo": {
+                    "required": true
+                }
+            }
+        }
+    },
+    {
+        "data": "fo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minLength": 2
+        }
+    },
+    {
+        "data": {
+            "bar": 1,
+            "quux": 2
+        },
+        "schema": {
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": "06/19/1963 08:30:06 PST",
+        "schema": {
+            "format": "date-time"
+        }
+    },
+    {
+        "data": {
+            "bar": "baz",
+            "foo": 1
+        },
+        "schema": {
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": 2.5,
+        "schema": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "minimum": 2
+                }
+            ]
+        }
+    },
+    {
+        "data": {
+            "bar": "quux",
+            "foo": 2
+        },
+        "schema": {
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        },
+                        "foo": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": [0, false],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": [
+            {},
+            [1],
+            true,
+            null,
+            1
+        ],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": {
+            "aaaa": 31
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "a*": {
+                    "type": "integer"
+                },
+                "aaa*": {
+                    "maximum": 20
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "items": {
+                "type": "integer"
+            }
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "$ref": "http://json-schema.org/draft-03/schema#"
+        }
+    },
+    {
+        "data": 1.5,
+        "schema": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "minimum": 2
+                }
+            ]
+        }
+    },
+    {
+        "data": [
+            ["foo"],
+            ["bar"]
+        ],
         "schema": {
             "uniqueItems": true
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", {
+                "properties": {
+                    "foo": {
+                        "type": "null"
+                    }
+                }
+            }]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": ["integer", "boolean"]
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "object"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "type": "number"
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": "number"
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": "boolean"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1
         },
+        "schema": {
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        },
+                        "foo": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "type": "boolean"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": "baz"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "extends": {
+                "properties": {
+                    "foo": {
+                        "required": true,
+                        "type": "string"
+                    }
+                }
+            },
+            "properties": {
+                "bar": {
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": "",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minItems": 1
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "string"
+        }
+    },
+    {
+        "data": "1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "ipv6"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1
+        },
+        "schema": {
+            "dependencies": {
+                "bar": ["foo"]
+            }
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": "string"
+        }
+    },
+    {
+        "data": 35,
+        "schema": {
+            "allOf": [
+                {
+                    "maximum": 30
+                },
+                {
+                    "minimum": 20
+                }
+            ]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "object"
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "null"
+        }
+    },
+    {
+        "data": [1, 2, 3, 4, 5],
+        "schema": {
+            "additionalItems": false,
+            "items": {}
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "number"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": "quux"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "extends": [
+                {
+                    "properties": {
+                        "foo": {
+                            "required": true,
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "baz": {
+                            "required": true,
+                            "type": "null"
+                        }
+                    }
+                }
+            ],
+            "properties": {
+                "bar": {
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "object"
+        }
+    },
+    {
+        "data": "06/19/1963",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "date"
+        }
+    },
+    {
+        "data": [1, 1, 1],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": 10,
+        "schema": {
+            "maxLength": 2
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "not": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "type": "array"
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": "integer"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["array", {
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": {
+            "a_X_3": 3
+        },
+        "schema": {
+            "patternProperties": {
+                "X_": {
+                    "type": "string"
+                },
+                "[0-9]{2,}": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": [
+                {
+                    "type": ["string"]
+                },
+                {
+                    "type": ["array", "null"]
+                }
+            ]
+        }
+    },
+    {
+        "data": {
+            "aaaa": 18
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "a*": {
+                    "type": "integer"
+                },
+                "aaa*": {
+                    "maximum": 20
+                }
+            }
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": [1, 2, 3, 4, 5],
+        "schema": {
+            "additionalItems": false
+        }
+    },
+    {
+        "data": {
+            "a_x_3": 3
+        },
+        "schema": {
+            "patternProperties": {
+                "X_": {
+                    "type": "string"
+                },
+                "[0-9]{2,}": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "type": "boolean"
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "not": {
+                "type": ["integer", "boolean"]
+            }
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "type": "null"
+        }
+    },
+    {
+        "data": {
+            "a": 21,
+            "aaaa": 18
+        },
+        "schema": {
+            "patternProperties": {
+                "a*": {
+                    "type": "integer"
+                },
+                "aaa*": {
+                    "maximum": 20
+                }
+            }
+        }
+    },
+    {
+        "data": "f",
+        "schema": {
+            "maxLength": 2
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "boolean"
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "array"
+        }
+    },
+    {
+        "data": [
+            {},
+            [1],
+            true,
+            null,
+            {},
+            1
+        ],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1
+        },
+        "schema": {
+            "minProperties": 1
+        }
+    },
+    {
+        "data": "06/19/1963 08:30:06 PST",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "date-time"
+        }
+    },
+    {
+        "data": {
+            "bar": true
+        },
+        "schema": {
+            "properties": {
+                "bar": {
+                    "$ref": "#/properties/foo"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "string"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": "quux"
+        },
+        "schema": {
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        },
+                        "foo": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": "null"
+        }
+    },
+    {
+        "data": {
+            "foo": false
+        },
+        "schema": {
+            "enum": [6, "foo", [], true, {
+                "foo": 12
+            }]
+        }
+    },
+    {
+        "data": 0.00751,
+        "schema": {
+            "multipleOf": 0.0001
+        }
+    },
+    {
+        "data": "a-vvvvvvvvvvvvvvvveeeeeeeeeeeeeeeerrrrrrrrrrrrrrrryyyyyyyyyyyyyyyy-long-host-name-component",
+        "schema": {
+            "format": "hostname"
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": {
+            "quux": []
+        },
+        "schema": {
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": 4,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "enum": [1, 2, 3]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "array"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": 7,
+        "schema": {
+            "multipleOf": 2
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "boolean"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": ["string", {
+                "properties": {
+                    "foo": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": {
+            "bar": 3
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {
+                    "$ref": "#/properties/foo"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": "baz"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "extends": {
+                "properties": {
+                    "foo": {
+                        "required": true,
+                        "type": "string"
+                    }
+                }
+            },
+            "properties": {
+                "bar": {
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "type": "null"
+        }
+    },
+    {
+        "data": "-a-host-name-that-starts-with--",
+        "schema": {
+            "format": "hostname"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "type": "object"
+        }
+    },
+    {
+        "data": [1, 2, 3, 4, 5],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": {},
+            "additionalItems": false
+        }
+    },
+    {
+        "data": {
+            "a_X_3": 3
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "X_": {
+                    "type": "string"
+                },
+                "[0-9]{2,}": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    {
+        "data": 1.2,
+        "schema": {
+            "exclusiveMinimum": true,
+            "minimum": 1.1
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": "boom"
+        },
+        "schema": {
+            "additionalProperties": false,
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": [1],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minItems": 1
+        }
+    },
+    {
+        "data": {
+            "definitions": {
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        },
+        "schema": {
+            "$ref": "http://json-schema.org/draft-04/schema#"
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minLength": 2
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": "quux"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        },
+                        "foo": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "boolean"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "type": "boolean"
+        }
+    },
+    {
+        "data": {
+            "foo": false
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "enum": [6, "foo", [], true, {
+                "foo": 12
+            }]
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "null"
+        }
+    },
+    {
+        "data": 0.00751,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "divisibleBy": 0.0001
+        }
+    },
+    {
+        "data": {
+            "foo": 1,
+            "quux": 2
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": {
+            "percent": "aoeu"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "slash/field": {
+                "type": "integer"
+            },
+            "tilda~field": {
+                "type": "integer"
+            },
+            "percent%field": {
+                "type": "integer"
+            },
+            "properties": {
+                "percent": {
+                    "$ref": "#/percent%25field"
+                },
+                "slash": {
+                    "$ref": "#/slash~1field"
+                },
+                "tilda": {
+                    "$ref": "#/tilda~0field"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "fxo": [1, 2]
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "number"
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "array"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "enum": [6, "foo", [], true, {
+                "foo": 12
+            }]
+        }
+    },
+    {
+        "data": 0.0075,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "divisibleBy": 0.0001
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "type": "boolean"
+        }
+    },
+    {
+        "data": {
+            "bar": []
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "slash": "aoeu"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "slash/field": {
+                "type": "integer"
+            },
+            "tilda~field": {
+                "type": "integer"
+            },
+            "percent%field": {
+                "type": "integer"
+            },
+            "properties": {
+                "percent": {
+                    "$ref": "#/percent%25field"
+                },
+                "slash": {
+                    "$ref": "#/slash~1field"
+                },
+                "tilda": {
+                    "$ref": "#/tilda~0field"
+                }
+            }
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "properties": {
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "null"
+        }
+    },
+    {
+        "data": [1, "foo", false],
+        "schema": {
+            "items": [
+                {
+                    "type": "integer"
+                }
+            ]
+        }
+    },
+    {
+        "data": {
+            "bar": {},
+            "foo": []
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": "bar"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalItems": false
+        }
+    },
+    {
+        "data": {
+            "foo": "quux"
+        },
+        "schema": {
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        },
+                        "foo": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["array", {
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": "",
+        "schema": {
+            "minItems": 1
+        }
+    },
+    {
+        "data": {
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": ["string", {
+                "properties": {
+                    "foo": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": [1],
+        "schema": {
+            "maxItems": 2
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "type": "number"
+        }
+    },
+    {
+        "data": [1, 2],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minItems": 1
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        },
+                        "foo": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": [1, 2]
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": 0,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "divisibleBy": 1.5
+        }
+    },
+    {
+        "data": {
+            "quux": 1
+        },
+        "schema": {
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "type": "array"
+        }
+    },
+    {
+        "data": "foobar",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maxItems": 2
+        }
+    },
+    {
+        "data": 12345678910111213141516171819202122232425262728293031,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
+    },
+    {
+        "data": "::laptop",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "ipv6"
+        }
+    },
+    {
         "data": [
             {
                 "foo": {
@@ -316,286 +3075,22 @@
                 }
             }
         ],
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "uniqueItems": true
+        }
     },
     {
-        "schema": {
-            "type": [ "array", {
-                "type": "object"
-            } ]
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": { },
-                "bar": { }
-            },
-            "additionalProperties": {
-                "type": "boolean"
-            }
-        },
-        "data": {
-            "foo": 1
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "enum": [ 1, 2, 3 ]
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "disallow": [ "integer", "boolean" ]
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "array",
-                    "maxItems": 3
-                },
-                "bar": {
-                    "type": "array"
-                }
-            },
-            "patternProperties": {
-                "f.o": {
-                    "minItems": 2
-                }
-            },
-            "additionalProperties": {
-                "type": "integer"
-            }
-        },
-        "data": {
-            "bar": [ ]
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "bar": {
-                    "type": "integer",
-                    "required": true
-                }
-            },
-            "extends": [
-                {
-                    "properties": {
-                        "foo": {
-                            "type": "string",
-                            "required": true
-                        }
-                    }
-                },
-                {
-                    "properties": {
-                        "baz": {
-                            "type": "null",
-                            "required": true
-                        }
-                    }
-                }
-            ]
-        },
-        "data": {
-            "foo": "quux",
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": { },
-                "bar": { }
-            }
-        },
-        "data": {
-            "foo": 1,
-            "bar": 2,
-            "quux": true
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "integer", {
-                "properties": {
-                    "foo": {
-                        "type": "null"
-                    }
-                }
-            } ]
-        },
-        "data": {
-            "foo": null
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "divisibleBy": 2
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "enum": [ 1, 2, 3 ]
-        },
-        "data": 4,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maxItems": 2
-        },
-        "data": [ 1, 2 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "object"
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "integer"
-                },
-                "bar": {
-                    "type": "string"
-                }
-            }
-        },
-        "data": {
-            "quux": [ ]
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "integer", {
-                "properties": {
-                    "foo": {
-                        "type": "null"
-                    }
-                }
-            } ]
-        },
         "data": {
             "foo": "bar"
         },
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "additionalItems": false
+        }
     },
     {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "array",
-                    "maxItems": 3
-                },
-                "bar": {
-                    "type": "array"
-                }
-            },
-            "patternProperties": {
-                "f.o": {
-                    "minItems": 2
-                }
-            },
-            "additionalProperties": {
-                "type": "integer"
-            }
-        },
         "data": {
-            "foo": [ 1, 2 ]
+            "aaaa": 18
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "items": {
-                "type": "integer"
-            }
-        },
-        "data": [ 1, "x" ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minItems": 1
-        },
-        "data": [ 1, 2 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "disallow": [ "integer", "boolean" ]
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "string"
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maxItems": 2
-        },
-        "data": "foobar",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "enum": [ 6, "foo", [ ], true, {
-                "foo": 12
-            } ]
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
             "patternProperties": {
                 "a*": {
@@ -605,405 +3100,50 @@
                     "maximum": 20
                 }
             }
-        },
+        }
+    },
+    {
+        "data": 10,
+        "schema": {
+            "multipleOf": 2
+        }
+    },
+    {
         "data": {
-            "a": 21,
-            "aaaa": 18
+            "baz": null,
+            "foo": "quux"
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "properties": {
-                "foo": {
-                    "required": true
-                },
-                "bar": { }
-            }
-        },
-        "data": {
-            "bar": 1
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "disallow": "integer"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "string"
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "array",
-                    "maxItems": 3
-                },
-                "bar": {
-                    "type": "array"
-                }
-            },
-            "patternProperties": {
-                "f.o": {
-                    "minItems": 2
-                }
-            },
-            "additionalProperties": {
-                "type": "integer"
-            }
-        },
-        "data": {
-            "fxo": [ 1, 2 ]
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "bar": {
-                    "properties": {
-                        "foo": {
-                            "type": "integer"
-                        },
-                        "bar": {
-                            "type": "integer"
-                        }
-                    }
-                }
-            }
-        },
-        "data": {
-            "foo": "quux",
-            "bar": "quux"
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "string"
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": { }
-            }
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "divisibleBy": 1.5
-        },
-        "data": 35,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "tilda~field": {
-                "type": "integer"
-            },
-            "slash/field": {
-                "type": "integer"
-            },
-            "percent%field": {
-                "type": "integer"
-            },
-            "properties": {
-                "tilda": {
-                    "$ref": "#/tilda~0field"
-                },
-                "slash": {
-                    "$ref": "#/slash~1field"
-                },
-                "percent": {
-                    "$ref": "#/percent%25field"
-                }
-            }
-        },
-        "data": {
-            "slash": "aoeu"
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minItems": 1
-        },
-        "data": "",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "integer"
-        },
-        "data": 12345678910111213141516171819202122232425262728293031,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "divisibleBy": 0.0001
-        },
-        "data": 0.0075,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minLength": 2
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "array", {
-                "type": "object"
-            } ]
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "bar": "foo"
-            }
-        },
-        "data": {
-            "foo": 1
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "any"
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "null"
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maxLength": 2
-        },
-        "data": "fo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "uniqueItems": true
-        },
-        "data": [ 0, false ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": { },
-                "bar": { }
-            },
-            "additionalProperties": false
-        },
-        "data": {
-            "foo": 1
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "integer"
-                },
-                "bar": {
-                    "type": "string"
-                }
-            }
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "disallow": [ "string", {
-                "type": "object",
-                "properties": {
-                    "foo": {
-                        "type": "string"
-                    }
-                }
-            } ]
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "bar": "foo"
-            }
-        },
-        "data": {
-            "foo": 1,
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "number"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "$ref": "#"
-                }
-            },
-            "additionalProperties": false
-        },
-        "data": {
-            "foo": false
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "items": {
-                "type": "integer"
-            }
-        },
-        "data": [ 1, 2, 3 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "format": "regex"
-        },
-        "data": "([abc])+\\s+$",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "any"
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "array"
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "integer"
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "bar": {
-                    "type": "integer",
-                    "required": true
-                }
-            },
-            "extends": [
+            "allOf": [
                 {
                     "properties": {
                         "foo": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         }
-                    }
+                    },
+                    "required": ["foo"]
                 },
                 {
                     "properties": {
                         "baz": {
-                            "type": "null",
-                            "required": true
+                            "type": "null"
                         }
-                    }
+                    },
+                    "required": ["baz"]
                 }
-            ]
-        },
-        "data": {
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "patternProperties": {
-                "f.*o": {
+            ],
+            "properties": {
+                "bar": {
                     "type": "integer"
                 }
-            }
-        },
-        "data": {
-            "foo": "bar",
-            "fooooo": 2
-        },
-        "useV3": true,
-        "useId": false
+            },
+            "required": ["bar"]
+        }
     },
     {
+        "data": {
+            "a": 21
+        },
         "schema": {
             "patternProperties": {
                 "a*": {
@@ -1013,998 +3153,854 @@
                     "maximum": 20
                 }
             }
-        },
-        "data": {
-            "a": 21
-        },
-        "useV3": true,
-        "useId": false
+        }
     },
     {
-        "schema": {
-            "uniqueItems": true
-        },
-        "data": [
-            {
-                "foo": {
-                    "bar": {
-                        "baz": true
-                    }
-                }
-            },
-            {
-                "foo": {
-                    "bar": {
-                        "baz": true
-                    }
-                }
-            }
-        ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "quux": [ "foo", "bar" ]
-            }
-        },
         "data": {
             "bar": 1,
             "quux": 2
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "divisibleBy": 2
-        },
-        "data": 7,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "boolean"
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
             "dependencies": {
-                "quux": [ "foo", "bar" ]
+                "quux": ["foo", "bar"]
             }
-        },
+        }
+    },
+    {
+        "data": "^(abc]",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "regex"
+        }
+    },
+    {
         "data": {
-            "foo": 1,
-            "quux": 2
+            "bar": false
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "properties": {
-                "bar": {
-                    "type": "integer",
-                    "required": true
-                }
-            },
-            "extends": {
-                "properties": {
-                    "foo": {
-                        "type": "string",
-                        "required": true
-                    }
-                }
-            }
-        },
-        "data": {
-            "foo": "baz",
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minItems": 1
-        },
-        "data": [ 1 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "quux": [ "foo", "bar" ]
-            }
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
+            "additionalProperties": false,
             "properties": {
                 "foo": {
+                    "$ref": "#"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": false
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": false,
+            "properties": {
+                "foo": {
+                    "$ref": "#"
+                }
+            }
+        }
+    },
+    {
+        "data": "127.0.0.0.1",
+        "schema": {
+            "format": "ipv4"
+        }
+    },
+    {
+        "data": [
+            {
+                "foo": "bar"
+            },
+            {
+                "foo": "bar"
+            }
+        ],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": [
+            {
+                "foo": "bar"
+            },
+            {
+                "foo": "bar"
+            }
+        ],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": "[^]",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "regex"
+        }
+    },
+    {
+        "data": {
+            "aaa": "foo",
+            "aaaa": 31
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "a*": {
                     "type": "integer"
                 },
-                "bar": {
-                    "type": "string"
+                "aaa*": {
+                    "maximum": 20
                 }
             }
-        },
+        }
+    },
+    {
+        "data": "2962",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "email"
+        }
+    },
+    {
         "data": {
-            "foo": 1,
-            "bar": "baz"
+            "foo": 1
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "type": "number"
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "array",
-                    "maxItems": 3
+            "not": {
+                "properties": {
+                    "foo": {
+                        "type": "string"
+                    }
                 },
-                "bar": {
-                    "type": "array"
+                "type": "object"
+            }
+        }
+    },
+    {
+        "data": [1, 2, 3],
+        "schema": {
+            "additionalProperties": false,
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1
+        },
+        "schema": {
+            "maxProperties": 2
+        }
+    },
+    {
+        "data": 3,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maximum": 3,
+            "exclusiveMaximum": true
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "baz": null,
+            "foo": "quux"
+        },
+        "schema": {
+            "allOf": [
+                {
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["foo"]
+                },
+                {
+                    "properties": {
+                        "baz": {
+                            "type": "null"
+                        }
+                    },
+                    "required": ["baz"]
                 }
+            ],
+            "properties": {
+                "bar": {
+                    "type": "integer"
+                }
+            },
+            "required": ["bar"]
+        }
+    },
+    {
+        "data": {
+            "bar": []
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "integer"
             },
             "patternProperties": {
                 "f.o": {
                     "minItems": 2
                 }
             },
-            "additionalProperties": {
-                "type": "integer"
-            }
-        },
-        "data": {
-            "quux": "foo"
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "quux": [ "foo", "bar" ]
-            }
-        },
-        "data": {
-            "foo": 1,
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minItems": 1
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maxItems": 2
-        },
-        "data": [ 1 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "object"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "tilda~field": {
-                "type": "integer"
-            },
-            "slash/field": {
-                "type": "integer"
-            },
-            "percent%field": {
-                "type": "integer"
-            },
             "properties": {
-                "tilda": {
-                    "$ref": "#/tilda~0field"
-                },
-                "slash": {
-                    "$ref": "#/slash~1field"
-                },
-                "percent": {
-                    "$ref": "#/percent%25field"
-                }
-            }
-        },
-        "data": {
-            "percent": "aoeu"
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "uniqueItems": true
-        },
-        "data": [
-            { },
-            [ 1 ],
-            true,
-            null,
-            { },
-            1
-        ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": { },
-                "bar": { }
-            },
-            "additionalProperties": false
-        },
-        "data": {
-            "foo": 1,
-            "bar": 2,
-            "quux": "boom"
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "integer"
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "uniqueItems": true
-        },
-        "data": [ 1, 1 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "bar": "foo"
-            }
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "integer"
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maxLength": 2
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "items": [ ],
-            "additionalItems": {
-                "type": "integer"
-            }
-        },
-        "data": [ 1, 2, 3, 4 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
                 "bar": {
-                    "properties": {
-                        "foo": {
-                            "type": "integer"
-                        },
-                        "bar": {
-                            "type": "integer"
-                        }
-                    }
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
                 }
             }
-        },
-        "data": {
-            "foo": "quux",
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": 1.5,
         "schema": {
-            "type": [ "array", {
-                "type": "object"
-            } ]
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
+            "anyOf": [
+                {
                     "type": "integer"
                 },
-                "bar": {
+                {
+                    "minimum": 2
+                }
+            ]
+        }
+    },
+    {
+        "data": "1963-06-19",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "date"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": {
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": false,
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": 9.727837981879871E+26,
+        "schema": {
+            "exclusiveMaximum": true,
+            "maximum": 9.727837981879871E+26
+        }
+    },
+    {
+        "data": ["foo", 1],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": [
+                {
+                    "type": "integer"
+                },
+                {
                     "type": "string"
                 }
-            }
-        },
+            ]
+        }
+    },
+    {
         "data": {
-            "foo": 1,
-            "bar": { }
+            "a": "bar"
         },
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "a*": {
+                    "type": "integer"
+                },
+                "aaa*": {
+                    "maximum": 20
+                }
+            }
+        }
     },
     {
+        "data": {
+            "bar": "baz",
+            "foo": 1
+        },
         "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "not": {
+                "type": ["integer", "boolean"]
+            }
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
+    },
+    {
+        "data": "fo",
+        "schema": {
+            "minLength": 2
+        }
+    },
+    {
+        "data": "12345::",
+        "schema": {
+            "format": "ipv6"
+        }
+    },
+    {
+        "data": 3,
+        "schema": {
+            "anyOf": [
+                {
+                    "maxLength": 2
+                },
+                {
+                    "minLength": 4
+                }
+            ],
             "type": "string"
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": true,
         "schema": {
-            "type": [ "integer", {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "array"
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": "boom"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": false,
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": "bar"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", {
                 "properties": {
                     "foo": {
                         "type": "null"
                     }
                 }
-            } ]
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
+            }]
+        }
     },
     {
+        "data": 5,
         "schema": {
-            "patternProperties": {
-                "f.*o": {
+            "$ref": "#/definitions/c",
+            "definitions": {
+                "a": {
+                    "type": "integer"
+                },
+                "b": {
+                    "$ref": "#/definitions/a"
+                },
+                "c": {
+                    "$ref": "#/definitions/b"
+                }
+            }
+        }
+    },
+    {
+        "data": "\\\\WINDOWS\\fileshare",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "uri"
+        }
+    },
+    {
+        "data": [
+            ["foo"],
+            ["bar"]
+        ],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": {
+            "bar": true
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {
+                    "$ref": "#/properties/foo"
+                },
+                "foo": {
                     "type": "integer"
                 }
             }
-        },
-        "data": 12,
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": [],
         "schema": {
-            "disallow": [ "integer", "boolean" ]
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
+            "minItems": 1
+        }
     },
     {
-        "schema": {
-            "properties": {
-                "foo": { },
-                "bar": { }
-            },
-            "additionalProperties": false
-        },
-        "data": [ 1, 2, 3 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "number"
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "bar": {
-                    "type": "integer",
-                    "required": true
-                }
-            },
-            "extends": {
-                "properties": {
-                    "foo": {
-                        "type": "string",
-                        "required": true
-                    }
-                }
-            }
-        },
         "data": {
-            "foo": "baz",
-            "bar": "quux"
+            "bar": 2
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "uniqueItems": true
-        },
-        "data": [ 1, 2 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [
+            "allOf": [
                 {
-                    "type": [ "string" ]
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["bar"]
                 },
                 {
-                    "type": [ "array", "null" ]
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["foo"]
                 }
             ]
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": true
+        },
         "schema": {
-            "pattern": "^a*$"
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
     },
     {
+        "data": [1, 1, 1],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": [1, "x"],
         "schema": {
             "items": {
                 "type": "integer"
             }
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "minimum": 2
+                }
+            ]
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "type": "object"
+        }
+    },
+    {
+        "data": "",
+        "schema": {
+            "minProperties": 1
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minLength": 2
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "enum": [1, 2, 3]
+        }
+    },
+    {
+        "data": [1, "foo"],
+        "schema": {
+            "items": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "null"
+        }
+    },
+    {
+        "data": {
+            "foo": 1
         },
+        "schema": {
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": "([abc])+\\s+$",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "regex"
+        }
+    },
+    {
+        "data": {
+            "foo": null
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", {
+                "properties": {
+                    "foo": {
+                        "type": "null"
+                    }
+                }
+            }]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["array", {
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": 4,
+        "schema": {
+            "enum": [1, 2, 3]
+        }
+    },
+    {
+        "data": [
+            {},
+            [1],
+            true,
+            null,
+            1
+        ],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
         "data": {
             "foo": "bar"
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "properties": {
-                "bar": {
-                    "type": "integer",
-                    "required": true
-                }
-            },
-            "extends": {
+            "not": {
                 "properties": {
                     "foo": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     }
-                }
+                },
+                "type": "object"
             }
-        },
-        "data": {
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": null,
         "schema": {
-            "maxItems": 2
-        },
-        "data": [ 1, 2, 3 ],
-        "useV3": true,
-        "useId": false
+            "type": ["integer", "string"]
+        }
     },
     {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "divisibleBy": 2
+        }
+    },
+    {
+        "data": [1, 2, 3],
+        "schema": {
+            "items": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": [1, true],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": {
+            "bar": "quux",
+            "foo": "quux"
+        },
         "schema": {
             "dependencies": {
                 "bar": {
                     "properties": {
-                        "foo": {
+                        "bar": {
                             "type": "integer"
                         },
-                        "bar": {
+                        "foo": {
                             "type": "integer"
                         }
                     }
                 }
             }
-        },
-        "data": {
-            "foo": 1,
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": [1, 2, 3],
         "schema": {
-            "properties": {
-                "foo": {
-                    "$ref": "#"
-                }
-            },
-            "additionalProperties": false
-        },
-        "data": {
-            "foo": {
-                "foo": false
-            }
-        },
-        "useV3": true,
-        "useId": false
+            "additionalItems": false,
+            "items": [
+                {},
+                {},
+                {}
+            ]
+        }
     },
     {
+        "data": "abc",
         "schema": {
-            "patternProperties": {
-                "f.*o": {
-                    "type": "integer"
-                }
-            }
-        },
-        "data": {
-            "foo": 1,
-            "foooooo": 2
-        },
-        "useV3": true,
-        "useId": false
+            "pattern": "^a*$"
+        }
     },
     {
+        "data": 4.5,
         "schema": {
-            "patternProperties": {
-                "a*": {
-                    "type": "integer"
-                },
-                "aaa*": {
-                    "maximum": 20
-                }
-            }
-        },
-        "data": {
-            "aaa": "foo",
-            "aaaa": 31
-        },
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "divisibleBy": 1.5
+        }
     },
     {
+        "data": {
+            "foo": 1
+        },
         "schema": {
+            "minProperties": 1
+        }
+    },
+    {
+        "data": [1, 2, 3, 4],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": [
+                {},
+                {},
+                {}
+            ],
             "additionalItems": false
-        },
-        "data": [ 1, 2, 3, 4, 5 ],
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": [1, "foo", false],
         "schema": {
-            "type": "null"
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": []
+        }
     },
     {
+        "data": "foo",
         "schema": {
-            "type": "any"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "number"
+        }
     },
     {
+        "data": {
+            "bar": 2,
+            "foo": "baz"
+        },
         "schema": {
-            "properties": {
-                "foo": {
-                    "type": "array",
-                    "maxItems": 3
+            "allOf": [
+                {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["bar"]
                 },
-                "bar": {
-                    "type": "array"
+                {
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["foo"]
                 }
+            ]
+        }
+    },
+    {
+        "data": {
+            "quux": 3
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "integer"
             },
             "patternProperties": {
                 "f.o": {
                     "minItems": 2
                 }
             },
-            "additionalProperties": {
-                "type": "integer"
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
             }
-        },
-        "data": {
-            "quux": 3
-        },
-        "useV3": true,
-        "useId": false
+        }
     },
     {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "required": true
-                },
-                "bar": { }
-            }
-        },
         "data": {
             "foo": 1
         },
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "maxProperties": 2
+        }
     },
     {
+        "data": 1,
         "schema": {
-            "additionalItems": false
-        },
-        "data": {
-            "foo": "bar"
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "integer", "string" ]
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "quux": [ "foo", "bar" ]
-            }
-        },
-        "data": {
-            "quux": 1
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "items": [
-                { },
-                { },
-                { }
-            ],
-            "additionalItems": false
-        },
-        "data": [ 1, 2, 3 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minimum": 1.1
-        },
-        "data": "x",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "array"
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "patternProperties": {
-                "a*": {
-                    "type": "integer"
-                },
-                "aaa*": {
-                    "maximum": 20
-                }
-            }
-        },
-        "data": {
-            "a": "bar"
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "integer", "string" ]
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "format": "regex"
-        },
-        "data": "^(abc]",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "disallow": [ "string", {
-                "type": "object",
+            "not": {
                 "properties": {
                     "foo": {
                         "type": "string"
                     }
-                }
-            } ]
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maxLength": 2
-        },
-        "data": 10,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "items": [ ],
-            "additionalItems": {
-                "type": "integer"
-            }
-        },
-        "data": [ 1, 2, 3, "foo" ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "divisibleBy": 1.5
-        },
-        "data": 0,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [
-                {
-                    "type": [ "string" ]
                 },
-                {
-                    "type": [ "array", "null" ]
-                }
-            ]
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
+                "type": "object"
+            }
+        }
     },
     {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "array",
-                    "maxItems": 3
-                },
-                "bar": {
-                    "type": "array"
-                }
-            },
-            "patternProperties": {
-                "f.o": {
-                    "minItems": 2
-                }
-            },
-            "additionalProperties": {
-                "type": "integer"
-            }
-        },
         "data": {
-            "foo": [ 1, 2, 3, 4 ]
+            "answer 1": "42"
         },
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "patternProperties": {
+                "X_": {
+                    "type": "string"
+                },
+                "[0-9]{2,}": {
+                    "type": "boolean"
+                }
+            }
+        }
     },
     {
+        "data": [0, false],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": {},
         "schema": {
             "type": "null"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": true,
         "schema": {
-            "type": "any"
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": ["integer", "boolean"]
+        }
     },
     {
+        "data": 10,
         "schema": {
-            "properties": {
-                "foo": {
-                    "required": false
-                }
-            }
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maxLength": 2
+        }
     },
     {
-        "schema": {
-            "uniqueItems": true
-        },
-        "data": [
-            { },
-            [ 1 ],
-            true,
-            null,
-            1
-        ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "divisibleBy": 0.0001
-        },
-        "data": 0.00751,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maximum": 3,
-            "exclusiveMaximum": true
-        },
-        "data": 3,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "integer", "string" ]
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "any"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "dependencies": {
-                "bar": "foo"
-            }
-        },
-        "data": {
-            "bar": 2
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "integer", "string" ]
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "object"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "object"
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "uniqueItems": true
-        },
-        "data": [ 1, 1, 1 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "integer"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "string"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "$ref": "#"
-                }
-            },
-            "additionalProperties": false
-        },
-        "data": {
-            "bar": false
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "uniqueItems": true
-        },
         "data": [
             {
                 "foo": "bar"
@@ -2013,196 +4009,325 @@
                 "foo": "baz"
             }
         ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "array", {
-                "type": "object"
-            } ]
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "bar": {
-                    "type": "integer",
-                    "required": true
-                }
-            },
-            "extends": [
-                {
-                    "properties": {
-                        "foo": {
-                            "type": "string",
-                            "required": true
-                        }
-                    }
-                },
-                {
-                    "properties": {
-                        "baz": {
-                            "type": "null",
-                            "required": true
-                        }
-                    }
-                }
-            ]
-        },
-        "data": {
-            "bar": 2,
-            "baz": null
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "bar": {
-                    "type": "integer",
-                    "required": true
-                }
-            },
-            "extends": [
-                {
-                    "properties": {
-                        "foo": {
-                            "type": "string",
-                            "required": true
-                        }
-                    }
-                },
-                {
-                    "properties": {
-                        "baz": {
-                            "type": "null",
-                            "required": true
-                        }
-                    }
-                }
-            ]
-        },
-        "data": {
-            "foo": "quux",
-            "bar": 2,
-            "baz": null
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "array"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maximum": 3,
-            "exclusiveMaximum": true
-        },
-        "data": 2.2,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "boolean"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "array",
-                    "maxItems": 3
-                },
-                "bar": {
-                    "type": "array"
-                }
-            },
-            "patternProperties": {
-                "f.o": {
-                    "minItems": 2
-                }
-            },
-            "additionalProperties": {
-                "type": "integer"
-            }
-        },
-        "data": {
-            "foo": [ ]
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "integer"
-                },
-                "bar": {
-                    "$ref": "#/properties/foo"
-                }
-            }
-        },
-        "data": {
-            "bar": true
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "integer"
-        },
-        "data": 1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minLength": 2
-        },
-        "data": "fo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "boolean"
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
             "uniqueItems": true
-        },
-        "data": [
-            {
-                "foo": "bar"
-            },
-            {
-                "foo": "bar"
-            }
-        ],
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": "\\\\WINDOWS\\fileshare",
+        "schema": {
+            "format": "uri"
+        }
+    },
+    {
+        "data": "fo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maxLength": 2
+        }
+    },
+    {
+        "data": [1, "x"],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
+    },
+    {
+        "data": {
+            "a31b": null
+        },
+        "schema": {
+            "patternProperties": {
+                "X_": {
+                    "type": "string"
+                },
+                "[0-9]{2,}": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minItems": 1
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "number"
+        }
+    },
+    {
+        "data": "192.168.0.1",
+        "schema": {
+            "format": "ipv4"
+        }
+    },
+    {
+        "data": "256.256.256.256",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "ip-address"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": 1
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "bar": "foo"
+            }
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "null"
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["array", {
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": {
+            "foo": 1
+        },
+        "schema": {
+            "properties": {
+                "bar": {},
+                "foo": {}
+            },
+            "required": ["foo"]
+        }
+    },
+    {
+        "data": 35,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "divisibleBy": 1.5
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": ["string", {
+                "properties": {
+                    "foo": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "array"
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": "object"
+        }
+    },
+    {
+        "data": 0.6,
+        "schema": {
+            "minimum": 1.1
+        }
+    },
+    {
+        "data": 98249283749234923498293171823948729348710298301928331,
+        "schema": {
+            "type": "string"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["array", {
+                "type": "object"
+            }]
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": [1, 2],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": "http://foo.bar/?baz=qux#quux",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "uri"
+        }
+    },
+    {
+        "data": "foobar",
+        "schema": {
+            "maxItems": 2
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maxLength": 2
+        }
+    },
+    {
+        "data": [
+            {
+                "foo": {
+                    "bar": {
+                        "baz": true
+                    }
+                }
+            },
+            {
+                "foo": {
+                    "bar": {
+                        "baz": true
+                    }
+                }
+            }
+        ],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "boolean"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "any"
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "enum": [6, "foo", [], true, {
+                "foo": 12
+            }]
+        }
+    },
+    {
+        "data": [1, 2, 3],
+        "schema": {
+            "maxItems": 2
+        }
+    },
+    {
+        "data": [1, 2, 3, 4],
+        "schema": {
+            "additionalItems": false,
+            "items": [
+                {},
+                {},
+                {}
+            ]
+        }
+    },
+    {
+        "data": [1, true],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "baz": 3,
+            "foo": 1
+        },
+        "schema": {
+            "maxProperties": 2
+        }
+    },
+    {
+        "data": [1, 2, 3, 4, 5],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalItems": false
+        }
+    },
+    {
+        "data": {
+            "foo": false
+        },
+        "schema": {
+            "additionalProperties": false,
+            "properties": {
+                "foo": {
+                    "$ref": "#"
+                }
+            }
+        }
+    },
+    {
+        "data": "abc",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "pattern": "^a*$"
+        }
+    },
+    {
+        "data": ["foo", 1],
         "schema": {
             "items": [
                 {
@@ -2212,345 +4337,21 @@
                     "type": "string"
                 }
             ]
-        },
-        "data": [ "foo", 1 ],
-        "useV3": true,
-        "useId": false
+        }
     },
     {
-        "schema": {
-            "divisibleBy": 2
-        },
-        "data": 10,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "integer"
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "array"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "array"
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": { },
-                "bar": { }
-            },
-            "additionalProperties": {
-                "type": "boolean"
-            }
-        },
-        "data": {
-            "foo": 1,
-            "bar": 2,
-            "quux": true
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": { },
-                "bar": { }
-            },
-            "additionalProperties": {
-                "type": "boolean"
-            }
-        },
-        "data": {
-            "foo": 1,
-            "bar": 2,
-            "quux": 12
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "uniqueItems": true
-        },
-        "data": [
-            [ "foo" ],
-            [ "foo" ]
-        ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "items": [
-                { },
-                { },
-                { }
-            ],
-            "additionalItems": false
-        },
-        "data": [ 1, 2, 3, 4 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minimum": 20,
-            "extends": {
-                "maximum": 30
-            }
-        },
-        "data": 25,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "object"
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "maximum": 3
-        },
-        "data": 2.6,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "disallow": "integer"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "any"
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "array", {
-                "type": "object"
-            } ]
-        },
         "data": 1,
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "enum": [1, 2, 3]
+        }
     },
     {
-        "schema": {
-            "type": "integer"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "divisibleBy": 1.5
-        },
-        "data": 4.5,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "bar": {
-                    "type": "integer",
-                    "required": true
-                }
-            },
-            "extends": {
-                "properties": {
-                    "foo": {
-                        "type": "string",
-                        "required": true
-                    }
-                }
-            }
-        },
         "data": {
-            "foo": "baz"
+            "a": 21,
+            "aaaa": 18
         },
-        "useV3": true,
-        "useId": false
-    },
-    {
         "schema": {
-            "minimum": 20,
-            "extends": {
-                "maximum": 30
-            }
-        },
-        "data": 35,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "null"
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "boolean"
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [ "integer", "string" ]
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "minimum": 1.1
-        },
-        "data": 2.6,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": [
-                {
-                    "type": [ "string" ]
-                },
-                {
-                    "type": [ "array", "null" ]
-                }
-            ]
-        },
-        "data": [ 1, 2, 3 ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "uniqueItems": true
-        },
-        "data": [ 1, true ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "patternProperties": {
-                "f.*o": {
-                    "type": "integer"
-                }
-            }
-        },
-        "data": {
-            "foo": "bar",
-            "foooooo": "baz"
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "number"
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "$ref": "#"
-                }
-            },
-            "additionalProperties": false
-        },
-        "data": {
-            "foo": {
-                "bar": false
-            }
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "properties": {
-                "foo": {
-                    "type": "array",
-                    "maxItems": 3
-                },
-                "bar": {
-                    "type": "array"
-                }
-            },
-            "patternProperties": {
-                "f.o": {
-                    "minItems": 2
-                }
-            },
-            "additionalProperties": {
-                "type": "integer"
-            }
-        },
-        "data": {
-            "fxo": [ ]
-        },
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "string"
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "items": [ ]
-        },
-        "data": [ 1, "foo", false ],
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
             "patternProperties": {
                 "a*": {
                     "type": "integer"
@@ -2559,96 +4360,555 @@
                     "maximum": 20
                 }
             }
-        },
+        }
+    },
+    {
         "data": {
-            "aaaa": 18
+            "foo": 1
         },
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
     },
     {
+        "data": 10,
         "schema": {
-            "type": "boolean"
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "divisibleBy": 2
+        }
     },
     {
+        "data": null,
         "schema": {
-            "type": [ "array", {
-                "type": "object"
-            } ]
-        },
-        "data": true,
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "string"
+        }
     },
     {
+        "data": 1.1,
         "schema": {
-            "tilda~field": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "null"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "oneOf": [
+                {
+                    "minLength": 2
+                },
+                {
+                    "maxLength": 4
+                }
+            ],
+            "type": "string"
+        }
+    },
+    {
+        "data": {
+            "bar": "quux",
+            "foo": 2
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "bar": {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        },
+                        "foo": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "type": "object"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "dependencies": {
+                "bar": ["foo"]
+            }
+        }
+    },
+    {
+        "data": 3.5,
+        "schema": {
+            "maximum": 3
+        }
+    },
+    {
+        "data": {
+            "tilda": "aoeu"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "slash/field": {
                 "type": "integer"
             },
-            "slash/field": {
+            "tilda~field": {
                 "type": "integer"
             },
             "percent%field": {
                 "type": "integer"
             },
             "properties": {
-                "tilda": {
-                    "$ref": "#/tilda~0field"
+                "percent": {
+                    "$ref": "#/percent%25field"
                 },
                 "slash": {
                     "$ref": "#/slash~1field"
                 },
-                "percent": {
-                    "$ref": "#/percent%25field"
+                "tilda": {
+                    "$ref": "#/tilda~0field"
                 }
             }
-        },
-        "data": {
-            "tilda": "aoeu"
-        },
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": "foo",
         "schema": {
+            "type": "array"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": "x",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maximum": 3
+        }
+    },
+    {
+        "data": [1, 1],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": 0,
+        "schema": {
+            "multipleOf": 1.5
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "string"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "maxLength": 2
+        }
+    },
+    {
+        "data": 98249283749234923498293171823948729348710298301928331,
+        "schema": {
+            "type": "number"
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "type": "array"
+        }
+    },
+    {
+        "data": "x",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minimum": 1.1
+        }
+    },
+    {
+        "data": {
+            "foo": 1,
+            "foooooo": 2
+        },
+        "schema": {
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": true
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": "192.168.0.1",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "ip-address"
+        }
+    },
+    {
+        "data": 1.2,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
             "minimum": 1.1,
             "exclusiveMinimum": true
-        },
-        "data": 1.1,
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": [],
+        "schema": {
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": "array"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "type": "boolean"
+        }
+    },
+    {
+        "data": 1.1,
         "schema": {
             "type": "string"
-        },
-        "data": "foo",
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": 1.1,
         "schema": {
-            "disallow": [ "string", {
-                "type": "object",
-                "properties": {
-                    "foo": {
-                        "type": "string"
+            "exclusiveMinimum": true,
+            "minimum": 1.1
+        }
+    },
+    {
+        "data": "www.example.com",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "host-name"
+        }
+    },
+    {
+        "data": [1, 2],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "object"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "dependencies": {
+                "bar": ["foo"]
+            }
+        }
+    },
+    {
+        "data": 3,
+        "schema": {
+            "anyOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "minimum": 2
+                }
+            ]
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "boolean"
+        }
+    },
+    {
+        "data": [1, 2],
+        "schema": {
+            "maxItems": 2
+        }
+    },
+    {
+        "data": 0.0075,
+        "schema": {
+            "multipleOf": 0.0001
+        }
+    },
+    {
+        "data": "::1",
+        "schema": {
+            "format": "ipv6"
+        }
+    },
+    {
+        "data": {
+            "foo": []
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "percent": "aoeu"
+        },
+        "schema": {
+            "percent%field": {
+                "type": "integer"
+            },
+            "properties": {
+                "percent": {
+                    "$ref": "#/percent%25field"
+                },
+                "slash": {
+                    "$ref": "#/slash~1field"
+                },
+                "tilda": {
+                    "$ref": "#/tilda~0field"
+                }
+            },
+            "slash/field": {
+                "type": "integer"
+            },
+            "tilda~field": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": [1, 2, 3, 4],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "items": [],
+            "additionalItems": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": "baz"
+        },
+        "schema": {
+            "allOf": [
+                {
+                    "properties": {
+                        "bar": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["bar"]
+                },
+                {
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["foo"]
+                }
+            ]
+        }
+    },
+    {
+        "data": "f",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "minLength": 2
+        }
+    },
+    {
+        "data": "a-vvvvvvvvvvvvvvvveeeeeeeeeeeeeeeerrrrrrrrrrrrrrrryyyyyyyyyyyyyyyy-long-host-name-component",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "host-name"
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "type": "object"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "type": "null"
+        }
+    },
+    {
+        "data": {
+            "bar": 2
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "extends": [
+                {
+                    "properties": {
+                        "foo": {
+                            "required": true,
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "baz": {
+                            "required": true,
+                            "type": "null"
+                        }
                     }
                 }
-            } ]
-        },
-        "data": {
-            "foo": "bar"
-        },
-        "useV3": true,
-        "useId": false
+            ],
+            "properties": {
+                "bar": {
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
     },
     {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": true
+        },
         "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": 3,
+        "schema": {
+            "oneOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "minimum": 2
+                }
+            ]
+        }
+    },
+    {
+        "data": "foobar",
+        "schema": {
+            "maxProperties": 2
+        }
+    },
+    {
+        "data": "aaa",
+        "schema": {
+            "pattern": "^a*$"
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "pattern": "^a*$"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "disallow": ["integer", "boolean"]
+        }
+    },
+    {
+        "data": [
+            ["foo"],
+            ["foo"]
+        ],
+        "schema": {
+            "uniqueItems": true
+        }
+    },
+    {
+        "data": [1, "foo"],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
             "items": [
                 {
                     "type": "integer"
@@ -2657,94 +4917,567 @@
                     "type": "string"
                 }
             ]
-        },
-        "data": [ 1, "foo" ],
-        "useV3": true,
-        "useId": false
+        }
     },
     {
+        "data": true,
         "schema": {
-            "dependencies": {
-                "quux": [ "foo", "bar" ]
-            }
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "object"
+        }
+    },
+    {
+        "data": {
+            "bar": 2
         },
+        "schema": {
+            "allOf": [
+                {
+                    "properties": {
+                        "foo": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["foo"]
+                },
+                {
+                    "properties": {
+                        "baz": {
+                            "type": "null"
+                        }
+                    },
+                    "required": ["baz"]
+                }
+            ],
+            "properties": {
+                "bar": {
+                    "type": "integer"
+                }
+            },
+            "required": ["bar"]
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "any"
+        }
+    },
+    {
+        "data": {
+            "bar": 2
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "bar": "foo"
+            }
+        }
+    },
+    {
+        "data": [1, 2, 3],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maxItems": 2
+        }
+    },
+    {
         "data": {
             "foo": 1,
+            "quux": 2
+        },
+        "schema": {
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
+    },
+    {
+        "data": "aaa",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "pattern": "^a*$"
+        }
+    },
+    {
+        "data": "joe.bloggs@example.com",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "email"
+        }
+    },
+    {
+        "data": "a",
+        "schema": {
+            "$ref": "#/definitions/c",
+            "definitions": {
+                "a": {
+                    "type": "integer"
+                },
+                "b": {
+                    "$ref": "#/definitions/a"
+                },
+                "c": {
+                    "$ref": "#/definitions/b"
+                }
+            }
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "number"
+        }
+    },
+    {
+        "data": {
+            "bar": 3
+        },
+        "schema": {
+            "properties": {
+                "bar": {
+                    "$ref": "#/properties/foo"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": 12,
+        "schema": {
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": 1
+        },
+        "schema": {
+            "dependencies": {
+                "bar": ["foo"]
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": 1
+        },
+        "schema": {
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": "::laptop",
+        "schema": {
+            "format": "ipv6"
+        }
+    },
+    {
+        "data": 3,
+        "schema": {
+            "exclusiveMaximum": true,
+            "maximum": 3
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "object"
+        }
+    },
+    {
+        "data": {
+            "answer 1": "42"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "X_": {
+                    "type": "string"
+                },
+                "[0-9]{2,}": {
+                    "type": "boolean"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": "bar"
+        },
+        "schema": {
+            "items": {
+                "type": "integer"
+            }
+        }
+    },
+    {
+        "data": {
             "bar": 2,
+            "foo": 1,
             "quux": 3
         },
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "dependencies": {
+                "quux": ["foo", "bar"]
+            }
+        }
     },
     {
+        "data": "foo",
         "schema": {
-            "type": "array"
-        },
-        "data": { },
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "integer"
+        }
     },
     {
-        "schema": {
-            "minimum": 1.1
-        },
-        "data": 0.6,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "enum": [ 6, "foo", [ ], true, {
-                "foo": 12
-            } ]
-        },
-        "data": null,
-        "useV3": true,
-        "useId": false
-    },
-    {
-        "schema": {
-            "type": "object"
-        },
         "data": true,
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "type": "string"
+        }
     },
     {
+        "data": [
+            {
+                "foo": {
+                    "bar": {
+                        "baz": true
+                    }
+                }
+            },
+            {
+                "foo": {
+                    "bar": {
+                        "baz": false
+                    }
+                }
+            }
+        ],
         "schema": {
-            "type": "boolean"
-        },
-        "data": [ ],
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "uniqueItems": true
+        }
     },
     {
-        "schema": {
-            "enum": [ 6, "foo", [ ], true, {
-                "foo": 12
-            } ]
-        },
         "data": {
-            "foo": false
+            "bar": {},
+            "foo": []
         },
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
     },
     {
+        "data": "12345::",
         "schema": {
-            "items": { },
-            "additionalItems": false
-        },
-        "data": [ 1, 2, 3, 4, 5 ],
-        "useV3": true,
-        "useId": false
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "format": "ipv6"
+        }
     },
     {
+        "data": {},
         "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "properties": {
+                "foo": {
+                    "required": false
+                }
+            }
+        }
+    },
+    {
+        "data": [1, 2],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maxItems": 2
+        }
+    },
+    {
+        "data": 5,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "$ref": "#/definitions/c",
+            "definitions": {
+                "a": {
+                    "type": "integer"
+                },
+                "b": {
+                    "$ref": "#/definitions/a"
+                },
+                "c": {
+                    "$ref": "#/definitions/b"
+                }
+            }
+        }
+    },
+    {
+        "data": {
+            "bar": "quux",
+            "foo": "baz"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "extends": {
+                "properties": {
+                    "foo": {
+                        "required": true,
+                        "type": "string"
+                    }
+                }
+            },
+            "properties": {
+                "bar": {
+                    "required": true,
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": [1],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "maxItems": 2
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "number"
+        }
+    },
+    {
+        "data": 2.5,
+        "schema": {
+            "anyOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "minimum": 2
+                }
+            ]
+        }
+    },
+    {
+        "data": {
+            "bar": 2,
+            "foo": 1,
+            "quux": 12
+        },
+        "schema": {
+            "additionalProperties": {
+                "type": "boolean"
+            },
+            "properties": {
+                "bar": {},
+                "foo": {}
+            }
+        }
+    },
+    {
+        "data": {
+            "foo": "bar",
+            "foooooo": "baz"
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "patternProperties": {
+                "f.*o": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": 25,
+        "schema": {
+            "allOf": [
+                {
+                    "maximum": 30
+                },
+                {
+                    "minimum": 20
+                }
+            ]
+        }
+    },
+    {
+        "data": {
+            "foo": [1, 2]
+        },
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
+    },
+    {
+        "data": 1.1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "any"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "any"
+        }
+    },
+    {
+        "data": null,
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": 4.5,
+        "schema": {
+            "multipleOf": 1.5
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": "integer"
+        }
+    },
+    {
+        "data": {},
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "string"
+        }
+    },
+    {
+        "data": [],
+        "schema": {
+            "type": "string"
+        }
+    },
+    {
+        "data": {
+            "bar": {},
+            "foo": 1
+        },
+        "schema": {
+            "properties": {
+                "bar": {
+                    "type": "string"
+                },
+                "foo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "type": "number"
+        }
+    },
+    {
+        "data": "foo",
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
+            "dependencies": {
+                "bar": "foo"
+            }
+        }
+    },
+    {
+        "data": 1,
+        "schema": {
+            "type": ["integer", "string"]
+        }
+    },
+    {
+        "data": true,
+        "schema": {
+            "$schema": "http://json-schema.org/draft-03/schema#",
             "pattern": "^a*$"
+        }
+    },
+    {
+        "data": [1, 2],
+        "schema": {
+            "minItems": 1
+        }
+    },
+    {
+        "data": {
+            "fxo": []
         },
-        "data": "abc",
-        "useV3": true,
-        "useId": false
+        "schema": {
+            "additionalProperties": {
+                "type": "integer"
+            },
+            "patternProperties": {
+                "f.o": {
+                    "minItems": 2
+                }
+            },
+            "properties": {
+                "bar": {
+                    "type": "array"
+                },
+                "foo": {
+                    "maxItems": 3,
+                    "type": "array"
+                }
+            }
+        }
     }
 ]
