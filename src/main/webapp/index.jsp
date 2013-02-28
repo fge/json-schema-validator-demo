@@ -8,6 +8,7 @@
 <c:set var="inputTitle2" value="Data" scope="request"/>
 <c:set var="buttonTitle" value="Validate" scope="request"/>
 <c:set var="resultTitle" value="Validation results" scope="request"/>
+<c:set var="resultIsJson" value="true" scope="request"/>
 <c:import url="software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

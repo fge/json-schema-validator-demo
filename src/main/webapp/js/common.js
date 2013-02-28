@@ -125,3 +125,28 @@ var Message = {
     VALID: "valid",
     RESULTS: "results"
 };
+
+function Result(jsonContent)
+{
+    this.textArea = $("textArea#results");
+    this.success = $("#processingSuccess");
+    this.failure = $("#processingFailure");
+    this.setResponse = function(response)
+    {
+        var valid = response[Message.VALID];
+        var msg = valid ? this.success : this.failure;
+        var content = response[Message.RESULTS];
+        // Assumed: when errors, always JSON
+        if (jsonContent || !valid)
+            this.textArea.val(JSON.stringify(content, undefined, 4));
+        else
+            this.textArea.val(content);
+        msg.show();
+    };
+    this.reset = function()
+    {
+        this.success.hide();
+        this.failure.hide();
+        this.textArea.val("");
+    }
+}

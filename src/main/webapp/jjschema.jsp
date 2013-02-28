@@ -7,6 +7,7 @@
 <c:set var="inputTitle" value="Java source code" scope="request"/>
 <c:set var="buttonTitle" value="Generate schema" scope="request"/>
 <c:set var="resultTitle" value="Generation result" scope="request"/>
+<c:set var="resultIsJson" value="true" scope="request"/>
 <c:import url="software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

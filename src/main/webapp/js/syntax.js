@@ -40,6 +40,7 @@ function loadSampleSchema()
 // On document.ready()
 var main = function()
 {
+    var result = new Result(resultIsJson);
     // The guy has JavaScript, hide the warning that it should be enabled
     $(".noscript").hide();
 
@@ -60,7 +61,7 @@ var main = function()
         // Clear/hide all necessary elements
         $(DomElements.STARTHIDDEN).hide();
         // Empty the results field
-        TextAreas.clear(ResultPane.RESULTS);
+        result.reset();
 
         // Grab the necessary input fields
         var $inputs = $form.find(FormElements.INPUT);
@@ -100,14 +101,7 @@ var main = function()
                 return;
             }
 
-            var validationMessage = response[Message.VALID]
-                ? ResultPane.PROCESSING_SUCCESS
-                : ResultPane.PROCESSING_FAILURE;
-
-            // Show the appropriate validation message and inject pretty-printed
-            // JSON into the results text area
-            $(validationMessage).show();
-            TextAreas.fillJson(ResultPane.RESULTS, response[Message.RESULTS]);
+            result.setResponse(response);
         });
 
         // On failure

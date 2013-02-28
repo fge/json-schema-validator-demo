@@ -43,6 +43,8 @@ var main = function()
     // The guy has JavaScript, hide the warning that it should be enabled
     $(".noscript").hide();
 
+    var result = new Result(resultIsJson);
+
     // Attach sample source loading to the appropriate link
     $("#load").on("click", function(event)
     {
@@ -61,7 +63,7 @@ var main = function()
         // Clear/hide all necessary elements
         $(DomElements.STARTHIDDEN).hide();
         // Empty the results field
-        TextAreas.clear(ResultPane.RESULTS);
+        result.reset();
 
         // Grab the necessary input fields
         var $inputs = $form.find(FormElements.INPUTS);
@@ -101,19 +103,7 @@ var main = function()
                 return;
             }
 
-            var valid = response[Message.VALID];
-            var validationMessage = valid
-                ? ResultPane.PROCESSING_SUCCESS
-                : ResultPane.PROCESSING_FAILURE;
-
-            // Show the appropriate validation message and inject content into
-            // the text area
-            $(validationMessage).show();
-            if (valid)
-                $(ResultPane.RESULTS).val(response[Message.RESULTS]);
-            else
-                TextAreas.fillJson(ResultPane.RESULTS,
-                    response[Message.RESULTS]);
+            result.setResponse(response);
         });
 
         // On failure
