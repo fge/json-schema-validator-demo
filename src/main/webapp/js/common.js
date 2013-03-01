@@ -131,6 +131,7 @@ function Result(jsonContent)
     this.textArea = $("textArea#results");
     this.success = $("#processingSuccess");
     this.failure = $("#processingFailure");
+
     this.setResponse = function(response)
     {
         var valid = response[Message.VALID];
@@ -143,6 +144,7 @@ function Result(jsonContent)
             this.textArea.val(content);
         msg.show();
     };
+
     this.reset = function()
     {
         this.success.hide();
@@ -213,3 +215,122 @@ function Input(name, contentIsJson)
             this.textArea.val(value);
     };
 }
+
+function DummyInput()
+{
+    this.hasError = function (response)
+    {
+        return false;
+    };
+
+    this.reset = function ()
+    {
+    };
+
+    this.fill = function (response)
+    {
+    };
+}
+
+// On document.ready()
+var main = function()
+{
+    // The guy has JavaScript, hide the warning that it should be enabled
+    $(".noscript").hide();
+
+    var result = new Result(resultIsJson);
+    var input = new Input("input", inputIsJson);
+    var input2 = typeof input2IsJson === "undefined"
+        ? new DummyInput()
+        : new Input("input2", input2IsJson);
+
+    // Attach sample source loading to the appropriate link
+    $("#load").on("click", function(event)
+    {
+        event.preventDefault();
+        result.reset();
+        input.reset();
+        input2.reset();
+
+        var request = $.ajax({
+            url: Servlets.LOAD,
+            type: "get",
+            dataType: "json"
+        });
+
+        request.done(function(response, status, xhr)
+        {
+            input.fill(response);
+            input2.fill(response);
+        });
+
+        request.fail(function (xhr, status, error)
+        {
+            // FIXME: that is very, very basic
+            alert("Server error: " + status + " (" + error + ")");
+        });
+    });
+
+    // Attach handler to the main form
+    var $form = $(DomElements.FORM);
+
+    $form.submit(function (event)
+    {
+        result.reset();
+        input.reset();
+        input2.reset();
+
+        // Grab the necessary input fields
+        var $inputs = $form.find(FormElements.INPUTS);
+
+        // Serialize all of the form -- _very_ convenient, that!
+        // Note that unchecked checkboxes will not be taken into account; as to
+        // checked ones, they default to "on" but this can be changed by speci-
+        // fying the "value" attribute of an input. Here we set it to "true",
+        // this allows Java to effectively parse it (Boolean.parseBoolean()
+        // returns false when its argument is null, which is what we want).
+        var payload = $form.serialize();
+
+        // Lock inputs
+        $inputs.prop("disabled", true);
+
+        // The request
+        var request = $.ajax({
+            url: Servlets.PROCESS,
+            type: "post",
+            data: payload,
+            dataType: "json"
+        });
+
+        // On success
+        // Since we specified that the data type we wanted was "json", the
+        // response is directly passed along as a JavaScript object.
+        request.done(function (response, status, xhr)
+        {
+            var error = input.hasError(response);
+            var error2 = input2.hasError(response);
+            if (error || error2)
+                return;
+            result.setResponse(response);
+        });
+
+        // On failure
+        request.fail(function (xhr, status, error)
+        {
+            // FIXME: that is very, very basic
+            alert("Server error: " + status + " (" + error + ")");
+        });
+
+        // Always executed
+        request.always(function ()
+        {
+            // Unlock inputs
+            $inputs.prop("disabled", false);
+        });
+
+        // Prevent default post method
+        event.preventDefault();
+    });
+};
+
+$(document).ready(main);
