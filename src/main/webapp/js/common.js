@@ -15,26 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * This file contains common elements between (for now) the two existing,
- * "active" pages.
- */
-
-var TextAreas = {
-    fillJson: function(selector, value)
-    {
-        $(selector).val(JSON.stringify(value, undefined, 4));
-    },
-    clear: function(selector)
-    {
-        $(selector).val("");
-    }
-};
-
 // jQuery selectors for global elements
 var DomElements = {
     FORM: "#process",
-    STARTHIDDEN: ".starthidden"
+    INPUTS: "textarea, input"
 };
 
 // Servlets
@@ -66,62 +50,8 @@ new function ($)
     }
 }(jQuery);
 
-// Function to report a parse error
-function reportParseError(parseError, msgHandle, textArea)
-{
-    // Find the inner link element -- there is only one, so this is "safe".
-    var link = msgHandle.find("a");
-
-    link.text("line " + parseError["line"]);
-
-    // Add an onclick hook to the link. When clicking on the link, the caret
-    // in the text area will move to the position of the error.
-    link.on("click", function(e)
-    {
-        e.preventDefault();
-        textArea.focus().setCursorPosition(parseError["offset"]);
-    });
-
-    link.qtip("destroy");
-    link.qtip({
-        content: parseError["message"],
-        show: "mouseover",
-        hide: "mouseout",
-        position: {
-            corner: {
-                target: "topMiddle",
-                tooltip: "bottomMiddle"
-            }
-        }
-    });
-    // Show the message
-    msgHandle.show();
-}
-
-// jQuery selectors for input form elements
-var FormElements = {
-    INPUTS: "textarea, input",
-    INPUT: "#input",
-    INPUT2: "#input2",
-    INVALID_INPUT: "#input-invalid",
-    INVALID_INPUT2: "#input2-invalid",
-    INVALID_QTIP: "#qtip-input",
-    INVALID_QTIP2: "#qtip-input2"
-};
-
-// jQuery selectors for result pane elements
-var ResultPane = {
-    RESULTS: "textarea#results",
-    PROCESSING_SUCCESS: "#processingSuccess",
-    PROCESSING_FAILURE: "#processingFailure"
-};
-
 // Message
 var Message = {
-    INPUT: "input",
-    INVALID_INPUT: "input-invalid",
-    INPUT2: "input2",
-    INVALID_INPUT2: "input2-invalid",
     VALID: "valid",
     RESULTS: "results"
 };
@@ -281,7 +211,7 @@ var main = function()
         input2.reset();
 
         // Grab the necessary input fields
-        var $inputs = $form.find(FormElements.INPUTS);
+        var $inputs = $form.find(DomElements.INPUTS);
 
         // Serialize all of the form -- _very_ convenient, that!
         // Note that unchecked checkboxes will not be taken into account; as to
