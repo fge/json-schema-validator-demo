@@ -5,7 +5,9 @@
 <c:set var="pageDescription"
     value="Validate your JSON data against a JSON schema" scope="request"/>
 <c:set var="inputTitle" value="Schema" scope="request"/>
+<c:set var="inputIsJson" value="true" scope="request"/>
 <c:set var="inputTitle2" value="Data" scope="request"/>
+<c:set var="input2IsJson" value="true" scope="request"/>
 <c:set var="buttonTitle" value="Validate" scope="request"/>
 <c:set var="resultTitle" value="Validation results" scope="request"/>
 <c:set var="resultIsJson" value="true" scope="request"/>

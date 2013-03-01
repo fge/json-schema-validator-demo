@@ -17,6 +17,10 @@
 
 package com.github.fge.jsonschema.load;
 
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.fge.jsonschema.constants.ResponseFields;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Closeables;
 
@@ -30,9 +34,10 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 
 @Path("/jjschema")
-@Produces("text/plain;charset=utf-8")
+@Produces("application/json;charset=utf-8")
 public final class JJSchema
 {
+    private static final JsonNodeFactory FACTORY = JacksonUtils.nodeFactory();
     private static final String SAMPLE_SOURCE;
 
     static {
@@ -58,6 +63,8 @@ public final class JJSchema
     @GET
     public static Response getSampleSource()
     {
-        return Response.ok().entity(SAMPLE_SOURCE).build();
+        final ObjectNode node = FACTORY.objectNode();
+        node.put(ResponseFields.INPUT, FACTORY.textNode(SAMPLE_SOURCE));
+        return Response.ok().entity(node.toString()).build();
     }
 }

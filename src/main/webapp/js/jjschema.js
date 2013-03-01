@@ -42,15 +42,34 @@ function loadSampleSource()
 // On document.ready()
 var main = function()
 {
-    var result = new Result(resultIsJson);
     // The guy has JavaScript, hide the warning that it should be enabled
     $(".noscript").hide();
+
+    var result = new Result(resultIsJson);
+    var input = new Input("input", inputIsJson);
 
     // Attach sample source loading to the appropriate link
     $("#load").on("click", function(event)
     {
         event.preventDefault();
-        loadSampleSource();
+        result.reset();
+        input.reset();
+        var request = $.ajax({
+            url: Servlets.LOAD,
+            type: "get",
+            dataType: "json"
+        });
+
+        request.done(function(response, status, xhr)
+        {
+            input.fill(response);
+        });
+
+        request.fail(function (xhr, status, error)
+        {
+            // FIXME: that is very, very basic
+            alert("Server error: " + status + " (" + error + ")");
+        });
     });
 
     // Attach handler to the main form
@@ -90,6 +109,8 @@ var main = function()
         // response is directly passed along as a JavaScript object.
         request.done(function (response, status, xhr)
         {
+            if (input.hasError(response))
+                return;
             result.setResponse(response);
         });
 

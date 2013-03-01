@@ -18,6 +18,10 @@
 package com.github.fge.jsonschema.load;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.fge.jsonschema.constants.ResponseFields;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.JsonLoader;
 import com.google.common.collect.ImmutableList;
 
@@ -33,6 +37,7 @@ import java.util.Random;
 @Produces("application/json;charset=utf-8")
 public final class Syntax
 {
+    private static final JsonNodeFactory FACTORY = JacksonUtils.nodeFactory();
     private static final Random RND = new Random();
     private static final List<JsonNode> SAMPLE_DATA;
     private static final int SAMPLE_DATA_SIZE;
@@ -52,7 +57,9 @@ public final class Syntax
     {
         final int index = RND.nextInt(SAMPLE_DATA_SIZE);
         final JsonNode ret = SAMPLE_DATA.get(index);
+        final ObjectNode node = FACTORY.objectNode();
+        node.put(ResponseFields.INPUT, ret);
 
-        return Response.ok().entity(ret.toString()).build();
+        return Response.ok().entity(node.toString()).build();
     }
 }

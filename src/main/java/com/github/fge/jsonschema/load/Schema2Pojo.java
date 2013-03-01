@@ -17,6 +17,11 @@
 
 package com.github.fge.jsonschema.load;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.fge.jsonschema.constants.ResponseFields;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.JsonLoader;
 
 import javax.ws.rs.GET;
@@ -29,12 +34,12 @@ import java.io.IOException;
 @Produces("application/json;charset=utf-8")
 public final class Schema2Pojo
 {
-    private static final String SAMPLE_SCHEMA;
+    private static final JsonNodeFactory FACTORY = JacksonUtils.nodeFactory();
+    private static final JsonNode SAMPLE_SCHEMA;
 
     static {
         try {
-            SAMPLE_SCHEMA = JsonLoader.fromResource("/jsonschema2pojo.json")
-                .toString();
+            SAMPLE_SCHEMA = JsonLoader.fromResource("/jsonschema2pojo.json");
         } catch (IOException e) {
             throw new ExceptionInInitializerError(e);
         }
@@ -43,6 +48,8 @@ public final class Schema2Pojo
     @GET
     public static Response getSampleSchema()
     {
-        return Response.ok().entity(SAMPLE_SCHEMA).build();
+        final ObjectNode node = FACTORY.objectNode();
+        node.put(ResponseFields.INPUT, SAMPLE_SCHEMA);
+        return Response.ok().entity(node.toString()).build();
     }
 }

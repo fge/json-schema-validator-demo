@@ -150,3 +150,66 @@ function Result(jsonContent)
         this.textArea.val("");
     }
 }
+
+function Input(name, contentIsJson)
+{
+    this.name = name;
+    this.contentIsJson = contentIsJson;
+
+    this.baseId = "#" + name;
+    this.textArea = $(this.baseId);
+
+    this.errorLink = $(this.baseId + "-link");
+    this.errorLink.qtip({content: ""});
+
+    this.errId = name + "-invalid";
+    this.errorContainer = $("#" + this.errId);
+
+    this.hasError = function (response)
+    {
+        if (!response.hasOwnProperty(this.errId))
+            return false;
+
+        var parseError = response[this.errId];
+        var textArea = this.textArea;
+
+        this.errorLink.text("line " + parseError["line"]);
+        this.errorLink.on("click", function(e)
+        {
+            e.preventDefault();
+            textArea.focus().setCursorPosition(parseError["offset"]);
+        });
+        this.errorLink.qtip("destroy");
+        this.errorLink.qtip({
+            content: parseError["message"],
+            show: "mouseover",
+            hide: "mouseout",
+            position: {
+                corner: {
+                    target: "topMiddle",
+                    tooltip: "bottomMiddle"
+                }
+            }
+        });
+
+        this.errorContainer.show();
+        return true;
+    };
+
+    this.reset = function ()
+    {
+        this.errorContainer.hide();
+    };
+
+    this.fill = function (response)
+    {
+        if (!response.hasOwnProperty(this.name))
+            return;
+
+        var value = response[this.name];
+        if (this.contentIsJson)
+            this.textArea.val(JSON.stringify(value, undefined, 4));
+        else
+            this.textArea.val(value);
+    };
+}

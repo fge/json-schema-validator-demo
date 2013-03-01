@@ -15,28 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function loadSampleSchema()
-{
-    $(DomElements.STARTHIDDEN).hide();
-    TextAreas.clear(ResultPane.RESULTS);
-
-    var request = $.ajax({
-        url: Servlets.LOAD,
-        type: "get",
-        dataType: "json"
-    });
-
-    request.done(function(response, status, xhr)
-    {
-        TextAreas.fillJson(FormElements.INPUT, response);
-    });
-
-    request.fail(function (xhr, status, error)
-    {
-        // FIXME: that is very, very basic
-        alert("Server error: " + status + " (" + error + ")");
-    });
-}
 // On document.ready()
 var main = function()
 {
@@ -44,12 +22,30 @@ var main = function()
     $(".noscript").hide();
 
     var result = new Result(resultIsJson);
+    var input = new Input("input", inputIsJson);
 
     // Attach sample source loading to the appropriate link
     $("#load").on("click", function(event)
     {
         event.preventDefault();
-        loadSampleSchema();
+        result.reset();
+        input.reset();
+        var request = $.ajax({
+            url: Servlets.LOAD,
+            type: "get",
+            dataType: "json"
+        });
+
+        request.done(function(response, status, xhr)
+        {
+            input.fill(response);
+        });
+
+        request.fail(function (xhr, status, error)
+        {
+            // FIXME: that is very, very basic
+            alert("Server error: " + status + " (" + error + ")");
+        });
     });
 
     // Attach handler to the main form
@@ -60,10 +56,8 @@ var main = function()
 
     $form.submit(function (event)
     {
-        // Clear/hide all necessary elements
-        $(DomElements.STARTHIDDEN).hide();
-        // Empty the results field
         result.reset();
+        input.reset();
 
         // Grab the necessary input fields
         var $inputs = $form.find(FormElements.INPUTS);
@@ -93,15 +87,8 @@ var main = function()
         request.done(function (response, status, xhr)
         {
 
-            // This is the way to guarantee that an object has a key with
-            // JavaScript
-            var invalidSchema = response.hasOwnProperty(Message.INVALID_INPUT);
-
-            if (invalidSchema) {
-                reportParseError(response[Message.INVALID_INPUT],
-                    $(FormElements.INVALID_INPUT), $(FormElements.INPUT));
+            if (input.hasError(response))
                 return;
-            }
 
             result.setResponse(response);
         });
