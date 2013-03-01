@@ -29,7 +29,7 @@
 
     <p>This page allows you to validate your JSON instances. Paste your schema
     and data in the appropriate text areas and press the <span
-    style="font-family: monospace;">Validate</span> button. Notes:</p>
+    style="font-family: monospace;">${buttonTitle}</span> button. Notes:</p>
 
     <ul>
         <li>inline dereferencing (using <span

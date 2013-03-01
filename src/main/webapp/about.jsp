@@ -21,11 +21,12 @@
     <ul>
         <li><a href="${software['json-schema-core']}">json-schema-core</a>;</li>
         <li><a href="${software['json-schema-validator']}">
-            json-schema-validator</a>;</li>
+        json-schema-validator</a>;</li>
         <li><a href="${software['JJSchema']}">JJSchema</a>;</li>
         <li><a href="${software['jsonschema2pojo']}">jsonschema2pojo</a>;</li>
+        <li><a href="${sowftware['avro']}">Avro Java library</a>;</li>
         <li><a href="${software['json-schema-processor-examples']}">
-            json-schema-processor-examples</a>;</li>
+        json-schema-processor-examples</a>.</li>
     </ul>
 
     <p>The source code for this web site is also available <a

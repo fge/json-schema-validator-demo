@@ -27,7 +27,7 @@
 
     <p>This page allows you to generate a JSON Schema out of a Java
     source code. Paste the source code into the text area, then press the <span
-    style="font-family: monospace">Generate schema</span> button. Notes:</p>
+    style="font-family: monospace">${buttonTitle}</span> button. Notes:</p>
 
     <ul>
         <li>it is safe to put static initializers in the code: they will not be

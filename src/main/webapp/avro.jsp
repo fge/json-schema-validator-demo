@@ -43,18 +43,28 @@
     </div>
 
     <!-- TODO -->
-    <p>This page allows you to validate the syntax of your schemas. Paste your
-    schema in the text area and press the <span style="font-family: monospace">
-    Validate</span> button. You will note the following:</p>
+    <p>This page allows you to convert an Avro schema to a JSON Schema. Paste
+    your Avro schema in the text area and press the <span
+    style="font-family: monospace">${buttonTitle}</span> button. You will note
+    the following:</p>
 
     <ul>
-        <li>unknown keywords are spotted, and reported as warnings;</li>
-        <li>on an error, you have the path (as a JSON Pointer) into the schema,
-        the keyword which raised the error and details about the error.</li>
+        <li><span style="font-family: monospace">minimum</span> and <span
+        style="font-family: monospace">maximum</span> are used to limit the
+        range of Avro's <span style="font-family: monospace">int</span> and
+        <span style="font-family: monospace;">long</span> types;</li>
+        <li>a regular expression is used to limit the range of permissible
+        characters in strings for Avro's <span
+        style="font-family: monospace">bytes</span> and <span
+        style="font-family: monospace">fixed</span> types.
+        </li>
     </ul>
 
-    <p>Software used: <a href="${software['json-schema-processor-examples']}">
-    json-schema-processor-examples</a>.</p>
+    <p>Software used: <a href="${software['avro']}">Avro Java library</a> (Avro
+    schema parsing), <a href="${software['json-schema-processor-examples']}">
+    json-schema-processor-examples</a> (conversion), <a
+    href="${software['json-schema-validator']}">json-schema-validator</a> (post
+    generation JSON Schema syntax checking).</p>
 </div>
 
 <jsp:include page="include/singleInputForm.jspf"/>

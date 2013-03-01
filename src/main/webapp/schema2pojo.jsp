@@ -28,7 +28,7 @@
     <!-- TODO -->
     <p>This page allows you to generate a Java source file out of a JSON Schema.
     Paste a JSON Schema into the text area and press the <span
-    style="font-family: monospace">Generate source</span> button. Notes:</p>
+    style="font-family: monospace">${buttonTitle}</span> button. Notes:</p>
 
     <ul>
         <li>the schema is first analyzed for syntax errors; it also aborts the

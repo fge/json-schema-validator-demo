@@ -24,8 +24,12 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.avro.Avro2JsonSchemaProcessor;
 import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.exceptions.ProcessingException;
+import com.github.fge.jsonschema.library.DraftV4Library;
 import com.github.fge.jsonschema.processing.ProcessingResult;
+import com.github.fge.jsonschema.processing.Processor;
+import com.github.fge.jsonschema.processing.ProcessorChain;
 import com.github.fge.jsonschema.processors.data.SchemaHolder;
+import com.github.fge.jsonschema.processors.syntax.SyntaxProcessor;
 import com.github.fge.jsonschema.report.ListProcessingReport;
 import com.github.fge.jsonschema.report.LogLevel;
 import com.github.fge.jsonschema.report.ProcessingReport;
@@ -56,8 +60,16 @@ public final class Avro
 
     private static final Logger log = LoggerFactory.getLogger(Avro.class);
 
-    private static final Avro2JsonSchemaProcessor PROCESSOR
-        = new Avro2JsonSchemaProcessor();
+    private static final Processor<ValueHolder<JsonTree>, SchemaHolder>
+        PROCESSOR;
+
+    static {
+        final Avro2JsonSchemaProcessor avro = new Avro2JsonSchemaProcessor();
+        final SyntaxProcessor syntax
+            = new SyntaxProcessor(DraftV4Library.get());
+        PROCESSOR = ProcessorChain.startWith(avro).chainWith(syntax)
+            .getProcessor();
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)

@@ -28,7 +28,7 @@
     <!-- TODO -->
     <p>This page allows you to validate the syntax of your schemas. Paste your
     schema in the text area and press the <span style="font-family: monospace">
-    Validate</span> button. You will note the following:</p>
+    ${buttonTitle}</span> button. You will note the following:</p>
 
     <ul>
         <li>unknown keywords are spotted, and reported as warnings;</li>
