@@ -1,0 +1,440 @@
+[
+    {
+        "namespace": "org.apache.avro.mapreduce",
+        "type": "record",
+        "name": "TextStats",
+        "fields": [
+            {
+                "name": "name",
+                "type": "string",
+                "default": ""
+            },
+            {
+                "name": "count",
+                "type": "int",
+                "default": 0
+            }
+        ]
+    },
+    {
+        "namespace": "example.avro",
+        "type": "record",
+        "name": "User",
+        "fields": [
+            {
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "name": "favorite_number",
+                "type": ["int", "null"]
+            },
+            {
+                "name": "favorite_color",
+                "type": ["string", "null"]
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "org.foo.Foo",
+        "fields": [
+            {
+                "name": "x",
+                "type": "int"
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "Pair",
+        "namespace": "org.apache.avro.mapred",
+        "fields": [
+            {
+                "name": "key",
+                "type": "string"
+            },
+            {
+                "name": "value",
+                "type": "long",
+                "order": "ignore"
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "FarAway",
+        "namespace": "org.on.the.classpath",
+        "fields": []
+    },
+    {
+        "type": "record",
+        "name": "SimpleRecord",
+        "fields": [
+            {
+                "name": "value",
+                "type": "int"
+            }
+        ]
+    },
+    {
+        "type": "enum",
+        "name": "Position",
+        "namespace": "avro.examples.baseball",
+        "symbols": ["P", "C", "B1", "B2", "B3", "SS", "LF", "CF", "RF", "DH"]
+    },
+    {
+        "type": "enum",
+        "namespace": "test",
+        "name": "PrivacyDirectImport",
+        "doc": "Privacy Test Enum",
+        "symbols": ["Public", "Private"]
+    },
+    {
+        "type": "record",
+        "name": "Json",
+        "namespace": "org.apache.avro.data",
+        "fields": [
+            {
+                "name": "value",
+                "type": ["long", "double", "string", "boolean", "null", {
+                    "type": "array",
+                    "items": "Json"
+                }, {
+                    "type": "map",
+                    "values": "Json"
+                }]
+            }
+        ]
+    },
+    {
+        "type": "enum",
+        "name": "Position",
+        "namespace": "avro.examples.baseball",
+        "symbols": ["P", "C", "B1", "B2", "B3", "SS", "LF", "CF", "RF", "DH"]
+    },
+    {
+        "type": "record",
+        "name": "Document",
+        "fields": [
+            {
+                "name": "DocId",
+                "type": "long"
+            },
+            {
+                "name": "Links",
+                "type": ["null", {
+                    "name": "Links",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "Backward",
+                            "type": {
+                                "type": "array",
+                                "items": "long"
+                            }
+                        },
+                        {
+                            "name": "Forward",
+                            "type": {
+                                "type": "array",
+                                "items": "long"
+                            }
+                        }
+                    ]
+                }]
+            },
+            {
+                "name": "Name",
+                "type": {
+                    "type": "array",
+                    "items": {
+                        "name": "Name",
+                        "type": "record",
+                        "fields": [
+                            {
+                                "name": "Language",
+                                "type": {
+                                    "type": "array",
+                                    "items": {
+                                        "name": "Language",
+                                        "type": "record",
+                                        "fields": [
+                                            {
+                                                "name": "Code",
+                                                "type": "string"
+                                            },
+                                            {
+                                                "name": "Country",
+                                                "type": ["null", "string"]
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "name": "Url",
+                                "type": ["null", "string"]
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "FooBarSpecificRecord",
+        "namespace": "org.apache.avro",
+        "fields": [
+            {
+                "name": "id",
+                "type": "int"
+            },
+            {
+                "name": "relatedids",
+                "type": {
+                    "type": "array",
+                    "items": "int"
+                }
+            },
+            {
+                "name": "typeEnum",
+                "type": ["null", {
+                    "type": "enum",
+                    "name": "TypeEnum",
+                    "namespace": "org.apache.avro",
+                    "symbols": ["a", "b", "c"]
+                }],
+                "default": null
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "HandshakeRequest",
+        "namespace": "org.apache.avro.ipc",
+        "fields": [
+            {
+                "name": "clientHash",
+                "type": {
+                    "type": "fixed",
+                    "name": "MD5",
+                    "size": 16
+                }
+            },
+            {
+                "name": "clientProtocol",
+                "type": ["null", "string"]
+            },
+            {
+                "name": "serverHash",
+                "type": "MD5"
+            },
+            {
+                "name": "meta",
+                "type": ["null", {
+                    "type": "map",
+                    "values": "bytes"
+                }]
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "Interop",
+        "namespace": "org.apache.avro",
+        "fields": [
+            {
+                "name": "intField",
+                "type": "int"
+            },
+            {
+                "name": "longField",
+                "type": "long"
+            },
+            {
+                "name": "stringField",
+                "type": "string"
+            },
+            {
+                "name": "boolField",
+                "type": "boolean"
+            },
+            {
+                "name": "floatField",
+                "type": "float"
+            },
+            {
+                "name": "doubleField",
+                "type": "double"
+            },
+            {
+                "name": "bytesField",
+                "type": "bytes"
+            },
+            {
+                "name": "nullField",
+                "type": "null"
+            },
+            {
+                "name": "arrayField",
+                "type": {
+                    "type": "array",
+                    "items": "double"
+                }
+            },
+            {
+                "name": "mapField",
+                "type": {
+                    "type": "map",
+                    "values": {
+                        "type": "record",
+                        "name": "Foo",
+                        "fields": [
+                            {
+                                "name": "label",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "unionField",
+                "type": ["boolean", "double", {
+                    "type": "array",
+                    "items": "bytes"
+                }]
+            },
+            {
+                "name": "enumField",
+                "type": {
+                    "type": "enum",
+                    "name": "Kind",
+                    "symbols": ["A", "B", "C"]
+                }
+            },
+            {
+                "name": "fixedField",
+                "type": {
+                    "type": "fixed",
+                    "name": "MD5",
+                    "size": 16
+                }
+            },
+            {
+                "name": "recordField",
+                "type": {
+                    "type": "record",
+                    "name": "Node",
+                    "fields": [
+                        {
+                            "name": "label",
+                            "type": "string"
+                        },
+                        {
+                            "name": "children",
+                            "type": {
+                                "type": "array",
+                                "items": "Node"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "Document",
+        "fields": [
+            {
+                "name": "DocId",
+                "type": "long"
+            },
+            {
+                "name": "Name",
+                "type": {
+                    "type": "array",
+                    "items": {
+                        "name": "Name",
+                        "type": "record",
+                        "fields": [
+                            {
+                                "name": "Language",
+                                "type": {
+                                    "type": "array",
+                                    "items": {
+                                        "name": "Language",
+                                        "type": "record",
+                                        "fields": [
+                                            {
+                                                "name": "Country",
+                                                "type": ["null", "string"]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "test.Weather",
+        "doc": "A weather reading.",
+        "fields": [
+            {
+                "name": "station",
+                "type": "string",
+                "order": "ignore"
+            },
+            {
+                "name": "time",
+                "type": "long"
+            },
+            {
+                "name": "temp",
+                "type": "int"
+            }
+        ]
+    },
+    {
+        "type": "record",
+        "name": "HandshakeResponse",
+        "namespace": "org.apache.avro.ipc",
+        "fields": [
+            {
+                "name": "match",
+                "type": {
+                    "type": "enum",
+                    "name": "HandshakeMatch",
+                    "symbols": ["BOTH", "CLIENT", "NONE"]
+                }
+            },
+            {
+                "name": "serverProtocol",
+                "type": ["null", "string"]
+            },
+            {
+                "name": "serverHash",
+                "type": ["null", {
+                    "type": "fixed",
+                    "name": "MD5",
+                    "size": 16
+                }]
+            },
+            {
+                "name": "meta",
+                "type": ["null", {
+                    "type": "map",
+                    "values": "bytes"
+                }]
+            }
+        ]
+    }
+]
