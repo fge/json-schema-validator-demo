@@ -5,10 +5,8 @@
 <c:set var="pageDescription"
     value="Generate a JSON Schema out of your Java classes" scope="request"/>
 <c:set var="inputTitle" value="Java source code" scope="request"/>
-<c:set var="inputIsJson" value="false" scope="request"/>
 <c:set var="buttonTitle" value="Generate schema" scope="request"/>
 <c:set var="resultTitle" value="Generation result" scope="request"/>
-<c:set var="resultIsJson" value="true" scope="request"/>
 <c:import url="include/software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

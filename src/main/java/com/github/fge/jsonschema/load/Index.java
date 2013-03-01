@@ -18,6 +18,9 @@
 package com.github.fge.jsonschema.load;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.JsonLoader;
 import com.google.common.collect.ImmutableList;
 
@@ -27,12 +30,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Path("/index")
 @Produces("application/json;charset=utf-8")
 public final class Index
 {
+    private static final JsonNodeFactory FACTORY = JacksonUtils.nodeFactory();
     private static final Random RND = new Random();
     private static final List<JsonNode> SAMPLE_DATA;
     private static final int SAMPLE_DATA_SIZE;
@@ -52,7 +57,12 @@ public final class Index
     {
         final int index = RND.nextInt(SAMPLE_DATA_SIZE);
         final JsonNode ret = SAMPLE_DATA.get(index);
+        final ObjectNode node = FACTORY.objectNode();
+        final Map<String, JsonNode> map = JacksonUtils.asMap(ret);
+        for (final Map.Entry<String, JsonNode> entry: map.entrySet())
+            node.put(entry.getKey(),
+                JacksonUtils.prettyPrint(entry.getValue()));
 
-        return Response.ok().entity(ret.toString()).build();
+        return Response.ok().entity(node.toString()).build();
     }
 }

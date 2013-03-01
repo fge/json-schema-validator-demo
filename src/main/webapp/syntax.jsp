@@ -5,10 +5,8 @@
 <c:set var="pageDescription"
     value="Validate the syntax of your JSON Schemas" scope="request"/>
 <c:set var="inputTitle" value="Schema" scope="request"/>
-<c:set var="inputIsJson" value="true" scope="request"/>
 <c:set var="buttonTitle" value="Check syntax" scope="request"/>
 <c:set var="resultTitle" value="Validation results" scope="request"/>
-<c:set var="resultIsJson" value="true" scope="request"/>
 <c:import url="include/software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

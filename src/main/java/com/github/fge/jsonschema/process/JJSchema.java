@@ -28,6 +28,7 @@ import com.github.fge.jsonschema.processors.data.SchemaHolder;
 import com.github.fge.jsonschema.report.ListProcessingReport;
 import com.github.fge.jsonschema.report.LogLevel;
 import com.github.fge.jsonschema.report.ProcessingReport;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,8 +83,11 @@ public final class JJSchema
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
         final boolean success = processingReport.isSuccess();
         ret.put(VALID, success);
-        if (success)
-            ret.put(RESULTS, result.getResult().getValue().getBaseNode());
+        if (success) {
+            final JsonNode node
+                = result.getResult().getValue().getBaseNode();
+            ret.put(RESULTS, JacksonUtils.prettyPrint(node));
+        }
         else {
             final ListProcessingReport r
                 = new ListProcessingReport(LogLevel.DEBUG, LogLevel.NONE);
@@ -92,7 +96,7 @@ public final class JJSchema
             } catch (ProcessingException ignored) {
                 // cannot happen
             }
-            ret.put(RESULTS, r.asJson());
+            ret.put(RESULTS, JacksonUtils.prettyPrint(r.asJson()));
         }
         return ret;
     }

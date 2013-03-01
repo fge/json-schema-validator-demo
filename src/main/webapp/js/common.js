@@ -27,6 +27,12 @@ var Servlets = {
     LOAD: "/load/" + pageName
 };
 
+// Message
+var Message = {
+    VALID: "valid",
+    RESULTS: "results"
+};
+
 /*
  * Function added to set the cursor position at a given offset in a text area
  *
@@ -50,13 +56,7 @@ new function ($)
     }
 }(jQuery);
 
-// Message
-var Message = {
-    VALID: "valid",
-    RESULTS: "results"
-};
-
-function Result(jsonContent)
+function Result()
 {
     this.textArea = $("textArea#results");
     this.success = $("#processingSuccess");
@@ -67,11 +67,7 @@ function Result(jsonContent)
         var valid = response[Message.VALID];
         var msg = valid ? this.success : this.failure;
         var content = response[Message.RESULTS];
-        // Assumed: when errors, always JSON
-        if (jsonContent || !valid)
-            this.textArea.val(JSON.stringify(content, undefined, 4));
-        else
-            this.textArea.val(content);
+        this.textArea.val(content);
         msg.show();
     };
 
@@ -83,10 +79,9 @@ function Result(jsonContent)
     }
 }
 
-function Input(name, contentIsJson)
+function Input(name)
 {
     this.name = name;
-    this.contentIsJson = contentIsJson;
 
     this.baseId = "#" + name;
     this.textArea = $(this.baseId);
@@ -139,10 +134,7 @@ function Input(name, contentIsJson)
             return;
 
         var value = response[this.name];
-        if (this.contentIsJson)
-            this.textArea.val(JSON.stringify(value, undefined, 4));
-        else
-            this.textArea.val(value);
+        this.textArea.val(value);
     };
 }
 
@@ -168,11 +160,11 @@ var main = function()
     // The guy has JavaScript, hide the warning that it should be enabled
     $(".noscript").hide();
 
-    var result = new Result(resultIsJson);
-    var input = new Input("input", inputIsJson);
-    var input2 = typeof input2IsJson === "undefined"
+    var result = new Result();
+    var input = new Input("input");
+    var input2 = typeof $("input2") === "undefined"
         ? new DummyInput()
-        : new Input("input2", input2IsJson);
+        : new Input("input2");
 
     // Attach sample source loading to the appropriate link
     $("#load").on("click", function(event)

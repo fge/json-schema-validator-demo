@@ -22,10 +22,8 @@
 <c:set var="pageDescription"
     value="Convert Avro schemas to JSON Schemas" scope="request"/>
 <c:set var="inputTitle" value="Avro schema" scope="request"/>
-<c:set var="inputIsJson" value="true" scope="request"/>
 <c:set var="buttonTitle" value="Convert" scope="request"/>
 <c:set var="resultTitle" value="Conversion result" scope="request"/>
-<c:set var="resultIsJson" value="true" scope="request"/>
 <c:import url="include/software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

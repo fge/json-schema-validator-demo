@@ -49,7 +49,7 @@ public final class Schema2Pojo
     public static Response getSampleSchema()
     {
         final ObjectNode node = FACTORY.objectNode();
-        node.put(ResponseFields.INPUT, SAMPLE_SCHEMA);
+        node.put(ResponseFields.INPUT, JacksonUtils.prettyPrint(SAMPLE_SCHEMA));
         return Response.ok().entity(node.toString()).build();
     }
 }

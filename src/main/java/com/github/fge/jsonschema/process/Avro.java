@@ -35,6 +35,7 @@ import com.github.fge.jsonschema.report.LogLevel;
 import com.github.fge.jsonschema.report.ProcessingReport;
 import com.github.fge.jsonschema.tree.JsonTree;
 import com.github.fge.jsonschema.tree.SimpleJsonTree;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.JsonLoader;
 import com.github.fge.jsonschema.util.ValueHolder;
 import com.github.fge.util.SimpleValueHolder;
@@ -120,9 +121,10 @@ public final class Avro
         }
 
         ret.put(VALID, success);
-        ret.put(RESULTS, success
+        final JsonNode node = success
             ? result.getResult().getValue().getBaseNode()
-            : r.asJson());
+            : r.asJson();
+        ret.put(RESULTS, JacksonUtils.prettyPrint(node));
         return ret;
     }
 

@@ -3,10 +3,5 @@
     <script src="js/ext/jquery.qtip-1.0.0-rc3.js" type="text/javascript"></script>
     <script type="text/javascript">
         var pageName = "${pageName}";
-        var resultIsJson = ${resultIsJson};
-        var inputIsJson = ${inputIsJson};
-        <c:if test="${not empty input2IsJson}">
-        var input2IsJson = ${input2IsJson};
-        </c:if>
     </script>
     <script src="js/common.js" type="text/javascript"></script>

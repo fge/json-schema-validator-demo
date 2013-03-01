@@ -26,6 +26,7 @@ import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.github.fge.jsonschema.main.JsonValidator;
 import com.github.fge.jsonschema.report.ProcessingReport;
 import com.github.fge.jsonschema.util.AsJson;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.JsonLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,7 +94,8 @@ public final class Index
 
         final boolean success = report.isSuccess();
         ret.put(VALID, success);
-        ret.put(RESULTS, ((AsJson) report).asJson());
+        final JsonNode node = ((AsJson) report).asJson();
+        ret.put(RESULTS, JacksonUtils.prettyPrint(node));
         return ret;
     }
 

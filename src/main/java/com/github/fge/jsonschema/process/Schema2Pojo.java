@@ -107,7 +107,7 @@ public final class Schema2Pojo
             final ArrayNode node = FACTORY.arrayNode();
             for (final ProcessingMessage message: result.getReport())
                 node.add(message.asJson());
-            ret.put(RESULTS, node);
+            ret.put(RESULTS, JacksonUtils.prettyPrint(node));
         }
         return ret;
     }

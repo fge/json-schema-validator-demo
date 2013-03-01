@@ -26,6 +26,7 @@ import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.exceptions.ProcessingException;
 import com.github.fge.jsonschema.processors.syntax.SyntaxValidator;
 import com.github.fge.jsonschema.report.ListProcessingReport;
+import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.JsonLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +58,8 @@ public final class Syntax
     {
         try {
             final JsonNode ret = buildResult(schema);
-            return Response.ok().entity(ret.toString()).build();
+            final String out = JacksonUtils.prettyPrint(ret);
+            return Response.ok().entity(out).build();
         } catch (IOException e) {
             log.error("I/O error while building response", e);
             return OOPS;
@@ -91,7 +93,7 @@ public final class Syntax
         final boolean success = report.isSuccess();
 
         ret.put(VALID, success);
-        ret.put(RESULTS, report.asJson());
+        ret.put(RESULTS, JacksonUtils.prettyPrint(report.asJson()));
         return ret;
     }
 

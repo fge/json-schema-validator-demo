@@ -58,7 +58,7 @@ public final class Syntax
         final int index = RND.nextInt(SAMPLE_DATA_SIZE);
         final JsonNode ret = SAMPLE_DATA.get(index);
         final ObjectNode node = FACTORY.objectNode();
-        node.put(ResponseFields.INPUT, ret);
+        node.put(ResponseFields.INPUT, JacksonUtils.prettyPrint(ret));
 
         return Response.ok().entity(node.toString()).build();
     }
