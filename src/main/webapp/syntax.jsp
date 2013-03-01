@@ -9,14 +9,14 @@
 <c:set var="buttonTitle" value="Check syntax" scope="request"/>
 <c:set var="resultTitle" value="Validation results" scope="request"/>
 <c:set var="resultIsJson" value="true" scope="request"/>
-<c:import url="software.jspf" var="devnull"/>
+<c:import url="include/software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <jsp:include page="head-common.jspf"/>
-    <jsp:include page="head-js.jspf"/>
+    <jsp:include page="include/head-common.jspf"/>
+    <jsp:include page="include/head-js.jspf"/>
 </head>
 <body>
-<jsp:include page="menu.jspf"/>
+<jsp:include page="include/menu.jspf"/>
 <div id="top">
     <div class="noscript">
         <p>
@@ -40,7 +40,7 @@
     json-schema-validator</a>.</p>
 </div>
 
-<jsp:include page="singleInputForm.jspf"/>
-<jsp:include page="resultPane.jspf"/>
+<jsp:include page="include/singleInputForm.jspf"/>
+<jsp:include page="include/resultPane.jspf"/>
 </body>
 </html>

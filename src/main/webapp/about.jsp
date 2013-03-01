@@ -4,14 +4,14 @@
 <c:set var="pageTitle" value="About this web site" scope="request"/>
 <c:set var="pageDescription"
     value="JSON Schema software in Java used on this site" scope="request"/>
-<c:import url="software.jspf" var="devnull"/>
+<c:import url="include/software.jspf" var="devnull"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <jsp:include page="head-common.jspf"/>
+    <jsp:include page="include/head-common.jspf"/>
 </head>
 <body>
 
-<jsp:include page="menu.jspf"/>
+<jsp:include page="include/menu.jspf"/>
 <div class="about">
 
     <h2>Software used</h2>
