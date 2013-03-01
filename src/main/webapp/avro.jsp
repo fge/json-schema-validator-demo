@@ -49,15 +49,15 @@
     the following:</p>
 
     <ul>
-        <li><span style="font-family: monospace">minimum</span> and <span
-        style="font-family: monospace">maximum</span> are used to limit the
-        range of Avro's <span style="font-family: monospace">int</span> and
-        <span style="font-family: monospace;">long</span> types;</li>
-        <li>a regular expression is used to limit the range of permissible
-        characters in strings for Avro's <span
-        style="font-family: monospace">bytes</span> and <span
-        style="font-family: monospace">fixed</span> types.
-        </li>
+        <li>Avro records have a notion of order of their fields; however, JSON
+        has no such notion, and neither has JSON Schema: the <span
+        style="font-family: monospace">order</span> keyword is therefore
+        ignored;</li>
+        <li>JSON numbers, unlike Avro's numeric types, are not limited in
+        precision and/or scale; for integer types, <span
+        style="font-family: monospace">minimum</span> and <span
+        style="font-family: monospace">maximum</span> are used to emulate Avro
+        limtations.</li>
     </ul>
 
     <p>Software used: <a href="${software['avro']}">Avro Java library</a> (Avro
