@@ -2,8 +2,8 @@
     <div id="left" class="content">
         <div class="horiz">
             <label for="input">${inputTitle}:</label>
-            <span class="error starthidden" id="invalidInput">Invalid JSON:
-                parse error, <a href="#"></a></span>
+            <span class="error starthidden" id="input-invalid">Invalid JSON:
+                parse error, <a id="input-link" href="#"></a></span>
         </div>
         <textarea name="input" rows="20" cols="20" id="input"></textarea>
         <div class="horiz">

@@ -27,9 +27,9 @@ public final class ResponseFields
      * Mirrored in common.js...
      */
     public static final String INPUT = "input";
-    public static final String INVALID_INPUT = "invalidInput";
+    public static final String INVALID_INPUT = "input-invalid";
     public static final String INPUT2 = "input2";
-    public static final String INVALID_INPUT2 = "invalidInput2";
+    public static final String INVALID_INPUT2 = "input2-invalid";
     public static final String RESULTS = "results";
     public static final String VALID = "valid";
 

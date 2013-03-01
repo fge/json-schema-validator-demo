@@ -103,8 +103,8 @@ var FormElements = {
     INPUTS: "textarea, input",
     INPUT: "#input",
     INPUT2: "#input2",
-    INVALID_INPUT: "#invalidInput",
-    INVALID_INPUT2: "#invalidInput2",
+    INVALID_INPUT: "#input-invalid",
+    INVALID_INPUT2: "#input2-invalid",
     INVALID_QTIP: "#qtip-input",
     INVALID_QTIP2: "#qtip-input2"
 };
@@ -119,9 +119,9 @@ var ResultPane = {
 // Message
 var Message = {
     INPUT: "input",
-    INVALID_INPUT: "invalidInput",
+    INVALID_INPUT: "input-invalid",
     INPUT2: "input2",
-    INVALID_INPUT2: "invalidInput2",
+    INVALID_INPUT2: "input2-invalid",
     VALID: "valid",
     RESULTS: "results"
 };
