@@ -13,11 +13,11 @@ public final class App
     {
         final ImmutableSet.Builder<Class<?>> builder = ImmutableSet.builder();
 
-        builder.add(Index.class);
-        builder.add(JJSchema.class);
-        builder.add(Schema2Pojo.class);
-        builder.add(Syntax.class);
-        builder.add(Avro.class);
+        builder.add(IndexLoader.class);
+        builder.add(JJSchemaLoader.class);
+        builder.add(Schema2PojoLoader.class);
+        builder.add(SyntaxLoader.class);
+        builder.add(AvroLoader.class);
 
         return builder.build();
     }
