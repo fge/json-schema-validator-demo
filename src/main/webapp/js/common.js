@@ -207,12 +207,7 @@ var main = function()
         // Grab the necessary input fields
         var $inputs = $form.find(DomElements.INPUTS);
 
-        // Serialize all of the form -- _very_ convenient, that!
-        // Note that unchecked checkboxes will not be taken into account; as to
-        // checked ones, they default to "on" but this can be changed by speci-
-        // fying the "value" attribute of an input. Here we set it to "true",
-        // this allows Java to effectively parse it (Boolean.parseBoolean()
-        // returns false when its argument is null, which is what we want).
+        // Serialize all of the form -- _very_ convenient!
         var payload = $form.serialize();
 
         // Lock inputs
@@ -231,6 +226,12 @@ var main = function()
         // response is directly passed along as a JavaScript object.
         request.done(function (response, status, xhr)
         {
+            /*
+             * NOTE! MUST NOT SHORTCUT!
+             *
+             * The .hasError() function is also in charge of filling the error
+             * links...
+             */
             var error = input.hasError(response);
             var error2 = input2.hasError(response);
             if (error || error2)
