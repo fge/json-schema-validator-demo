@@ -87,7 +87,7 @@ function Input(name)
     this.textArea = $(this.baseId);
 
     this.errorLink = $(this.baseId + "-link");
-    this.errorLink.qtip({content: ""});
+//    this.errorLink.qtip({content: ""});
 
     this.errId = name + "-invalid";
     this.errorContainer = $("#" + this.errId);
@@ -99,24 +99,23 @@ function Input(name)
 
         var parseError = response[this.errId];
         var textArea = this.textArea;
+        var link = this.errorLink;
 
-        this.errorLink.text("line " + parseError["line"]);
-        this.errorLink.on("click", function(e)
+        link.text("line " + parseError["line"]);
+        link.on("click", function(e)
         {
             e.preventDefault();
             textArea.focus().setCursorPosition(parseError["offset"]);
         });
-        this.errorLink.qtip("destroy");
-        this.errorLink.qtip({
-            content: parseError["message"],
-            show: "mouseover",
-            hide: "mouseout",
+        link.qtip({
+            overwrite: true,
+            content: parseError["message"] + "\n(clink on the link to position the cursor)",
             position: {
-                corner: {
-                    target: "topMiddle",
-                    tooltip: "bottomMiddle"
-                }
-            }
+                my: "bottom center",
+                at: "top center"
+            },
+            show: "mouseover",
+            hide: "mouseout"
         });
 
         this.errorContainer.show();
