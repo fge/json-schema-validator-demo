@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%--
   ~ Copyright (c) 2013, Francis Galiegue <fgaliegue@gmail.com>
   ~
@@ -13,9 +14,7 @@
   ~
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  --%>
-
-<!DOCTYPE html>
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <c:set var="pageName" value="avro" scope="request"/>
 <c:set var="pageTitle" value="Avro schema to JSON Schema" scope="request"/>
