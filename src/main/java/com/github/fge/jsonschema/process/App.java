@@ -17,7 +17,7 @@ public final class App
         builder.add(Index.class);
         builder.add(JJSchemaProcessing.class);
         builder.add(Schema2PojoProcessing.class);
-        builder.add(Avro.class);
+        builder.add(AvroProcessing.class);
 
         return builder.build();
     }
