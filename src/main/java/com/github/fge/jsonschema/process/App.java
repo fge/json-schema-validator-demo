@@ -15,8 +15,8 @@ public final class App
 
         builder.add(SyntaxProcessing.class);
         builder.add(Index.class);
-        builder.add(JJSchema.class);
-        builder.add(Schema2Pojo.class);
+        builder.add(JJSchemaProcessing.class);
+        builder.add(Schema2PojoProcessing.class);
         builder.add(Avro.class);
 
         return builder.build();
