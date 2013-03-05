@@ -101,6 +101,9 @@ function Input(name)
         var textArea = this.textArea;
         var link = this.errorLink;
 
+        var errorText = "<p>" + parseError["message"] + "</p>"
+            + "<p>(click on the link to position the cursor)</p>";
+
         link.text("line " + parseError["line"]);
         link.on("click", function(e)
         {
@@ -109,7 +112,7 @@ function Input(name)
         });
         link.qtip({
             overwrite: true,
-            content: parseError["message"] + "\n(clink on the link to position the cursor)",
+            content: errorText,
             position: {
                 my: "bottom center",
                 at: "top center"
