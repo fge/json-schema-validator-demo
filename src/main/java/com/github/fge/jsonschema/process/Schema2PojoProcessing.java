@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jsonschema.exceptions.ProcessingException;
 import com.github.fge.jsonschema.processing.ProcessingResult;
-import com.github.fge.jsonschema.processors.data.SchemaHolder;
 import com.github.fge.jsonschema.report.ListProcessingReport;
 import com.github.fge.jsonschema.report.ProcessingReport;
 import com.github.fge.jsonschema.tree.CanonicalSchemaTree;
@@ -40,7 +39,7 @@ public final class Schema2PojoProcessing
             return ret;
 
         final SchemaTree tree = new CanonicalSchemaTree(schemaNode);
-        final SchemaHolder holder = new SchemaHolder(tree);
+        final ValueHolder<SchemaTree> holder = ValueHolder.hold("schema", tree);
 
         final ProcessingReport report = new ListProcessingReport();
         final ProcessingResult<ValueHolder<String>> result

@@ -1,21 +1,21 @@
 package com.acme.catalog;
 
-import com.github.reinert.jjschema.SchemaProperty;
+import com.github.reinert.jjschema.Attributes;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@SchemaProperty(title="Product", description="A product from Acme's catalog")
+@Attributes(title="Product", description="A product from Acme's catalog")
 public class Product
 {
 
-    @SchemaProperty(required=true, description="The unique identifier for a product")
+    @Attributes(required=true, description="The unique identifier for a product")
     private long id;
-    @SchemaProperty(required=true, description="Name of the product")
+    @Attributes(required=true, description="Name of the product")
     private String name;
-    @SchemaProperty(required=true, minimum=0, exclusiveMinimum=true)
+    @Attributes(required=true, minimum=0, exclusiveMinimum=true)
     private BigDecimal price;
-    @SchemaProperty(minItems=1,uniqueItems=true)
+    @Attributes(minItems=1,uniqueItems=true)
     private List<String> tags;
 
     public long getId() {

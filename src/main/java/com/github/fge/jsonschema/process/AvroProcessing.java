@@ -8,11 +8,11 @@ import com.github.fge.jsonschema.library.DraftV4Library;
 import com.github.fge.jsonschema.processing.ProcessingResult;
 import com.github.fge.jsonschema.processing.Processor;
 import com.github.fge.jsonschema.processing.ProcessorChain;
-import com.github.fge.jsonschema.processors.data.SchemaHolder;
-import com.github.fge.jsonschema.processors.syntax.SyntaxProcessor;
 import com.github.fge.jsonschema.report.ListProcessingReport;
 import com.github.fge.jsonschema.report.ProcessingReport;
+import com.github.fge.jsonschema.syntax.SyntaxProcessor;
 import com.github.fge.jsonschema.tree.JsonTree;
+import com.github.fge.jsonschema.tree.SchemaTree;
 import com.github.fge.jsonschema.tree.SimpleJsonTree;
 import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.ValueHolder;
@@ -27,13 +27,13 @@ import static com.github.fge.jsonschema.constants.ResponseFields.*;
 public final class AvroProcessing
     extends Processing
 {
-    private static final Processor<ValueHolder<JsonTree>, SchemaHolder>
+    private static final Processor<ValueHolder<JsonTree>, ValueHolder<SchemaTree>>
         PROCESSOR;
 
     static {
         final Avro2JsonSchemaProcessor avro = new Avro2JsonSchemaProcessor();
         final SyntaxProcessor syntax
-            = new SyntaxProcessor(DraftV4Library.get());
+            = new SyntaxProcessor(DraftV4Library.get().getSyntaxCheckers());
         PROCESSOR = ProcessorChain.startWith(avro).chainWith(syntax)
             .getProcessor();
     }
@@ -57,7 +57,7 @@ public final class AvroProcessing
             = new SimpleValueHolder<JsonTree>(tree);
 
         final ProcessingReport report = new ListProcessingReport();
-        final ProcessingResult<SchemaHolder> result
+        final ProcessingResult<ValueHolder<SchemaTree>> result
             = ProcessingResult.uncheckedResult(PROCESSOR, report, holder);
         final boolean success = result.isSuccess();
 

@@ -6,10 +6,11 @@ import com.github.fge.jjschema.JJSchemaFromSource;
 import com.github.fge.jjschema.SourceHolder;
 import com.github.fge.jsonschema.exceptions.ProcessingException;
 import com.github.fge.jsonschema.processing.ProcessingResult;
-import com.github.fge.jsonschema.processors.data.SchemaHolder;
 import com.github.fge.jsonschema.report.ListProcessingReport;
 import com.github.fge.jsonschema.report.ProcessingReport;
+import com.github.fge.jsonschema.tree.SchemaTree;
 import com.github.fge.jsonschema.util.JacksonUtils;
+import com.github.fge.jsonschema.util.ValueHolder;
 
 import javax.ws.rs.Path;
 import java.io.IOException;
@@ -29,7 +30,7 @@ public final class JJSchemaProcessing
     {
         final SourceHolder holder = new SourceHolder(input);
         final ListProcessingReport report = new ListProcessingReport();
-        final ProcessingResult<SchemaHolder> result
+        final ProcessingResult<ValueHolder<SchemaTree>> result
             = ProcessingResult.uncheckedResult(PROCESSOR, report, holder);
 
         final ProcessingReport processingReport
