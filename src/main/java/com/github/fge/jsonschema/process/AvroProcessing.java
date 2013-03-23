@@ -3,6 +3,7 @@ package com.github.fge.jsonschema.process;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.avro.Avro2JsonSchemaProcessor;
+import com.github.fge.jackson.JacksonUtils;
 import com.github.fge.jsonschema.exceptions.ProcessingException;
 import com.github.fge.jsonschema.library.DraftV4Library;
 import com.github.fge.jsonschema.processing.ProcessingResult;
@@ -14,9 +15,7 @@ import com.github.fge.jsonschema.syntax.SyntaxProcessor;
 import com.github.fge.jsonschema.tree.JsonTree;
 import com.github.fge.jsonschema.tree.SchemaTree;
 import com.github.fge.jsonschema.tree.SimpleJsonTree;
-import com.github.fge.jsonschema.util.JacksonUtils;
 import com.github.fge.jsonschema.util.ValueHolder;
-import com.github.fge.util.SimpleValueHolder;
 
 import javax.ws.rs.Path;
 import java.io.IOException;
@@ -53,8 +52,7 @@ public final class AvroProcessing
             return ret;
 
         final JsonTree tree = new SimpleJsonTree(schemaNode);
-        final ValueHolder<JsonTree> holder
-            = new SimpleValueHolder<JsonTree>(tree);
+        final ValueHolder<JsonTree> holder = ValueHolder.hold(tree);
 
         final ProcessingReport report = new ListProcessingReport();
         final ProcessingResult<ValueHolder<SchemaTree>> result

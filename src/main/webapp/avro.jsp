@@ -39,7 +39,6 @@
         </p>
     </div>
 
-    <!-- TODO -->
     <p>This page allows you to convert an Avro schema to a JSON Schema. Paste
     your Avro schema in the text area and press the <span
     style="font-family: monospace">${buttonTitle}</span> button. You will note
@@ -57,11 +56,9 @@
         limtations.</li>
     </ul>
 
-    <p>Software used: <a href="${software['avro']}">Avro Java library</a> (Avro
-    schema parsing), <a href="${software['json-schema-processor-examples']}">
-    json-schema-processor-examples</a> (conversion), <a
-    href="${software['json-schema-validator']}">json-schema-validator</a> (post
-    generation JSON Schema syntax checking).</p>
+    <p>Software used: <a href="${software['json-schema-avro']}">json-schema-avro
+    </a> (conversion), <a href="${software['json-schema-validator']}">
+    json-schema-validator</a> (post generation JSON Schema syntax checking).</p>
 </div>
 
 <jsp:include page="include/singleInputForm.jspf"/>

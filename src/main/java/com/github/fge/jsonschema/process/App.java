@@ -18,6 +18,7 @@ public final class App
         builder.add(JJSchemaProcessing.class);
         builder.add(Schema2PojoProcessing.class);
         builder.add(AvroProcessing.class);
+        builder.add(JsonPatch.class);
 
         return builder.build();
     }

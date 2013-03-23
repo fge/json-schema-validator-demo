@@ -1,0 +1,852 @@
+[ {
+  "input" : [ ],
+  "input2" : { }
+}, {
+  "input" : [ ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ ],
+  "input2" : {
+    "foo" : 1,
+    "bar" : 2
+  }
+}, {
+  "input" : [ ],
+  "input2" : [ {
+    "foo" : 1,
+    "bar" : 2
+  } ]
+}, {
+  "input" : [ ],
+  "input2" : {
+    "foo" : {
+      "foo" : 1,
+      "bar" : 2
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/foo",
+    "value" : 1
+  } ],
+  "input2" : {
+    "foo" : null
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/0",
+    "value" : "foo"
+  } ],
+  "input2" : [ ]
+}, {
+  "input" : [ ],
+  "input2" : [ "foo" ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/foo",
+    "value" : "1"
+  } ],
+  "input2" : { }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/foo",
+    "value" : 1
+  } ],
+  "input2" : { }
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "",
+    "value" : "bar"
+  } ],
+  "input2" : "foo"
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/",
+    "value" : 1
+  } ],
+  "input2" : { }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/bar",
+    "value" : [ 1, 2 ]
+  } ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/baz/0/foo",
+    "value" : "world"
+  } ],
+  "input2" : {
+    "foo" : 1,
+    "baz" : [ {
+      "qux" : "hello"
+    } ]
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/bar/8",
+    "value" : "5"
+  } ],
+  "input2" : {
+    "bar" : [ 1, 2 ]
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/bar/-1",
+    "value" : "5"
+  } ],
+  "input2" : {
+    "bar" : [ 1, 2 ]
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/bar",
+    "value" : true
+  } ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/bar",
+    "value" : false
+  } ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/bar",
+    "value" : null
+  } ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/0",
+    "value" : "bar"
+  } ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/1",
+    "value" : "bar"
+  } ],
+  "input2" : [ "foo" ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/1",
+    "value" : "bar"
+  } ],
+  "input2" : [ "foo", "sil" ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/0",
+    "value" : "bar"
+  } ],
+  "input2" : [ "foo", "sil" ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/2",
+    "value" : "bar"
+  } ],
+  "input2" : [ "foo", "sil" ]
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/1e0",
+    "value" : "foo"
+  } ],
+  "input2" : {
+    "1e0" : "foo"
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/1e0",
+    "value" : "bar"
+  } ],
+  "input2" : [ "foo", "bar" ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/bar",
+    "value" : 42
+  } ],
+  "input2" : [ "foo", "sil" ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/1",
+    "value" : [ "bar", "baz" ]
+  } ],
+  "input2" : [ "foo", "sil" ]
+}, {
+  "input" : [ {
+    "op" : "remove",
+    "path" : "/bar"
+  } ],
+  "input2" : {
+    "foo" : 1,
+    "bar" : [ 1, 2, 3, 4 ]
+  }
+}, {
+  "input" : [ {
+    "op" : "remove",
+    "path" : "/baz/0/qux"
+  } ],
+  "input2" : {
+    "foo" : 1,
+    "baz" : [ {
+      "qux" : "hello"
+    } ]
+  }
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/foo",
+    "value" : [ 1, 2, 3, 4 ]
+  } ],
+  "input2" : {
+    "foo" : 1,
+    "baz" : [ {
+      "qux" : "hello"
+    } ]
+  }
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/baz/0/qux",
+    "value" : "world"
+  } ],
+  "input2" : {
+    "foo" : [ 1, 2, 3, 4 ],
+    "baz" : [ {
+      "qux" : "hello"
+    } ]
+  }
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/0",
+    "value" : "bar"
+  } ],
+  "input2" : [ "foo" ]
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/0",
+    "value" : 0
+  } ],
+  "input2" : [ "" ]
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/0",
+    "value" : true
+  } ],
+  "input2" : [ "" ]
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/0",
+    "value" : false
+  } ],
+  "input2" : [ "" ]
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/0",
+    "value" : null
+  } ],
+  "input2" : [ "" ]
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/1",
+    "value" : [ "bar", "baz" ]
+  } ],
+  "input2" : [ "foo", "sil" ]
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/foo",
+    "value" : 1,
+    "spurious" : 1
+  } ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/foo",
+    "value" : null
+  } ],
+  "input2" : {
+    "foo" : null
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/foo",
+    "value" : {
+      "bar" : 2,
+      "foo" : 1
+    }
+  } ],
+  "input2" : {
+    "foo" : {
+      "foo" : 1,
+      "bar" : 2
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/foo",
+    "value" : [ {
+      "bar" : 2,
+      "foo" : 1
+    } ]
+  } ],
+  "input2" : {
+    "foo" : [ {
+      "foo" : 1,
+      "bar" : 2
+    } ]
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/foo",
+    "value" : {
+      "bar" : [ 1, 2, 5, 4 ]
+    }
+  } ],
+  "input2" : {
+    "foo" : {
+      "bar" : [ 1, 2, 5, 4 ]
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/foo",
+    "value" : [ 1, 2 ]
+  } ],
+  "input2" : {
+    "foo" : {
+      "bar" : [ 1, 2, 5, 4 ]
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "",
+    "value" : {
+      "foo" : 1
+    }
+  } ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/",
+    "value" : 1
+  } ],
+  "input2" : {
+    "" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/foo",
+    "value" : [ "bar", "baz" ]
+  }, {
+    "op" : "test",
+    "path" : "/foo/0",
+    "value" : "bar"
+  }, {
+    "op" : "test",
+    "path" : "/",
+    "value" : 0
+  }, {
+    "op" : "test",
+    "path" : "/a~1b",
+    "value" : 1
+  }, {
+    "op" : "test",
+    "path" : "/c%d",
+    "value" : 2
+  }, {
+    "op" : "test",
+    "path" : "/e^f",
+    "value" : 3
+  }, {
+    "op" : "test",
+    "path" : "/g|h",
+    "value" : 4
+  }, {
+    "op" : "test",
+    "path" : "/i\\j",
+    "value" : 5
+  }, {
+    "op" : "test",
+    "path" : "/k\"l",
+    "value" : 6
+  }, {
+    "op" : "test",
+    "path" : "/ ",
+    "value" : 7
+  }, {
+    "op" : "test",
+    "path" : "/m~0n",
+    "value" : 8
+  } ],
+  "input2" : {
+    "foo" : [ "bar", "baz" ],
+    "" : 0,
+    "a/b" : 1,
+    "c%d" : 2,
+    "e^f" : 3,
+    "g|h" : 4,
+    "i\\j" : 5,
+    "k\"l" : 6,
+    " " : 7,
+    "m~n" : 8
+  }
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/foo",
+    "path" : "/foo"
+  } ],
+  "input2" : {
+    "foo" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/foo",
+    "path" : "/bar"
+  } ],
+  "input2" : {
+    "foo" : 1,
+    "baz" : [ {
+      "qux" : "hello"
+    } ]
+  }
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/baz/0/qux",
+    "path" : "/baz/1"
+  } ],
+  "input2" : {
+    "baz" : [ {
+      "qux" : "hello"
+    } ],
+    "bar" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "copy",
+    "from" : "/baz/0",
+    "path" : "/boo"
+  } ],
+  "input2" : {
+    "baz" : [ {
+      "qux" : "hello"
+    } ],
+    "bar" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "",
+    "value" : {
+      "baz" : "qux"
+    }
+  } ],
+  "input2" : {
+    "foo" : "bar"
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/-",
+    "value" : {
+      "foo" : [ "bar", "baz" ]
+    }
+  } ],
+  "input2" : [ 1, 2 ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/2/1/-",
+    "value" : {
+      "foo" : [ "bar", "baz" ]
+    }
+  } ],
+  "input2" : [ 1, 2, [ 3, [ 4, 5 ] ] ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/a/b/c",
+    "value" : 1
+  } ],
+  "input2" : {
+    "a" : "b"
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/~1",
+    "value" : 1
+  } ],
+  "input2" : [ ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/3",
+    "value" : 1
+  } ],
+  "input2" : [ 1, 2 ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/-2",
+    "value" : 1
+  } ],
+  "input2" : [ 1, 2 ]
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "",
+    "value" : null
+  } ],
+  "input2" : { }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/a",
+    "value" : "b"
+  } ],
+  "input2" : { }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/a",
+    "value" : 1
+  } ],
+  "input2" : {
+    "a" : "b"
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/array/-",
+    "value" : 1
+  } ],
+  "input2" : {
+    "array" : [ 2, null, { }, 1 ]
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/array/2",
+    "value" : "hello"
+  } ],
+  "input2" : {
+    "array" : [ 2, null, { }, 1 ]
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/obj/inner/b",
+    "value" : [ 1, 2 ]
+  } ],
+  "input2" : {
+    "obj" : {
+      "inner" : {
+        "a" : "hello"
+      }
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "add",
+    "path" : "/obj/inner/b",
+    "value" : [ 1, 2 ]
+  } ],
+  "input2" : {
+    "obj" : {
+      "inner" : {
+        "a" : "hello",
+        "b" : "world"
+      }
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "copy",
+    "from" : "/a",
+    "path" : "/b"
+  } ],
+  "input2" : { }
+}, {
+  "input" : [ {
+    "op" : "copy",
+    "from" : "/a",
+    "path" : "/b/c"
+  } ],
+  "input2" : {
+    "a" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "copy",
+    "from" : "/a",
+    "path" : "/b"
+  } ],
+  "input2" : {
+    "a" : 1
+  }
+}, {
+  "input" : [ {
+    "op" : "copy",
+    "from" : "/a",
+    "path" : "/b"
+  } ],
+  "input2" : {
+    "a" : 1,
+    "b" : false
+  }
+}, {
+  "input" : [ {
+    "op" : "copy",
+    "from" : "/0",
+    "path" : "/-"
+  } ],
+  "input2" : [ 1, 2, 3, 4 ]
+}, {
+  "input" : [ {
+    "op" : "copy",
+    "from" : "/0",
+    "path" : "/0"
+  } ],
+  "input2" : [ true ]
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/a",
+    "path" : "/a/b"
+  } ],
+  "input2" : { }
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/a",
+    "path" : "/b/c"
+  } ],
+  "input2" : {
+    "a" : "b"
+  }
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/x/a",
+    "path" : "/x/b"
+  } ],
+  "input2" : {
+    "x" : {
+      "a" : "helo"
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/x/a",
+    "path" : "/x/a"
+  } ],
+  "input2" : {
+    "x" : {
+      "a" : "helo"
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/0",
+    "path" : "/0/x"
+  } ],
+  "input2" : [ "victim", { }, { } ]
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/0",
+    "path" : "/-"
+  } ],
+  "input2" : [ 0, 1, 2 ]
+}, {
+  "input" : [ {
+    "op" : "move",
+    "from" : "/a",
+    "path" : "/b/2"
+  } ],
+  "input2" : {
+    "a" : "helo",
+    "b" : [ 1, 2, 3, 4 ]
+  }
+}, {
+  "input" : [ {
+    "op" : "remove",
+    "path" : "/x/y"
+  } ],
+  "input2" : {
+    "x" : { }
+  }
+}, {
+  "input" : [ {
+    "op" : "remove",
+    "path" : "/x/y"
+  } ],
+  "input2" : {
+    "x" : {
+      "a" : "b",
+      "y" : { }
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "remove",
+    "path" : "/0/2"
+  } ],
+  "input2" : [ [ "a", "b", "c" ], "d", "e" ]
+}, {
+  "input" : [ {
+    "op" : "remove",
+    "path" : "/x/0"
+  } ],
+  "input2" : {
+    "x" : [ "y", "z" ],
+    "foo" : "bar"
+  }
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/x/y",
+    "value" : 42
+  } ],
+  "input2" : {
+    "x" : { }
+  }
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "",
+    "value" : false
+  } ],
+  "input2" : {
+    "x" : {
+      "a" : "b",
+      "y" : { }
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/x/y",
+    "value" : "hello"
+  } ],
+  "input2" : {
+    "x" : {
+      "a" : "b",
+      "y" : { }
+    }
+  }
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/0/2",
+    "value" : "x"
+  } ],
+  "input2" : [ [ "a", "b", "c" ], "d", "e" ]
+}, {
+  "input" : [ {
+    "op" : "replace",
+    "path" : "/x/0",
+    "value" : null
+  } ],
+  "input2" : {
+    "x" : [ "y", "z" ],
+    "foo" : "bar"
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/x",
+    "value" : { }
+  } ],
+  "input2" : [ 1, 2 ]
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "",
+    "value" : true
+  } ],
+  "input2" : [ 1, 2 ]
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/x",
+    "value" : -3E+1
+  } ],
+  "input2" : {
+    "x" : -29.02
+  }
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "",
+    "value" : 1
+  } ],
+  "input2" : 1
+}, {
+  "input" : [ {
+    "op" : "test",
+    "path" : "/a/1",
+    "value" : "hello"
+  } ],
+  "input2" : {
+    "a" : [ null, "hello", "world" ]
+  }
+} ]

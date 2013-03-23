@@ -25,8 +25,12 @@
     link = "https://github.com/joelittlejohn/" + name;
     builder.put(name, link);
 
-    name = "avro";
-    link = "http://www.apache.org/dyn/closer.cgi/avro/";
+    name = "json-schema-avro";
+    link = "https://github.com/fge/" + name;
+    builder.put(name, link);
+
+    name = "json-patch";
+    link = "https://github.com/fge/" + name;
     builder.put(name, link);
 
     request.setAttribute("software", builder.build());

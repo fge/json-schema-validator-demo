@@ -18,6 +18,7 @@ public final class App
         builder.add(Schema2PojoLoader.class);
         builder.add(SyntaxLoader.class);
         builder.add(AvroLoader.class);
+        builder.add(JsonPatchLoader.class);
 
         return builder.build();
     }

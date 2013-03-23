@@ -32,7 +32,9 @@
 
     <h2>Software used</h2>
 
-    <p>This web site uses the following software, all written in Java:</p>
+    <p>This web site uses the following software, all written in Java, and using
+    <a href="http://jackson.codehaus.org">Jackson</a> for all JSON serialization
+    and deserialization purposes:</p>
 
     <ul>
         <li><a href="${software['json-schema-core']}">json-schema-core</a>;</li>
@@ -40,7 +42,9 @@
         json-schema-validator</a>;</li>
         <li><a href="${software['JJSchema']}">JJSchema</a>;</li>
         <li><a href="${software['jsonschema2pojo']}">jsonschema2pojo</a>;</li>
-        <li><a href="${sowftware['avro']}">Avro Java library</a>;</li>
+        <li><a href="${software['json-patch']}">json-patch</a>;</li>
+        <li><a href="${sowftware['json-schema-avro']}">json-schema-avro</a>;
+        </li>
         <li><a href="${software['json-schema-processor-examples']}">
         json-schema-processor-examples</a>.</li>
     </ul>

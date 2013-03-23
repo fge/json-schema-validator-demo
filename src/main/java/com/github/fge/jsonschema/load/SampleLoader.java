@@ -2,7 +2,7 @@ package com.github.fge.jsonschema.load;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.github.fge.jsonschema.util.JacksonUtils;
+import com.github.fge.jackson.JacksonUtils;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;

@@ -19,15 +19,19 @@ package com.github.fge.jsonschema.process;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jackson.JacksonUtils;
 import com.github.fge.jackson.JsonLoader;
+import com.github.fge.jsonpatch.JsonPatchInput;
+import com.github.fge.jsonpatch.JsonPatchProcessor;
 import com.github.fge.jsonschema.constants.ParseError;
-import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import com.github.fge.jsonschema.main.JsonValidator;
+import com.github.fge.jsonschema.processing.ProcessingResult;
+import com.github.fge.jsonschema.report.ListProcessingReport;
+import com.github.fge.jsonschema.report.ProcessingMessage;
 import com.github.fge.jsonschema.report.ProcessingReport;
-import com.github.fge.jsonschema.util.AsJson;
+import com.github.fge.jsonschema.util.ValueHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,24 +47,23 @@ import java.io.IOException;
 import static com.github.fge.jsonschema.constants.ResponseFields.*;
 
 
-@Path("/index")
+@Path("/jsonpatch")
 @Produces("application/json;charset=utf-8")
-public final class Index
+public final class JsonPatch
 {
-    private static final Logger log = LoggerFactory.getLogger(Index.class);
+    private static final Logger log = LoggerFactory.getLogger(JsonPatch.class);
     private static final Response OOPS = Response.status(500).build();
-    private static final JsonValidator VALIDATOR
-        = JsonSchemaFactory.byDefault().getValidator();
+    private static final JsonPatchProcessor PROCESSOR
+        = new JsonPatchProcessor();
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public static Response validate(
-        @FormParam("input") final String schema,
+    public static Response validate(@FormParam("input") final String patch,
         @FormParam("input2") final String data
     )
     {
         try {
-            final JsonNode ret = buildResult(schema, data);
+            final JsonNode ret = buildResult(patch, data);
             return Response.ok().entity(ret.toString()).build();
         } catch (IOException e) {
             log.error("I/O error while validating data", e);
@@ -73,29 +76,33 @@ public final class Index
      * Build the response. When we arrive here, we are guaranteed that we have
      * the needed elements.
      */
-    private static JsonNode buildResult(final String rawSchema,
+    private static JsonNode buildResult(final String rawPatch,
         final String rawData)
         throws IOException
     {
         final ObjectNode ret = JsonNodeFactory.instance.objectNode();
 
         final boolean invalidSchema = fillWithData(ret, INPUT, INVALID_INPUT,
-            rawSchema);
+            rawPatch);
         final boolean invalidData = fillWithData(ret, INPUT2, INVALID_INPUT2,
             rawData);
 
-        final JsonNode schemaNode = ret.remove(INPUT);
+        final JsonNode patchNode = ret.remove(INPUT);
         final JsonNode data = ret.remove(INPUT2);
 
         if (invalidSchema || invalidData)
             return ret;
 
-        final ProcessingReport report
-            = VALIDATOR.validateUnchecked(schemaNode, data);
+        final JsonPatchInput input = new JsonPatchInput(patchNode, data);
 
-        final boolean success = report.isSuccess();
+        final ProcessingReport report = new ListProcessingReport();
+        final ProcessingResult<ValueHolder<JsonNode>> result
+            = ProcessingResult.uncheckedResult(PROCESSOR, report, input);
+
+        final boolean success = result.isSuccess();
         ret.put(VALID, success);
-        final JsonNode node = ((AsJson) report).asJson();
+        final JsonNode node = result.isSuccess() ? result.getResult()
+            .getValue() : buildReport(result.getReport());
         ret.put(RESULTS, JacksonUtils.prettyPrint(node));
         return ret;
     }
@@ -117,5 +124,13 @@ public final class Index
             node.put(onFailure, ParseError.build(e, raw.contains("\r\n")));
             return true;
         }
+    }
+
+    private static JsonNode buildReport(final ProcessingReport report)
+    {
+        final ArrayNode ret = JacksonUtils.nodeFactory().arrayNode();
+        for (final ProcessingMessage message: report)
+            ret.add(message.asJson());
+        return ret;
     }
 }
