@@ -137,6 +137,9 @@ public final class Index
             final JsonParser parser = MAPPER.getFactory().createParser(reader);
         ) {
             iterator = MAPPER.readValues(parser, JsonNode.class);
+            if (iterator.hasNextValue())
+                throw new JsonParseException("no data",
+                    new JsonLocation(reader, 0L, 1, 1));
             ret = iterator.nextValue();
             location = parser.getCurrentLocation();
             if (!iterator.hasNextValue())
