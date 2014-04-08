@@ -27,11 +27,11 @@ import com.github.fge.jackson.JsonLoader;
 import com.github.fge.jsonpatch.JsonPatchInput;
 import com.github.fge.jsonpatch.JsonPatchProcessor;
 import com.github.fge.jsonschema.constants.ParseError;
-import com.github.fge.jsonschema.processing.ProcessingResult;
-import com.github.fge.jsonschema.report.ListProcessingReport;
-import com.github.fge.jsonschema.report.ProcessingMessage;
-import com.github.fge.jsonschema.report.ProcessingReport;
-import com.github.fge.jsonschema.util.ValueHolder;
+import com.github.fge.jsonschema.core.processing.ProcessingResult;
+import com.github.fge.jsonschema.core.report.ListProcessingReport;
+import com.github.fge.jsonschema.core.report.ProcessingMessage;
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import com.github.fge.jsonschema.core.util.ValueHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

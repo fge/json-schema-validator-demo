@@ -4,12 +4,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jackson.JacksonUtils;
 import com.github.fge.jjschema.JJSchemaFromSource;
-import com.github.fge.jsonschema.exceptions.ProcessingException;
-import com.github.fge.jsonschema.processing.ProcessingResult;
-import com.github.fge.jsonschema.report.ListProcessingReport;
-import com.github.fge.jsonschema.report.ProcessingReport;
-import com.github.fge.jsonschema.tree.SchemaTree;
-import com.github.fge.jsonschema.util.ValueHolder;
+import com.github.fge.jsonschema.core.processing.ProcessingResult;
+import com.github.fge.jsonschema.core.report.ListProcessingReport;
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import com.github.fge.jsonschema.core.tree.SchemaTree;
+import com.github.fge.jsonschema.core.util.ValueHolder;
 
 import javax.ws.rs.Path;
 import java.io.IOException;
@@ -25,7 +24,7 @@ public final class JJSchemaProcessing
 
     @Override
     protected JsonNode buildResult(final String input)
-        throws IOException, ProcessingException
+        throws IOException
     {
         final ValueHolder<String> holder = ValueHolder.hold("source", input);
         final ProcessingReport report = new ListProcessingReport();
