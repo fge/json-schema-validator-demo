@@ -17,12 +17,16 @@
 
 package com.github.fge.jsonschema.process;
 
+import com.fasterxml.jackson.core.JsonLocation;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jackson.JacksonUtils;
-import com.github.fge.jackson.JsonLoader;
 import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.core.util.AsJson;
@@ -39,6 +43,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.io.StringReader;
 
 import static com.github.fge.jsonschema.constants.ResponseFields.*;
 
@@ -51,6 +56,7 @@ public final class Index
     private static final Response OOPS = Response.status(500).build();
     private static final JsonValidator VALIDATOR
         = JsonSchemaFactory.byDefault().getValidator();
+    private static final ObjectMapper MAPPER = JacksonUtils.newMapper();
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -111,11 +117,32 @@ public final class Index
         throws IOException
     {
         try {
-            node.put(onSuccess, JsonLoader.fromString(raw));
+            node.put(onSuccess, readOne(raw));
             return false;
         } catch (JsonProcessingException e) {
             node.put(onFailure, ParseError.build(e, raw.contains("\r\n")));
             return true;
+        }
+    }
+
+    private static JsonNode readOne(final String input)
+        throws IOException
+    {
+        final MappingIterator<JsonNode> iterator;
+        final JsonNode ret;
+        final JsonLocation location;
+
+        try (
+            final StringReader reader = new StringReader(input);
+            final JsonParser parser = MAPPER.getFactory().createParser(reader);
+        ) {
+            iterator = MAPPER.readValues(parser, JsonNode.class);
+            ret = iterator.nextValue();
+            location = parser.getCurrentLocation();
+            if (!iterator.hasNextValue())
+                return ret;
+            throw new JsonParseException("extra data after first node",
+                location);
         }
     }
 }
