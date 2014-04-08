@@ -27,6 +27,7 @@
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>com.github.fge.jsonschema.process.App</param-value>
         </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
@@ -45,6 +46,7 @@
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>com.github.fge.jsonschema.load.App</param-value>
         </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
