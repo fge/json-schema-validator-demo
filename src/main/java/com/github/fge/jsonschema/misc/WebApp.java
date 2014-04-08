@@ -17,6 +17,7 @@
 
 package com.github.fge.jsonschema.misc;
 
+import com.google.common.base.Strings;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
@@ -39,9 +40,8 @@ public final class WebApp
         //The port that we should run on can be set into an environment variable
         //Look for that variable and default to 8080 if it isn't there.
         String webPort = System.getenv("PORT");
-        if (webPort == null || webPort.isEmpty()) {
+        if (Strings.isNullOrEmpty(webPort))
             webPort = "8080";
-        }
 
         final Server server = new Server(Integer.valueOf(webPort));
         final WebAppContext root = new WebAppContext();
@@ -62,5 +62,4 @@ public final class WebApp
         server.start();
         server.join();
     }
-
 }
