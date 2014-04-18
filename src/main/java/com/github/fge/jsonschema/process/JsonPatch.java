@@ -17,12 +17,8 @@
 
 package com.github.fge.jsonschema.process;
 
-import com.fasterxml.jackson.core.JsonLocation;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
@@ -141,28 +137,5 @@ public final class JsonPatch
         for (final ProcessingMessage message: report)
             ret.add(message.asJson());
         return ret;
-    }
-    private static JsonNode readOne(final String input)
-        throws IOException
-    {
-        final MappingIterator<JsonNode> iterator;
-        final JsonNode ret;
-        final JsonLocation location;
-
-        try (
-            final StringReader reader = new StringReader(input);
-            final JsonParser parser = MAPPER.getFactory().createParser(reader);
-        ) {
-            iterator = MAPPER.readValues(parser, JsonNode.class);
-            if (!iterator.hasNextValue())
-                throw new JsonParseException("no data",
-                    new JsonLocation(reader, 0L, 1, 1));
-            ret = iterator.nextValue();
-            location = parser.getCurrentLocation();
-            if (!iterator.hasNextValue())
-                return ret;
-            throw new JsonParseException("extra data after first node",
-                location);
-        }
     }
 }
