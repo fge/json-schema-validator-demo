@@ -28,7 +28,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jackson.JacksonUtils;
-import com.github.fge.jackson.JsonLoader;
+import com.github.fge.jackson.JsonNodeReader;
 import com.github.fge.jsonpatch.JsonPatchInput;
 import com.github.fge.jsonpatch.JsonPatchProcessor;
 import com.github.fge.jsonschema.constants.ParseError;
@@ -62,6 +62,8 @@ public final class JsonPatch
     private static final JsonPatchProcessor PROCESSOR
         = new JsonPatchProcessor();
     private static final ObjectMapper MAPPER = JacksonUtils.newMapper();
+    private static final JsonNodeReader NODE_READER
+        = new JsonNodeReader();
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -125,7 +127,7 @@ public final class JsonPatch
         throws IOException
     {
         try {
-            node.put(onSuccess, JsonLoader.fromString(raw));
+            node.put(onSuccess, NODE_READER.fromReader(new StringReader(raw)));
             return false;
         } catch (JsonProcessingException e) {
             node.put(onFailure, ParseError.build(e, raw.contains("\r\n")));

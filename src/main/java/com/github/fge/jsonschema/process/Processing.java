@@ -1,17 +1,13 @@
 package com.github.fge.jsonschema.process;
 
 
-import com.fasterxml.jackson.core.JsonLocation;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.fge.jackson.JacksonUtils;
+import com.github.fge.jackson.JsonNodeReader;
 import com.github.fge.jsonschema.constants.ParseError;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.github.fge.jsonschema.core.report.ProcessingMessage;
@@ -32,7 +28,8 @@ import java.io.StringReader;
 public abstract class Processing
 {
     private static final Response OOPS = Response.status(500).build();
-    private static final ObjectMapper MAPPER = JacksonUtils.newMapper();
+    private static final JsonNodeReader NODE_READER
+        = new JsonNodeReader();
 
     protected static final JsonNodeFactory FACTORY = JacksonUtils.nodeFactory();
 
@@ -69,7 +66,7 @@ public abstract class Processing
         throws IOException
     {
         try {
-            node.put(onSuccess, readOne(raw));
+            node.put(onSuccess, NODE_READER.fromReader(new StringReader(raw)));
             return false;
         } catch (JsonProcessingException e) {
             node.put(onFailure, ParseError.build(e, raw.contains("\r\n")));
@@ -83,29 +80,5 @@ public abstract class Processing
         for (final ProcessingMessage message: report)
             ret.add(message.asJson());
         return ret;
-    }
-
-    private static JsonNode readOne(final String input)
-        throws IOException
-    {
-        final MappingIterator<JsonNode> iterator;
-        final JsonNode ret;
-        final JsonLocation location;
-
-        try (
-            final StringReader reader = new StringReader(input);
-            final JsonParser parser = MAPPER.getFactory().createParser(reader);
-        ) {
-            iterator = MAPPER.readValues(parser, JsonNode.class);
-            if (!iterator.hasNextValue())
-                throw new JsonParseException("no data",
-                    new JsonLocation(reader, 0L, 1, 1));
-            ret = iterator.nextValue();
-            location = parser.getCurrentLocation();
-            if (!iterator.hasNextValue())
-                return ret;
-            throw new JsonParseException("extra data after first node",
-                location);
-        }
     }
 }
