@@ -49,6 +49,7 @@ import static com.github.fge.jsonschema.constants.ResponseFields.*;
 public final class Index
 {
     private static final Logger log = LoggerFactory.getLogger(Index.class);
+    private static final Response BAD = Response.status(400).build();
     private static final Response OOPS = Response.status(500).build();
     private static final JsonValidator VALIDATOR
         = JsonSchemaFactory.byDefault().getValidator();
@@ -62,6 +63,8 @@ public final class Index
         @FormParam("input2") final String data
     )
     {
+        if (schema == null || data == null)
+            return BAD;
         try {
             final JsonNode ret = buildResult(schema, data);
             return Response.ok().entity(ret.toString()).build();

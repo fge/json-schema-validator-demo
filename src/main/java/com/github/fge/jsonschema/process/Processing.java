@@ -27,6 +27,7 @@ import java.io.StringReader;
 @Produces("application/json;charset=utf-8")
 public abstract class Processing
 {
+    private static final Response BAD = Response.status(400).build();
     private static final Response OOPS = Response.status(500).build();
     private static final JsonNodeReader NODE_READER
         = new JsonNodeReader();
@@ -45,6 +46,8 @@ public abstract class Processing
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public final Response doProcess(@FormParam("input") final String input)
     {
+        if (input == null)
+            return BAD;
         try {
             final JsonNode ret = buildResult(input);
             final String out = JacksonUtils.prettyPrint(ret);

@@ -19,7 +19,6 @@ package com.github.fge.jsonschema.process;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -54,10 +53,10 @@ import static com.github.fge.jsonschema.constants.ResponseFields.*;
 public final class JsonPatch
 {
     private static final Logger log = LoggerFactory.getLogger(JsonPatch.class);
+    private static final Response BAD = Response.status(400).build();
     private static final Response OOPS = Response.status(500).build();
     private static final JsonPatchProcessor PROCESSOR
         = new JsonPatchProcessor();
-    private static final ObjectMapper MAPPER = JacksonUtils.newMapper();
     private static final JsonNodeReader NODE_READER
         = new JsonNodeReader();
 
@@ -67,6 +66,8 @@ public final class JsonPatch
         @FormParam("input2") final String data
     )
     {
+        if (patch == null || data == null)
+            return BAD;
         try {
             final JsonNode ret = buildResult(patch, data);
             return Response.ok().entity(ret.toString()).build();
