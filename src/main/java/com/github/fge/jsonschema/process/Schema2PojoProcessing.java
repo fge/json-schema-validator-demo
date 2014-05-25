@@ -9,6 +9,7 @@ import com.github.fge.jsonschema.core.report.ListProcessingReport;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.core.tree.CanonicalSchemaTree;
 import com.github.fge.jsonschema.core.tree.SchemaTree;
+import com.github.fge.jsonschema.core.tree.key.SchemaKey;
 import com.github.fge.jsonschema.core.util.ValueHolder;
 import com.github.fge.jsonschema2pojo.JsonSchema2SourceCode;
 
@@ -38,7 +39,8 @@ public final class Schema2PojoProcessing
         if (invalidSchema)
             return ret;
 
-        final SchemaTree tree = new CanonicalSchemaTree(schemaNode);
+        final SchemaTree tree
+            = new CanonicalSchemaTree(SchemaKey.anonymousKey(), schemaNode);
         final ValueHolder<SchemaTree> holder = ValueHolder.hold("schema", tree);
 
         final ProcessingReport report = new ListProcessingReport();

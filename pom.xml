@@ -27,7 +27,9 @@
     <properties>
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jetty.version>9.1.0.M0</jetty.version>
+        <jetty.version>9.2.0.M1</jetty.version>
+        <!-- TODO: migrate to 2.x -->
+        <jersey.version>1.18.1</jersey.version>
     </properties>
 
     <dependencies>
@@ -57,18 +59,18 @@
         <dependency>
             <groupId>com.github.fge</groupId>
             <artifactId>json-schema-processor-examples</artifactId>
-            <version>0.8</version>
+            <version>0.8.1</version>
         </dependency>
 
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-server</artifactId>
-            <version>1.18.1</version>
+            <version>${jersey.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-servlet</artifactId>
-            <version>1.18.1</version>
+            <version>${jersey.version}</version>
         </dependency>
 
         <dependency>
