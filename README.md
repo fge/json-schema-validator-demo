@@ -50,7 +50,7 @@ mvn clean install
 with:</p>
 
 <pre>
-java -cp target/classes:target/dependency/* com.github.fge.jsonschema.WebApp
+java -cp target/classes:target/dependency/* com.github.fge.jsonschema.misc.WebApp
 </pre>
 
 <p>The application will listen on the loopback interface, and on port 8080 by default; in order to
